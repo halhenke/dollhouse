@@ -1,0 +1,79 @@
+// RULES
+
+// COLOURS
+$blueish: rgba(154, 186, 213, 0.76)
+// CHOSEN BY US
+$body-bg: rgba(171, 110, 123, 0.62)
+$event-bg: rgb(240, 216, 227)
+$event-text-color: rgb(107, 104, 92)
+$link-primary-color: #9E5873
+
+// To force column heights to be the same
+// see http://stackoverflow.com/a/18227564/935470
+.same-height
+  bottom: 0
+  top: 0
+  position: absolute
+
+body
+  // background-color: rgba(255, 178, 231, 0.31)
+  background-color: $body-bg
+
+.navbar.navbar-defaut
+  background-color: rgba(236, 172, 214, 0.58)
+
+#body > div:nth-child(2)
+  // background-color: rgba(255, 253, 79, 0.29)
+  background-color: $event-bg
+  color: $event-text-color
+
+a
+  color: $link-primary-color
+
+h1
+  font:
+    family: "HomemadeApple"
+
+// .navbar-header
+a.navbar-brand
+  font:
+    family: "EmilysCandy"
+    size: 3rem
+    weight: bold
+
+// Front Page/Index
+img.cover-girl
+  transform: rotateX(0.5turn) translate(4rem) scale(0.5);
+  transition-duration: 2s
+
+// Blogs
+// .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus
+.list-group-item.active
+  background:
+    color: $blueish
+
+// Event
+.event_details
+  margin:
+    top: 2rem
+    left: 2rem
+  .key
+    // margin:
+    //   left: 1rem
+    font:
+      family: "Metamorphous"
+      size: 2rem
+      variant: small-caps
+  .val
+    size: 2rem
+
+@mixin event-details
+  font:
+    family: "Metamorphous"
+    size: 2rem
+    variant: small-caps
+
+dt
+  float: left
+  &:after
+    content: ": "
