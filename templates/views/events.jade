@@ -1,0 +1,68 @@
+extends ../layouts/default
+
+mixin event(event)
+  .event(data-ks-editable=editable(user, { list: 'Event', id: event.id }))
+    h2: a(href='/events/event/' + event.slug)= event.title
+    p.lead.text-muted Posted 
+      if event.publishedDate
+        | on #{event._.publishedDate.format('MMMM Do, YYYY')} 
+      if event.author
+        | by #{event.author.name.first}
+    if event.image.exists
+      img(src=event._.image.fit(160,160)).img.pull-right
+    p!= event.content.brief
+    if event.content.extended
+      p.read-more: a(href='/events/event/' + event.slug) Read more...
+
+block intro
+  .container
+    h1= data.category ? data.category.name : 'Events'
+
+block content
+  .container: .row
+    .col-sm-8.col-md-9
+      if filters.category && !data.category
+        h3.text-muted Invalid Category.
+      else
+        //- - debugger
+        if data.events.results.length
+          if data.events.totalPages > 1
+            h4.text-weight-normal Showing 
+              strong #{data.events.first}
+              |  to 
+              strong #{data.events.last}
+              |  of 
+              strong #{data.events.total}
+              |  events.
+          else
+            h4.text-weight-normal Showing #{utils.plural(data.events.results.length, '* event')}.
+          .events
+            each event in data.events.results
+              +event(event)
+          
+          if data.events.totalPages > 1
+            ul.pagination
+              if data.events.previous
+                li: a(href='?page=' + data.events.previous): span.glyphicon.glyphicon-chevron-left
+              else
+                li.disabled: a(href='?page=' + 1): span.glyphicon.glyphicon-chevron-left
+              each p, i in data.events.pages
+                li(class=data.events.currentPage == p ? 'active' : null)
+                  a(href='?page=' + (p == '...' ? (i ? data.events.totalPages : 1) : p ))= p
+              if data.events.next
+                li: a(href='?page=' + data.events.next): span.glyphicon.glyphicon-chevron-right
+              else
+                li.disabled: a(href='?page=' + data.events.totalPages): span.entypo.glyphicon.glyphicon-chevron-right
+        else
+          if data.category
+            h3.text-muted There are no events in the category #{data.category.name}.
+          else
+            h3.text-muted There are no events yet.
+    
+    if data.categories.length
+      .col-sm-4.col-md-3
+        h2 Categories
+        .list-group(style='margin-top: 70px;')
+          a(href='/blog', class=!data.category ? 'active' : false).list-group-item All Categories
+          each cat in data.categories
+            a(href='/blog/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name

@@ -8,7 +8,8 @@
  * modules in your project's /lib directory.
  */
 
-var _ = require('lodash');
+var _ = require('lodash'),
+    config = require('../config');
 
 
 /**
@@ -25,9 +26,11 @@ exports.initLocals = function(req, res, next) {
 
   locals.navLinks = [
     { label: 'Home',		key: 'home',		href: '/' },
-    { label: 'Blog',		key: 'blog',		href: '/blog' },
+    { label: 'Updates',		key: 'blog',		href: '/blog' },
+    { label: 'Events',		key: 'events',		href: '/events' },
     { label: 'Gallery',		key: 'gallery',		href: '/gallery' },
-    { label: 'Forum',		key: 'forum',		href: '/forum' },
+    { label: 'Forum',		key: 'forum',		href: config.forumRoute },
+    { label: 'About Us',		key: 'about',		href: '/about' },
     { label: 'Contact',		key: 'contact',		href: '/contact' }
   ];
 
