@@ -1,0 +1,14 @@
+mixin eventDateFormat(event)
+  //- p= event.date
+  //- p= event.date + " " + event.startTime + " - " + event.endTime 
+  | #{event.date}: #{event.startTime} - #{event.endTime}
+        
+mixin simpleAddressFormat(location)
+  p= location
+  //- | #{location.street1} #{location.suburb} #{location.postcode}
+  //- .row
+  //-   .col-sm-2.col-md-2.
+  //-     Address
+  //-   //- .col-sm-6.col-md-6.val= data.event.time
+  //-   .col-sm-6.col-md-6.val.
+  //-     #{location.street1} #{suburb} #{postcode}
