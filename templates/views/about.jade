@@ -1,0 +1,17 @@
+extends ../layouts/default
+
+block intro
+  .container
+    h1 About Us
+    
+block content
+  .container
+    if data && data.about
+      h3= data.about.title
+      //- img(src=data.about._.image.fit(750,450))
+      .image-wrap: img(src=data.about._.image.fit(750,450)).img-responsive
+      != data.about.content
+    else
+      .row: .col-sm-8.col-md-6
+        p.
+          Hey y'all - thanks for getting in touch.
