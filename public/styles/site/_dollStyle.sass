@@ -2,11 +2,13 @@
 
 // COLOURS
 $blueish: rgba(154, 186, 213, 0.76)
-// CHOSEN BY US
 $body-bg: rgba(171, 110, 123, 0.62)
 $event-bg: rgb(240, 216, 227)
+// $pale-panel-bg: rgba(236, 172, 214, 0.58)
+$pale-panel-bg: #f8f8f8
 $event-text-color: rgb(107, 104, 92)
 $link-primary-color: #9E5873
+$my-dolls: rgba(239, 195, 217, 0.57)
 
 // To force column heights to be the same
 // see http://stackoverflow.com/a/18227564/935470
@@ -16,14 +18,13 @@ $link-primary-color: #9E5873
   position: absolute
 
 body
-  // background-color: rgba(255, 178, 231, 0.31)
   background-color: $body-bg
 
 .navbar.navbar-defaut
-  background-color: rgba(236, 172, 214, 0.58)
+  background-color: $pale-panel-bg
 
+// TODO: This is terrible - fix
 #body > div:nth-child(2)
-  // background-color: rgba(255, 253, 79, 0.29)
   background-color: $event-bg
   color: $event-text-color
 
@@ -34,7 +35,6 @@ h1
   font:
     family: "HomemadeApple"
 
-// .navbar-header
 a.navbar-brand
   font:
     family: "EmilysCandy"
@@ -46,20 +46,18 @@ img.cover-girl
   transform: rotateX(0.5turn) translate(4rem) scale(0.5);
   transition-duration: 2s
 
-// Blogs
+// BLOG
 // .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus
 .list-group-item.active
   background:
     color: $blueish
 
-// Event
+// EVENT
 .event_details
   margin:
     top: 2rem
     left: 2rem
   .key
-    // margin:
-    //   left: 1rem
     font:
       family: "Metamorphous"
       size: 2rem
@@ -77,3 +75,18 @@ dt
   float: left
   &:after
     content: ": "
+
+// DOLLS
+// COLLECTION
+.doll
+  .doll-header
+    background-color: $pale-panel-bg
+  &.my-doll
+    .doll-header
+      background-color: $my-dolls
+// NEW DOLL FORM
+form.newDoll
+  label
+    font:
+      size: 2rem
+      family: "Metamorphous"

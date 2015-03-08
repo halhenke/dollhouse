@@ -41,8 +41,15 @@ exports = module.exports = function(app) {
   app.get('/gallery', routes.views.gallery);
   app.get('/events', routes.views.events);
   app.get('/events/event/:event', routes.views.event);
-  app.all('/about', routes.views.about);
+  app.get('/dolls', routes.views.dolls);
+  app.get('/dolls/doll/:doll', routes.views.dollView);
+  app.all('/dolls/new', routes.views.newDoll);
+  app.get('/about', routes.views.about);
   app.all('/contact', routes.views.contact);
+
+  // Enable Bower directory as static directory
+  // - maybe change later - move bower components to public/
+
 
   // NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
   // app.get('/protected', middleware.requireUser, routes.views.protected);
