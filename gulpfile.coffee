@@ -41,38 +41,33 @@ nodemonOpts =
 
 # gulp lint
 gulp.task "lint", ->
-  gulp.src(paths.src)
+  return gulp.src(paths.src)
     .pipe(jshint())
     .reporter(jshintReporter)
-  return
 
-gulp.task "angular", (done) ->
-  gulp.src(paths.ng.coffee)
+gulp.task "angular", ->
+  return gulp.src(paths.ng.coffee)
     .pipe(coffee())
     .pipe(concat("ng.js"))
     .pipe(gulp.dest("public/js/ng"))
-  done()
 
-gulp.task "ng-jade", (done) ->
-  gulp.src(paths.ng.jade)
+gulp.task "ng-jade", ->
+  return gulp.src(paths.ng.jade)
     .pipe(jade())
     .pipe(ngTemplates("templates.js", standalone: true))
     .pipe(gulp.dest("public/templates"))
-  done()
 
-gulp.task "bower", (done) ->
-  gulp.src(paths.bower)
+gulp.task "bower", ->
+  return gulp.src(paths.bower)
     .pipe(concat("bower.js"))
     .pipe(gulp.dest("public/js/"))
-  done()
 
 # gulp watcher for lint
 gulp.task "watch:lint", ->
-  gulp.src(paths.src)
+  return gulp.src(paths.src)
     .pipe(watch())
     .pipe(jshint())
     .reporter(jshintReporter)
-  return
 
 gulp.task "watch", ->
   gulp.watch paths.ng.coffee, ['angular']
