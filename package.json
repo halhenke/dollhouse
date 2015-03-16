@@ -32,5 +32,6 @@
   "scripts": {
     "start": "node keystone.js"
   },
+  "private": true,
   "main": "keystone.js"
 }
