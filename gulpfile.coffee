@@ -33,6 +33,10 @@ paths =
     "bower/angular/angular.js"
     "bower/angular-route/angular-route.js"
   ]
+  webpack:
+    entry: "./webpack.entry.js"
+    config: "./webpack.config.js"
+
 
 nodemonOpts =
   script: "keystone.js"
@@ -69,7 +73,14 @@ gulp.task "watch:lint", ->
     .pipe(jshint())
     .reporter(jshintReporter)
 
+gulp.task "webpack", ->
+  return gulp.src(paths.webpack.entry)
+    .pipe(webpack(require(paths.webpack.config)))
+    .pipe gulp.dest("public/js/")
+
+
 gulp.task "watch", ->
+  gulp.watch paths.src, ['lint']
   gulp.watch paths.ng.coffee, ['angular']
   gulp.watch paths.ng.jade, ['ng-jade']
   gulp.watch paths.jade, (event) ->
