@@ -60,7 +60,7 @@ nodemonOpts =
 gulp.task "lint", ->
   return gulp.src(paths.src)
     .pipe(jshint())
-    .reporter(jshintReporter)
+    .pipe(jshint.reporter(jshintReporter))
 
 gulp.task "angular", ->
   return gulp.src(paths.ng.coffee)
@@ -83,18 +83,10 @@ gulp.task "bower", ->
     .pipe(sourcemaps.write("/maps"))
     .pipe(gulp.dest("public/js/"))
 
-# gulp watcher for lint
-gulp.task "watch:lint", ->
-  return gulp.src(paths.src)
-    .pipe(watch())
-    .pipe(jshint())
-    .reporter(jshintReporter)
-
 gulp.task "webpack", ->
   return gulp.src(paths.webpack.entry)
     .pipe(webpack(require(paths.webpack.config)))
     .pipe gulp.dest("public/js/")
-
 
 gulp.task "watch", ->
   gulp.watch paths.src, ['lint']
