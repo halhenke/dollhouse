@@ -1,0 +1,29 @@
+extends ../../layouts/default
+
+- myProfile = (profile.owner.id === user.id)
+
+mixin header
+  .row
+    .col-sm-4.col-md-4
+      h1= data.profile.userName
+    if myProfile
+      .col-sm-8.col-md-8
+        a.btn.btn-primary(href="/profile/edit") Edit Profile
+
+block content
+  .container: .row: .col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2
+    article
+      p: a(href='/dolls') &larr; back to the dolls
+      hr
+      if !data.profile || !data.profile.owner
+        h2 Profile not found...
+      else
+        header
+          //- h1= data.profile.name
+          +header
+        .profile
+          if data.profile.image.exists
+            .image-wrap: img(src=data.profile._.image.fit(750,450)).img-responsive
+          if data.profile.showEmail || myProfile
+            .email data.profile.email
+          != data.profile.content.full

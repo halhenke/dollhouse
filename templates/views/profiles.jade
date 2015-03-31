@@ -1,0 +1,87 @@
+extends ../layouts/default
+
+mixin profile(profile)
+  - thisIsMine = (profile.owner.id === user.id)
+  .profile(class={"my-profile": thisIsMine})(data-ks-editable=editable(user, { list: 'profile', id: profile.id }))
+    .profile-header
+      h2: a(href='/profiles/profile/' + profile.slug)= profile.name
+      //- p.lead.text-muted Owned by
+      p.lead.text-muted
+        if profile.owner
+          //- | Owned by
+          //- a(href="/users/#{profile.owner.id}") #{profile.owner.name.full}
+          a(href="/users/#{profile.owner.id}") #{thisIsMine ? "You" : profile.userName}
+    .profile-body
+      if profile.image.exists
+        //- img(src=profile._.image.fit(160,160)).img.pull-right
+        img(src=profile._.image.fit(100,100)).img.pull-right
+      p!= profile.content.brief
+      if profile.content.extended
+        p.read-more: a(href='/profiles/profile/' + profile.slug) Read more...
+
+block intro
+  .container: .row
+    .col-sm-4.col-md-4
+      h1= data.category ? data.category.name : 'User Profiles'
+    .col-sm-3.col-sm-offset-5.col-md-3.col-md-offset-5
+      if user.profile
+        //- if user.profile.public?
+        if true
+          a.btn.btn-primary(href="/profiles/show/#{user.id}") Go to my Profile
+        else
+          a.btn.btn-primary(href="/profiles/show/#{user.id}") Edit my Profile
+      else
+        a.btn.btn-primary(href="/profiles/new") Create my profile
+
+block content
+  .container: .row.jumbotron
+    .col-sm-8.col-md-9
+      if filters.category && !data.category
+        h3.text-muted Invalid Category.
+      else
+        if data.profiles.results.length
+          if data.profiles.totalPages > 1
+            h4.text-weight-normal Showing
+              strong #{data.profiles.first}
+              |  to
+              strong #{data.profiles.last}
+              |  of
+              strong #{data.profiles.total}
+              |  profiles.
+          else
+            h4.text-weight-normal Showing #{utils.plural(data.profiles.results.length, '* profile')}.
+          .profiles
+            - doll_threed = lo.chunk(data.profiles.results, 3)
+            each doll_threes in doll_threed
+              .row
+                each profile in doll_threes
+                  .col-sm-4.col-md-4
+                    +profile(profile)
+
+          if data.profiles.totalPages > 1
+            ul.pagination
+              if data.profiles.previous
+                li: a(href='?page=' + data.profiles.previous): span.glyphicon.glyphicon-chevron-left
+              else
+                li.disabled: a(href='?page=' + 1): span.glyphicon.glyphicon-chevron-left
+              each p, i in data.profiles.pages
+                li(class=data.profiles.currentPage == p ? 'active' : null)
+                  a(href='?page=' + (p == '...' ? (i ? data.profiles.totalPages : 1) : p ))= p
+              if data.profiles.next
+                li: a(href='?page=' + data.profiles.next): span.glyphicon.glyphicon-chevron-right
+              else
+                li.disabled: a(href='?page=' + data.profiles.totalPages): span.entypo.glyphicon.glyphicon-chevron-right
+        else
+          if data.category
+            h3.text-muted There are no profiles in the category #{data.category.name}.
+          else
+            h3.text-muted There are no profiles yet.
+
+    //- if data.categories.length
+    .col-sm-4.col-md-3
+      h2 Filter/Search profiles
+      //- h2 Categories
+      .list-group(style='margin-top: 70px;')
+        a(href='/blog', class=!data.category ? 'active' : false).list-group-item All Categories
+        each cat in data.categories
+          a(href='/blog/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
