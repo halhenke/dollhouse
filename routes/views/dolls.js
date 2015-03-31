@@ -24,7 +24,8 @@ exports = module.exports = function(req, res) {
         perPage: 10,
         maxPages: 10
       })
-      .or([{'state': 'public'}, {'owner': locals.user.id}])
+      // NOTE: Stop page breaking for people who arent loggged in
+      .or([{'state': 'public'}, {'owner': (locals.user ? locals.user.id : null)}])
       // .sort('-publishedDate')
       .populate('owner');
 
