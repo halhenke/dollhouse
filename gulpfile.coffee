@@ -4,6 +4,7 @@ livereload = require "gulp-livereload"
 jshint = require "gulp-jshint"
 jshintReporter = require "jshint-stylish"
 webpack = require "gulp-webpack"
+sourcemaps = require "gulp-sourcemaps"
 _ = require "lodash"
 watch = require "gulp-watch"
 # For Angular
@@ -63,8 +64,10 @@ gulp.task "lint", ->
 
 gulp.task "angular", ->
   return gulp.src(paths.ng.coffee)
+    .pipe(sourcemaps.init())
     .pipe(coffee())
     .pipe(concat("ng.js"))
+    .pipe(sourcemaps.write("/maps"))
     .pipe(gulp.dest("public/js/ng"))
 
 gulp.task "ng-jade", ->
@@ -75,7 +78,9 @@ gulp.task "ng-jade", ->
 
 gulp.task "bower", ->
   return gulp.src(paths.bower)
+    .pipe(sourcemaps.init())
     .pipe(concat("bower.js"))
+    .pipe(sourcemaps.write("/maps"))
     .pipe(gulp.dest("public/js/"))
 
 # gulp watcher for lint
