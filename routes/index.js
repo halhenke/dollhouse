@@ -45,6 +45,10 @@ exports = module.exports = function(app) {
   app.get('/dolls', routes.views.dolls);
   app.get('/api/dolls', routes.api.dolls);
   app.get('/dolls/doll/:doll', routes.views.dollView);
+  app.get('/profiles', routes.views.profiles);
+  app.get('/users', routes.views.profiles);
+  app.get('/profiles/show/:profile', routes.views.profileView);
+  app.get('/users/show/:profile', routes.views.profileView);
   app.all('/dolls/new', routes.views.newDoll);
   app.get('/about', routes.views.about);
   app.all('/contact', routes.views.contact);
