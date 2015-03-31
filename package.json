@@ -12,6 +12,8 @@
     "underscore": "~1.7.0"
   },
   "devDependencies": {
+    "coffee-jsx-loader": "^0.1.0",
+    "coffee-react": "^2.1.2",
     "coffee-script": "^1.9.1",
     "gulp": "^3.8.11",
     "gulp-angular-templatecache": "^1.5.0",
@@ -33,6 +35,5 @@
   "scripts": {
     "start": "node keystone.js"
   },
-  "private": true,
   "main": "keystone.js"
 }

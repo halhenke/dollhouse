@@ -1,7 +1,8 @@
 module.exports = {
   entry: './webpack.entry.js',
   output: {
-    filename: './public/bundle.js',
+    filename: 'react/bundle.js',
+    // filename: './public/bundle.js',
 
     // // export itself to a global var
     // libraryTarget: "var",

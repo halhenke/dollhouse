@@ -28,6 +28,18 @@ paths =
     coffee: "./ng/**/*.coffee"
     js: "./ng/**/*.js"
     jade: "./ng/templates/**/*.jade"
+  react:
+    # coffee: "./ng/**/*.coffee"
+    # js: "./ng/**/*.js"
+    in:
+      jade: "./react/components/jade/**.jade"
+      html: "./react/components/html/**.html"
+      cjsx: "./react/components/cjsx/**.cjsx"
+      jsx: "./react/components/jsx/**.jsx"
+      js: "./react/components/js/**.js"
+    out:
+      compiled: "./react/components/js/"
+      build: "./public/js/react/"
   bower: [
     # "bower/angular/angular.min.js"
     "bower/angular/angular.js"
@@ -83,11 +95,15 @@ gulp.task "watch", ->
   gulp.watch paths.src, ['lint']
   gulp.watch paths.ng.coffee, ['angular']
   gulp.watch paths.ng.jade, ['ng-jade']
+  # gulp.watch paths.react.in.jade, ['react-jade']
+  # gulp.watch [paths.webpack.config, paths.webpack.entry, paths.react.in.js], ['webpack']
+  gulp.watch [paths.webpack.config, paths.webpack.entry, paths.react.in.jade, paths.react.in.cjsx], ['webpack']
   gulp.watch paths.jade, (event) ->
     livereload.reload()
   gulp.watch paths.bower, ['bower']
 
-gulp.task "nodemon", ['angular', 'ng-jade', 'bower', 'watch'], ->
+# gulp.task "nodemon", ['angular', 'ng-jade', 'react-jade', 'bower', 'webpack', 'watch'], ->
+gulp.task "nodemon", ['angular', 'ng-jade', 'bower', 'webpack', 'watch'], ->
   livereload.listen()
   nodemon(nodemonOpts)
     .on "restart", ->
