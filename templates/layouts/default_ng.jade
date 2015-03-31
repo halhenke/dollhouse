@@ -1,13 +1,13 @@
-//-  **                 **  ****         **  **  ** **
-//- /**                /** */// *       //  /** /**//
-//- /**       ******   /**/*   /* ****** ** /** /** **  ******  *******
-//- /******  //////**  /**/ **** ////** /** /** /**/** **////**//**///**
-//- /**///**  *******  /** ///*     **  /** /** /**/**/**   /** /**  /**
-//- /**  /** **////**  /**   *     **   /** /** /**/**/**   /** /**  /**
-//- /**  /**//******** ***  *     ******/** *** ***/**//******  ***  /**
-//- //   //  //////// ///  /     ////// // /// /// //  //////  ///   //
-
-
+//-  **                 **  ****         **  **  ** **                                                                                                                                                                                                                                                                  
+//- /**                /** */// *       //  /** /**//                                                                                                                                                                                                                                                                   
+//- /**       ******   /**/*   /* ****** ** /** /** **  ******  *******                                                                                                                                                                                                                                                 
+//- /******  //////**  /**/ **** ////** /** /** /**/** **////**//**///**                                                                                                                                                                                                                                                
+//- /**///**  *******  /** ///*     **  /** /** /**/**/**   /** /**  /**                                                                                                                                                                                                                                                
+//- /**  /** **////**  /**   *     **   /** /** /**/**/**   /** /**  /**                                                                                                                                                                                                                                                
+//- /**  /**//******** ***  *     ******/** *** ***/**//******  ***  /**                                                                                                                                                                                                                                                
+//- //   //  //////// ///  /     ////// // /// /// //  //////  ///   //                                                                                                                                                                                                                                                 
+                                                                                                                                                                                                                                                                                                                    
+  
 include ../mixins/flash-messages
 include ../mixins/dollHelpers
 include ../vars/layout
@@ -43,6 +43,12 @@ html
 
     //- Add any other template-specific HEAD tags by extending the head block
     block head
+      
+    //- ANGULAR
+    script(src="/js/bower.js")
+    script(src="/js/ng/ng.js")
+    script(src="/templates/templates.js")
+    
 
   //- HTML BODY
   body
@@ -91,6 +97,8 @@ html
 
       //- The content block should contain the body of your template's content
       block content
+      
+      //- div(ng-app="dollhouse")
 
 
     //- FOOTER
@@ -120,3 +128,9 @@ html
 
     //- Include template-specific javascript files by extending the js block
     block js
+      
+    //- BOWER
+    //- script(src="/js/bower.js")
+    //- ANGULAR
+    //- script(src="/js/ng/ng.js")
+    //- script(src="/templates/templates.js")
