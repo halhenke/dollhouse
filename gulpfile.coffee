@@ -2,6 +2,7 @@ gulp = require "gulp"
 nodemon = require "gulp-nodemon"
 livereload = require "gulp-livereload"
 jshint = require "gulp-jshint"
+jscs = require "gulp-jscs"
 jshintReporter = require "jshint-stylish"
 webpack = require "gulp-webpack"
 sourcemaps = require "gulp-sourcemaps"
@@ -62,6 +63,10 @@ gulp.task "lint", ->
     .pipe(jshint())
     .pipe(jshint.reporter(jshintReporter))
 
+gulp.task "jscs", ->
+  return gulp.src(paths.src)
+  .pipe jscs(configPath: "./.jscsrc.json" )
+
 gulp.task "angular", ->
   return gulp.src(paths.ng.coffee)
     .pipe(sourcemaps.init())
@@ -89,7 +94,8 @@ gulp.task "webpack", ->
     .pipe gulp.dest("public/js/")
 
 gulp.task "watch", ->
-  gulp.watch paths.src, ['lint']
+  # gulp.watch paths.src, ['lint']
+  gulp.watch paths.src, ['jscs']
   gulp.watch paths.ng.coffee, ['angular']
   gulp.watch paths.ng.jade, ['ng-jade']
   # gulp.watch paths.react.in.jade, ['react-jade']
