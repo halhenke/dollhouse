@@ -30,6 +30,7 @@ paths =
     coffee: "./ng/**/*.coffee"
     js: "./ng/**/*.js"
     jade: "./ng/templates/**/*.jade"
+    html: "./ng/templates/html/"
   react:
     # coffee: "./ng/**/*.coffee"
     # js: "./ng/**/*.js"
