@@ -12,24 +12,14 @@ ngApp.config ($routeProvider) ->
         # templateUrl: 'main.html'
         # template: "<p>This is a total crock of shit....</p>"
         templateUrl: 'main.html'
-        controller: 'MainCtrl'
+        controller: 'MainController'
       .when "/second",
         # template: "<p>This is a total crock of shit....</p>"
         templateUrl: 'next.html'
-        controller: 'MainCtrl'
+        controller: 'MainController'
+      .when "/dollsNG",
+        templateUrl: 'dolls.html'
+        controller: 'DollController'
       .otherwise
         redirectTo: '/'
         # redirectTo: '/note_tags'
-
-
-ngApp.controller "MainCtrl", ['$scope', '$log', ($scope, $log) ->
-    $log.log "MainControler loaded..."
-    $scope.log = $log
-    $scope.awesomeThings = [
-      "HTML5 Boilerplate"
-      "AngularJS"
-      "Karma"
-      "Coffeescript"
-      "Less"
-      "Jade"
-    ]]
