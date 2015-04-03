@@ -31,7 +31,6 @@ exports = module.exports = function(req, res) {
 
     q.exec(function(err, results) {
       locals.data.dolls = results;
-      // res.send(locals.data);      
       next(err);
     });
 
