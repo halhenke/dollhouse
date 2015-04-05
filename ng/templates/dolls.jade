@@ -1,59 +1,83 @@
-h1 Here are some dolls
 
-.filters
-  .row
-    .col-sm-1: label Anything
-    .col-sm-1: input(ng-model="dollFilter.$")
-  .row
-    .col-sm-1: label Name
-    .col-sm-1: input(ng-model="dollFilter.name")
-  .row
-    .col-sm-1: label Owner Name
-    .col-sm-1: input(ng-model="dollFilter.owner.name.first")
-
-
-.container: .row.jumbotron
-      //- .col-sm-8.col-md-9
-      //- if filters.category && !data.category
-      //-   h3.text-muted Invalid Category.
-      //- else
-      //- if dolls.length
-        //- if data.dolls.totalPages > 1
-      //- h4.text-weight-normal(ng-if="data.dolls.results.length && data.dolls.totalPages > 1") Showing 
-        //- strong {{data.dolls.first}}
-        //- |  to 
-        //- strong {{data.dolls.last}}
-        //- |  of 
-        //- strong {{data.dolls.total}}
-        //- |  dolls.      
-        //- else
-        //-   h4.text-weight-normal Showing #{utils.plural(data.dolls.results.length, '* doll')}.
-      h4.text-weight-normal Showing 
-      .dolls.angular
-        //- .row(ng-repeat="dolls in data.dolls.results track by $index" ng-if="$index%3==0")
-        //-   .col-sm-4.col-md-4(ng-repeat="doll in [$index,$index+1,$index+2]| filter:isType(typeFilter)")
-        //-     doll-mixin(doll="doll")
-
-        //- USE LODASH.CHUNK TO CHUNK INTO ARRAY OF 3S....
-        //- this seems to cause an error - http://stackoverflow.com/questions/14376879/error-10-digest-iterations-reached-aborting-with-dynamic-sortby-predicate
-        //- .row(ng-repeat="doll_threes in lo.chunk(data.dolls, 3) | filter:dollFilter")
-        //- .row(ng-repeat="doll_threes in data.dolls.slice(1,4) | filter:dollFilter")
-        //-   .col-sm-4.col-md-4(ng-repeat="doll in doll_threes")
-        //-     doll-mixin(doll="doll")
-        //- - doll_threed = lo.chunk(data.dolls.results, 3)
-
-        //- NO GROUPING
-        //- .row
-        //-   .col-sm-4.col-md-4(ng-repeat="doll in data.dolls | filter:dollFilter")
-        //-     doll-mixin(doll="doll")
-
-        //- DOLLS ALREADY GROUPED
-        .row(ng-repeat="doll_threes in data.dolls | filter:dollFilter")
-          .col-sm-4.col-md-4(ng-repeat="doll in doll_threes")
-            doll-mixin(doll="doll")
-
-        //- each doll_threes in doll_threed
-        //-   .row
-        //-     each doll in doll_threes
-        //-       .col-sm-4.col-md-4(ng-repeat="doll in data.dolls.results")
-        //-         +doll(doll)
+.col-sm-8.col-md-9.jumbotron
+  h1 Here are some dolls
+  //- .col-sm-8.col-md-9
+  //- if filters.category && !data.category
+  //-   h3.text-muted Invalid Category.
+  //- else
+  //- if dolls.length
+    //- if data.dolls.totalPages > 1
+  //- h4.text-weight-normal(ng-if="data.dolls.results.length && data.dolls.totalPages > 1") Showing 
+    //- strong {{data.dolls.first}}
+    //- |  to 
+    //- strong {{data.dolls.last}}
+    //- |  of 
+    //- strong {{data.dolls.total}}
+    //- |  dolls.      
+    //- else
+    //-   h4.text-weight-normal Showing #{utils.plural(data.dolls.results.length, '* doll')}.
+  h4.text-weight-normal Showing 
+  .dolls.angular
+    //- DOLLS ALREADY GROUPED
+    .row(ng-repeat="doll_threes in data.dolls | filter:dollFilter")
+      .col-sm-4.col-md-4(ng-repeat="doll in doll_threes")
+        doll-mixin(doll="doll")
+.col-sm-4.col-md-3
+  h2 Filter/Search Dolls
+  ul.list-group(style='margin-top: 70px;')
+    //- a(href='/blog', class=!data.category ? 'active' : false).list-group-item All Categories
+    //- each cat in data.categories
+    //-   a(href='/blog/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
+    li.list-group-item
+      label.label-primary Anything
+      input(ng-model="dollFilter.$")
+    li.list-group-item
+      label.label-primary Name
+      input(ng-model="dollFilter.name")
+    li.list-group-item
+      label.label-primary Owner
+      input(ng-model="dollFilter.owner.name.first")
+    li.list-group-item
+      label.label-primary Maker
+      input(ng-model="dollFilter.maker")
+    li.list-group-item
+      label.label-primary Maker Two
+      select(ng-model="dollFilter.maker")
+        option(ng-repeat="model in ['Ipplehouse', 'Other Guys']" value ="{{model}}" ) {{model}}
+        //- option(ng-repeat="model in ['Ipplehouse', 'Other Guys']" value = {{model}} ) {{model}}
+  h2 React
+    #reactiveDoll
+  //- .filters      
+  //- form.navbar-form.navbar-right
+  form.form-horizontal
+    .form-group
+      label.label-primary Anything
+      input(ng-model="dollFilter.$")
+    .row
+      .col-sm-1: label Anything
+      .col-sm-1: input(ng-model="dollFilter.$")
+    .row
+      .col-sm-1: label Name
+      .col-sm-1: input(ng-model="dollFilter.name")
+    .row
+      .col-sm-1: label Owner
+      .col-sm-1: input(ng-model="dollFilter.owner.name.first")
+    .row
+      .col-sm-1: label Maker
+      .col-sm-1: input(ng-model="dollFilter.maker")
+  form.form-horizontal
+    .form-group
+      label.label-primary Anything
+      input(ng-model="dollFilter.$")
+    .input-group
+      span.input-group-addon Anything
+      input(ng-model="dollFilter.$")
+    .input-group
+      span.input-group-addon Name
+      input(ng-model="dollFilter.name")
+    .input-group
+      span.input-group-addon Owner
+      input(ng-model="dollFilter.owner.name.first")
+    .input-group
+      span.input-group-addon Maker
+      input(ng-model="dollFilter.maker")
