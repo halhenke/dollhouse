@@ -1,5 +1,16 @@
 h1 Here are some dolls
 
+.filters
+  .row
+    .col-sm-1: label Anything
+    .col-sm-1: input(ng-model="dollFilter.$")
+  .row
+    .col-sm-1: label Name
+    .col-sm-1: input(ng-model="dollFilter.name")
+  .row
+    .col-sm-1: label Owner Name
+    .col-sm-1: input(ng-model="dollFilter.owner.name.first")
+
 
 .container: .row.jumbotron
       //- .col-sm-8.col-md-9
