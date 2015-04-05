@@ -9,21 +9,26 @@ block content
         h2 Doll not found...
       else
         header
-          h1= data.doll.name
-          h5 Posted 
-            if data.doll.publishedDate
-              | on #{data.doll._.publishedDate.format('MMMM Do, YYYY')} 
-            if data.doll.categories && data.doll.categories.length
-              | in 
-              each cat, cat_i in data.doll.categories
-                a(href='/blog/' + cat.key)= cat.name
-                if cat_i < data.doll.categories.length - 1
-                  | , 
-                else
-                  |  
-            if data.doll.owner
-              | by #{data.doll.owner.name.full}
-        .doll
+          .row
+            .col-sm-6
+              h1= data.doll.name
+            .col-sm-6
+              h4= data.doll.maker
+          .row
+            h5 Posted 
+              if data.doll.publishedDate
+                | on #{data.doll._.publishedDate.format('MMMM Do, YYYY')} 
+              if data.doll.categories && data.doll.categories.length
+                | in 
+                each cat, cat_i in data.doll.categories
+                  a(href='/blog/' + cat.key)= cat.name
+                  if cat_i < data.doll.categories.length - 1
+                    | , 
+                  else
+                    |  
+              if data.doll.owner
+                | by #{data.doll.owner.name.full}
+        row.doll
           if data.doll.image.exists
             .image-wrap: img(src=data.doll._.image.fit(750,450)).img-responsive
           != data.doll.content.full
