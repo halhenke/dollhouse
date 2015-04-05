@@ -5,6 +5,7 @@ jshint = require "gulp-jshint"
 jscs = require "gulp-jscs"
 jshintReporter = require "jshint-stylish"
 webpack = require "gulp-webpack"
+cson = require "gulp-cson"
 sourcemaps = require "gulp-sourcemaps"
 _ = require "lodash"
 watch = require "gulp-watch"
@@ -51,6 +52,9 @@ paths =
   webpack:
     entry: "./webpack.entry.js"
     config: "./webpack.config.js"
+  jscs:
+    json: "./.jscsrc.json"
+    cson: "./.jscsrc.cson"
 
 
 nodemonOpts =
@@ -66,7 +70,12 @@ gulp.task "lint", ->
 
 gulp.task "jscs", ->
   return gulp.src(paths.src)
-  .pipe jscs(configPath: "./.jscsrc.json" )
+  .pipe jscs(configPath: paths.jscs.json )
+
+gulp.task "jscs-cson", ->
+  return gulp.src(paths.jscs.cson)
+  .pipe cson()
+  .pipe gulp.dest("./")
 
 gulp.task "angular", ->
   return gulp.src(paths.ng.coffee)
@@ -96,7 +105,9 @@ gulp.task "webpack", ->
 
 gulp.task "watch", ->
   # gulp.watch paths.src, ['lint']
-  gulp.watch paths.src, ['jscs']
+  # gulp.watch [paths.src, paths.jscs.json], ['jscs']
+  gulp.watch [paths.src], ['jscs']
+  gulp.watch paths.jscs.cson, ['jscs-cson']
   gulp.watch paths.ng.coffee, ['angular']
   gulp.watch paths.ng.jade, ['ng-jade']
   # gulp.watch paths.react.in.jade, ['react-jade']
@@ -107,7 +118,7 @@ gulp.task "watch", ->
   gulp.watch paths.bower, ['bower']
 
 # gulp.task "nodemon", ['angular', 'ng-jade', 'react-jade', 'bower', 'webpack', 'watch'], ->
-gulp.task "nodemon", ['angular', 'ng-jade', 'bower', 'webpack', 'watch'], ->
+gulp.task "nodemon", ['angular', 'ng-jade', 'bower', 'webpack', 'jscs-cson', 'watch'], ->
   livereload.listen()
   nodemon(nodemonOpts)
     .on "restart", ->
