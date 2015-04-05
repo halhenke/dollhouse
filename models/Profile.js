@@ -13,7 +13,7 @@ Profile.add({
   // dolls: { type: Types.Relationship, ref: 'User', index: true },
   state: { type: Types.Select, options: 'private, public', default: 'public', required: true },
   userName: { type: Types.Name, required: true, initial: true, index: true },
-  email_show: { type: Boolean, label: 'Show email address?' },
+  emailShow: { type: Boolean, label: 'Show email address?' },
   location_show: { type: Types.Boolean,  label: 'Show location?' },
   avatar: { type: Types.CloudinaryImage },
   about: {
