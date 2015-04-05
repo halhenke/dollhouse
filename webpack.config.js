@@ -1,7 +1,11 @@
 module.exports = {
-  entry: './webpack.entry.js',
+  entry: {
+    react: './webpack.entry.react.js',
+    ng: './webpack.entry.ng.js'
+  },  
   output: {
-    filename: 'react/bundle.js',
+    // filename: 'react/bundle.js',
+    filename: '[name]/bundle.js',
     // filename: './public/bundle.js',
 
     // // export itself to a global var

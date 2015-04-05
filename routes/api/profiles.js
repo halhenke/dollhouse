@@ -35,6 +35,8 @@ exports = module.exports = function(req, res) {
 
   });
 
-  // Render the view
-  view.render('profiles');
+  // Return JSON
+  view.render(function (err, req, res) {
+    res.send(locals.data);
+  });
 };

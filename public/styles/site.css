@@ -4821,3 +4821,104 @@ button.close {
   display: block;
   max-width: 100%;
   height: auto; }
+
+@font-face {
+  font-family: "AtomicAge";
+  src: local("../../fonts/Atomic_Age/AtomicAge-Regular.ttf"); }
+
+@font-face {
+  font-family: "Cookie";
+  src: local("../../fonts/Cookie/Cookie-Regular.ttf"); }
+
+@font-face {
+  font-family: "Eater";
+  src: local("../../fonts/Eater/Eater-Regular.ttf"); }
+
+@font-face {
+  font-family: "EmilysCandy";
+  src: local("../../fonts/Emilys_Candy/EmilysCandy-Regular.ttf"); }
+
+@font-face {
+  font-family: "Flavors";
+  src: local("../../fonts/Flavors/Flavors-Regular.ttf"); }
+
+@font-face {
+  font-family: "HomemadeApple";
+  src: local("../../fonts/Homemade_Apple/HomemadeApple.ttf"); }
+
+@font-face {
+  font-family: "JollyLodger";
+  src: local("../../fonts/Jolly_Lodger/JollyLodger-Regular.ttf"); }
+
+@font-face {
+  font-family: "Metamorphous";
+  src: local("../../fonts/Metamorphous/Metamorphous-Regular.ttf"); }
+
+@font-face {
+  font-family: "Playball";
+  src: local("../../fonts/Playball/Playball-Regular.ttf"); }
+
+@font-face {
+  font-family: "SwankyandMooMoo";
+  src: local("../../fonts/Swanky_and_Moo_Moo/SwankyandMooMoo.ttf"); }
+
+@font-face {
+  font-family: "WalterTurncoat";
+  src: local("../../fonts/Walter_Turncoat/WalterTurncoat.ttf"); }
+
+.same-height {
+  bottom: 0;
+  top: 0;
+  position: absolute; }
+
+body {
+  background-color: rgba(171, 110, 123, 0.62); }
+
+.navbar.navbar-defaut {
+  background-color: #f8f8f8; }
+
+#body > div:nth-child(2) {
+  background-color: #f0d8e3;
+  color: #6b685c; }
+
+a {
+  color: #9E5873; }
+
+h1 {
+  font-family: "HomemadeApple"; }
+
+a.navbar-brand {
+  font-family: "EmilysCandy";
+  font-size: 3rem;
+  font-weight: bold; }
+
+img.cover-girl {
+  transform: rotateX(0.5turn) translate(4rem) scale(0.5);
+  transition-duration: 2s; }
+
+.list-group-item.active {
+  background-color: rgba(154, 186, 213, 0.76); }
+
+.event_details {
+  margin-top: 2rem;
+  margin-left: 2rem; }
+  .event_details .key {
+    font-family: "Metamorphous";
+    font-size: 2rem;
+    font-variant: small-caps; }
+  .event_details .val {
+    size: 2rem; }
+
+dt {
+  float: left; }
+  dt:after {
+    content: ": "; }
+
+.doll .doll-header {
+  background-color: #f8f8f8; }
+.doll.my-doll .doll-header {
+  background-color: rgba(239, 195, 217, 0.57); }
+
+form.newDoll label {
+  font-size: 2rem;
+  font-family: "Metamorphous"; }

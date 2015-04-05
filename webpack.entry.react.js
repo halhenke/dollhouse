@@ -3,7 +3,7 @@
 
 
 module.exports = {
-  // _: require('lodash'),
+  // lo: require('lodash'),
   // jade: require('jade/runtime'),
   React: require('react'),
   // reactComponents: function (reactTemplate) {

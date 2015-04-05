@@ -21,7 +21,7 @@ exports = module.exports = function(req, res) {
 
     var q = keystone.list('Doll').paginate({
         page: req.query.page || 1,
-        perPage: 10,
+        perPage: 9,
         maxPages: 10
       })
       // NOTE: Stop page breaking for people who arent loggged in
@@ -31,7 +31,6 @@ exports = module.exports = function(req, res) {
 
     q.exec(function(err, results) {
       locals.data.dolls = results;
-      // res.send(locals.data);      
       next(err);
     });
 

@@ -1,0 +1,52 @@
+h1 Here are some dolls
+
+.filters
+  .row
+    .col-sm-1: label Anything
+    .col-sm-1: input(ng-model="dollFilter.$")
+  .row
+    .col-sm-1: label Name
+    .col-sm-1: input(ng-model="dollFilter.name")
+  .row
+    .col-sm-1: label Owner Name
+    .col-sm-1: input(ng-model="dollFilter.owner.name.first")
+
+
+.container: .row.jumbotron
+      //- .col-sm-8.col-md-9
+      //- if filters.category && !data.category
+      //-   h3.text-muted Invalid Category.
+      //- else
+      //- if dolls.length
+        //- if data.dolls.totalPages > 1
+      h4.text-weight-normal(ng-if="data.dolls.results.length && data.dolls.totalPages > 1") Showing
+        strong {{data.dolls.first}}
+        |  to
+        strong {{data.dolls.last}}
+        |  of
+        strong {{data.dolls.total}}
+        |  dolls.
+        //- else
+        //-   h4.text-weight-normal Showing #{utils.plural(data.dolls.results.length, '* doll')}.
+        .dolls.angular
+          //- .row(ng-repeat="dolls in data.dolls.results track by $index" ng-if="$index%3==0")
+          //-   .col-sm-4.col-md-4(ng-repeat="doll in [$index,$index+1,$index+2]| filter:isType(typeFilter)")
+          //-     doll-mixin(doll="doll")
+
+          //- USE LODASH.CHUNK TO CHUNK INTO ARRAY OF 3S....
+          //- this seems to cause an error - http://stackoverflow.com/questions/14376879/error-10-digest-iterations-reached-aborting-with-dynamic-sortby-predicate
+          //- .row(ng-repeat="doll_threes in lo.chunk(data.dolls.results,3) | filter:dollFilter")
+          //-   .col-sm-4.col-md-4(ng-repeat="doll in doll_threes")
+          //-     doll-mixin(doll="doll")
+          //- //- - doll_threed = lo.chunk(data.dolls.results, 3)
+
+          //- NO GROUPING
+          .row
+            .col-sm-4.col-md-4(ng-repeat="doll in data.dolls.results | filter:dollFilter")
+              doll-mixin(doll="doll")
+
+          //- each doll_threes in doll_threed
+          //-   .row
+          //-     each doll in doll_threes
+          //-       .col-sm-4.col-md-4(ng-repeat="doll in data.dolls.results")
+          //-         +doll(doll)
