@@ -1,5 +1,3 @@
-h1 {{doll.name}}
-
 - {{thisIsMine = (user && doll.owner.id === user.id)}}
 .doll(class={"my-doll": thisIsMine})
   //- Think this editable function is only server side

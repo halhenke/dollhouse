@@ -22,14 +22,17 @@ h1 Here are some dolls
           //-   .col-sm-4.col-md-4(ng-repeat="doll in [$index,$index+1,$index+2]| filter:isType(typeFilter)")
           //-     doll-mixin(doll="doll")
 
-          .row(ng-repeat="doll_threes in lo.chunk(data.dolls.results,3)")
-            .col-sm-4.col-md-4(ng-repeat="doll in doll_threes")
-              doll-mixin(doll="doll")
-          //- - doll_threed = lo.chunk(data.dolls.results, 3)
-
-          //- .row
-          //-   .col-sm-4.col-md-4(ng-repeat="doll in data.dolls.results")
+          //- USE LODASH.CHUNK TO CHUNK INTO ARRAY OF 3S....
+          //- this seems to cause an error - http://stackoverflow.com/questions/14376879/error-10-digest-iterations-reached-aborting-with-dynamic-sortby-predicate
+          //- .row(ng-repeat="doll_threes in lo.chunk(data.dolls.results,3) | filter:dollFilter")
+          //-   .col-sm-4.col-md-4(ng-repeat="doll in doll_threes")
           //-     doll-mixin(doll="doll")
+          //- //- - doll_threed = lo.chunk(data.dolls.results, 3)
+
+          //- NO GROUPING
+          .row
+            .col-sm-4.col-md-4(ng-repeat="doll in data.dolls.results | filter:dollFilter")
+              doll-mixin(doll="doll")
 
           //- each doll_threes in doll_threed
           //-   .row
