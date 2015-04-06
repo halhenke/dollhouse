@@ -3,7 +3,7 @@ console.log('Angular loaded');
 # console.log('Angular path ' + $location.url());
 
 
-ngApp = angular.module('dollhouse', ['ngRoute', 'templates'])
+ngApp = angular.module('dollhouse', ['ngRoute', 'ngResource', 'templates'])
 
 ngApp.config ($routeProvider) ->
     $routeProvider
@@ -11,15 +11,15 @@ ngApp.config ($routeProvider) ->
       .when '/',
         # templateUrl: 'main.html'
         # template: "<p>This is a total crock of shit....</p>"
-        templateUrl: 'main.html'
-        controller: 'MainController'
+        templateUrl: 'dolls.html'
+        controller: 'DollController'
       .when "/second",
         # template: "<p>This is a total crock of shit....</p>"
         templateUrl: 'next.html'
         controller: 'MainController'
       .when "/dollsNG",
-        templateUrl: 'dolls.html'
-        controller: 'DollController'
+        templateUrl: 'main.html'
+        controller: 'MainController'
       .otherwise
         redirectTo: '/'
         # redirectTo: '/note_tags'

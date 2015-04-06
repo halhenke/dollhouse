@@ -1,9 +1,10 @@
-// var reactComponents = function (reactTemplate) {
-//     return require("script!react/components/" + reactTemplate + ".js";)
-
 
 module.exports = {
   lo: require('lodash'),
+  angular: require("angular"),
+  "angular-route": require("angular-route"),
+  "angular-resource": require("angular-resource"),
+
   // jade: require('jade/runtime'),
   // React: require('react'),
   // reactComponents: function (reactTemplate) {

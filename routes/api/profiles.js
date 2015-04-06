@@ -24,7 +24,7 @@ exports = module.exports = function(req, res) {
         perPage: 10,
         maxPages: 10
       })
-      .or([{'state': 'public'}, {'owner': locals.user.id}])
+      .or([{'state': 'public'}, {'owner': (locals.user ? locals.user.id : null)}])
       // .sort('-publishedDate')
       .populate('owner dolls');
 

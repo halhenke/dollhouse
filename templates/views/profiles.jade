@@ -2,7 +2,7 @@ extends ../layouts/default
 
 mixin profile(profile)
   - thisIsMine = (profile.owner.id === user.id)
-  .profile(class={"my-profile": thisIsMine})(data-ks-editable=editable(user, { list: 'profile', id: profile.id }))
+  .profile(class={"my-profile": thisIsMine} data-ks-editable=editable(user, { list: 'profile', id: profile.id }))
     .profile-header
       h2: a(href='/profiles/profile/' + profile.slug)= profile.name
       //- p.lead.text-muted Owned by
@@ -24,7 +24,7 @@ block intro
     .col-sm-4.col-md-4
       h1= data.category ? data.category.name : 'User Profiles'
     .col-sm-3.col-sm-offset-5.col-md-3.col-md-offset-5
-      if user.profile
+      if user && user.profile
         //- if user.profile.public?
         if true
           a.btn.btn-primary(href="/profiles/show/#{user.id}") Go to my Profile

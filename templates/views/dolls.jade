@@ -1,11 +1,12 @@
 //- extends ../layouts/default
-extends ../layouts/default_react
+//- extends ../layouts/default_react
+extends ../layouts/default_ng
 
 mixin doll(doll)
   //- - thisIsMine = (doll.owner.id === user.id)
   - thisIsMine = (user && doll.owner.id === user.id)
   //- .doll(class={"my-doll": doll.owner.id === user.id})(data-ks-editable=editable(user, { list: 'Doll', id: doll.id }))
-  .doll(class={"my-doll": thisIsMine})(data-ks-editable=editable(user, { list: 'Doll', id: doll.id }))
+  .doll(class={"my-doll": thisIsMine} data-ks-editable=editable(user, { list: 'Doll', id: doll.id }))
     .doll-header
       h2: a(href='/dolls/doll/' + doll.slug)= doll.name
       //- p.lead.text-muted Owned by
@@ -14,7 +15,7 @@ mixin doll(doll)
           | Owned by
           //- a(href="/users/#{doll.owner.id}") #{doll.owner.name.full}
           a(href="/users/#{doll.owner.id}") #{thisIsMine ? "You" : doll.owner.name.full}
-    .doll-body
+    .doll-body      
       if doll.image.exists
         //- img(src=doll._.image.fit(160,160)).img.pull-right
         img(src=doll._.image.fit(100,100)).img.pull-right
@@ -34,59 +35,7 @@ block content
   //- .container: .row
     //- .col-sm-4.col-sm-offset-8.col-md-4.col-md-offset-8
     //-   a.btn.btn-primary(href="/dolls/new") Add a doll to the database...
-  .container: .row.jumbotron
-    .col-sm-8.col-md-9
-      if filters.category && !data.category
-        h3.text-muted Invalid Category.
-      else
-        if data.dolls.results.length
-          if data.dolls.totalPages > 1
-            h4.text-weight-normal Showing
-              strong #{data.dolls.first}
-              |  to
-              strong #{data.dolls.last}
-              |  of
-              strong #{data.dolls.total}
-              |  dolls.
-          else
-            h4.text-weight-normal Showing #{utils.plural(data.dolls.results.length, '* doll')}.
-          .dolls
-            - doll_threed = lo.chunk(data.dolls.results, 3)
-            each doll_threes in doll_threed
-              .row
-                each doll in doll_threes
-                  .col-sm-4.col-md-4
-                    +doll(doll)
-
-          if data.dolls.totalPages > 1
-            ul.pagination
-              if data.dolls.previous
-                li: a(href='?page=' + data.dolls.previous): span.glyphicon.glyphicon-chevron-left
-              else
-                li.disabled: a(href='?page=' + 1): span.glyphicon.glyphicon-chevron-left
-              each p, i in data.dolls.pages
-                li(class=data.dolls.currentPage == p ? 'active' : null)
-                  a(href='?page=' + (p == '...' ? (i ? data.dolls.totalPages : 1) : p ))= p
-              if data.dolls.next
-                li: a(href='?page=' + data.dolls.next): span.glyphicon.glyphicon-chevron-right
-              else
-                li.disabled: a(href='?page=' + data.dolls.totalPages): span.entypo.glyphicon.glyphicon-chevron-right
-        else
-          if data.category
-            h3.text-muted There are no dolls in the category #{data.category.name}.
-          else
-            h3.text-muted There are no dolls yet.
-
-    //- if data.categories.length
-    .col-sm-4.col-md-3
-      h2 Filter/Search Dolls
-      //- h2 Categories
-      .list-group(style='margin-top: 70px;')
-        a(href='/blog', class=!data.category ? 'active' : false).list-group-item All Categories
-        each cat in data.categories
-          a(href='/blog/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
-      h2 React
-        #reactiveDoll
+  .container(ng-app="dollhouse"): .row(ng-view="")
         //- window.sample_doll = #{JSON.stringify(data.dolls.results[1])}
         //- React.render(doll({doll: #{data.dolls.results[1]}}), document.getElementById("reactiveDoll"));
         //- React.render(doll({local: {doll: #{data.dolls.results}}}), document.getElementById("reactiveDoll"));

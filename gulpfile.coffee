@@ -50,7 +50,10 @@ paths =
     "bower/angular-route/angular-route.js"
   ]
   webpack:
-    entry: "./webpack.entry.js"
+    entry: [
+      "./webpack.entry.ng.js"
+      "./webpack.entry.react.js"
+    ]
     config: "./webpack.config.js"
   jscs:
     json: "./.jscsrc.json"
