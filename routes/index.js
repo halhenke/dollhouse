@@ -36,8 +36,8 @@ var routes = {
 exports = module.exports = function(app) {
 
   // Views
-  // app.get('/', routes.views.index);
-  app.get('/', routes.views.index_ng);
+  app.get('/', routes.views.index);
+  // app.get('/', routes.views.index_ng);
   app.get('/blog/:category?', routes.views.blog);
   app.get('/blog/post/:post', routes.views.post);
   app.get('/gallery', routes.views.gallery);
@@ -45,6 +45,7 @@ exports = module.exports = function(app) {
   app.get('/events/event/:event', routes.views.event);
   app.get('/dolls', routes.views.dolls);
   app.get('/api/dolls', routes.api.dolls);
+  app.get('/api/dolls/show/:doll', routes.api.showDoll);
   app.get('/dolls/doll/:doll', routes.views.dollView);
   app.get('/api/profiles', routes.api.profiles);
   app.get('/api/profiles/show/:profile', routes.api.showProfile);
