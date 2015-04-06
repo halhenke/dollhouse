@@ -3,7 +3,7 @@
   //- Think this editable function is only server side
   //- (data-ks-editable=editable(user, { list: 'Doll', id: doll.id }))
   .doll-header
-    h2: a(ng-href="/dolls/doll/{{doll.slug}}") {{doll.name}}
+    h2: a(ng-href="#/dolls/doll/{{doll.slug}}") {{doll.name}}
     p.lead.text-muted(ng-if="doll.owner")    
       | Owned by
       a(ng-href="/users/{{doll.owner.id}}") {{ " " + (thisIsMine ? "You" : doll.owner.name | fullName)}}
@@ -13,18 +13,3 @@
     //- p!= {{doll.content.brief}}
     p {{doll.content.brief}}
     p.read-more(ng-if="doll.content.extended"): a(ng-href="/dolls/doll/{{doll.slug}}") Read more...
-
-//- - thisIsMine = (user && doll.owner.id === user.id)
-//- .doll(class={"my-doll": thisIsMine})(data-ks-editable=editable(user, { list: 'Doll', id: doll.id }))
-//-   .doll-header
-//-     h2: a(href='/dolls/doll/' + doll.slug)= doll.name
-//-     p.lead.text-muted
-//-       if doll.owner
-//-         | Owned by
-//-         a(href="/users/#{doll.owner.id}") #{thisIsMine ? "You" : doll.owner.name.full}
-//-   .doll-body
-//-     if doll.image.exists
-//-       img(src=doll._.image.fit(100,100)).img.pull-right
-//-     p!= doll.content.brief
-//-     if doll.content.extended
-//-       p.read-more: a(href='/dolls/doll/' + doll.slug) Read more...
