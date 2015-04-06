@@ -1,4 +1,4 @@
-extends ../layouts/default
+extends ../layouts/default_ng
 
 mixin profile(profile)
   - thisIsMine = user && (profile.user.id === user.id)
@@ -34,8 +34,9 @@ block intro
         a.btn.btn-primary(href="/profiles/new") Create my profile
 
 block content
-  .container: .row.jumbotron
-    .col-sm-8.col-md-9
+  //- .container(ng-app="dollhouse" ng-controller="ProfileController"): .row.jumbotron(ng-view="")
+  .container(ng-app="dollhouse"): .row.jumbotron(ng-controller="ProfileController")
+    .col-sm-8.col-md-9(ng-view="")
       if filters.category && !data.category
         h3.text-muted Invalid Category.
       else
