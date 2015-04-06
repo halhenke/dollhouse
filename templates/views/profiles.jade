@@ -1,22 +1,22 @@
 extends ../layouts/default
 
 mixin profile(profile)
-  - thisIsMine = (profile.owner.id === user.id)
+  - thisIsMine = user && (profile.user.id === user.id)
   .profile(class={"my-profile": thisIsMine} data-ks-editable=editable(user, { list: 'profile', id: profile.id }))
     .profile-header
       h2: a(href='/profiles/profile/' + profile.slug)= profile.name
       //- p.lead.text-muted Owned by
       p.lead.text-muted
-        if profile.owner
+        if profile.user
           //- | Owned by
-          //- a(href="/users/#{profile.owner.id}") #{profile.owner.name.full}
-          a(href="/users/#{profile.owner.id}") #{thisIsMine ? "You" : profile.userName}
+          //- a(href="/users/#{profile.user.id}") #{profile.user.name.full}
+          a(href="/profiles/profile/#{profile.slug}") #{thisIsMine ? "Me" : profile.userName}
     .profile-body
-      if profile.image.exists
+      if profile.avatar.exists
         //- img(src=profile._.image.fit(160,160)).img.pull-right
-        img(src=profile._.image.fit(100,100)).img.pull-right
-      p!= profile.content.brief
-      if profile.content.extended
+        img(src=profile._.avatar.fit(100,100)).img.pull-right
+      p!= profile.about.brief
+      if profile.about.extended
         p.read-more: a(href='/profiles/profile/' + profile.slug) Read more...
 
 block intro
