@@ -46,9 +46,10 @@ exports = module.exports = function(app) {
   app.get('/dolls', routes.views.dolls);
   app.get('/api/dolls', routes.api.dolls);
   app.get('/dolls/doll/:doll', routes.views.dollView);
+  app.get('/api/profiles', routes.api.profiles);
+  app.get('/api/profiles/show/:profile', routes.api.showProfile);
   app.get('/users', routes.views.profiles);
   app.get('/profiles', routes.views.profiles);
-  app.get('/api/profiles', routes.api.profiles);
   app.get('/profiles/show/:profile', routes.views.profileView);
   app.get('/users/show/:profile', routes.views.profileView);
 
