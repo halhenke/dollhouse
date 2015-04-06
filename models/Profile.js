@@ -6,13 +6,17 @@ var keystone = require('keystone'),
  * ==========
  */
 
-var Profile = new keystone.List('Profile');
+var Profile = new keystone.List('Profile', {
+  // NOTE: unique?
+  autokey: { path: 'slug', from: 'user userName', unique: true }
+});
 
 Profile.add({
-  owner: { type: Types.Relationship, ref: 'User', index: true },
+  user: { type: Types.Relationship, ref: 'User', index: true },
   // dolls: { type: Types.Relationship, ref: 'User', index: true },
   state: { type: Types.Select, options: 'private, public', default: 'public', required: true },
-  userName: { type: Types.Name, required: true, initial: true, index: true },
+  // Should this be unique somehow?
+  userName: { type: Types.Text, required: true, initial: true, index: true },
   emailShow: { type: Boolean, label: 'Show email address?' },
   location_show: { type: Types.Boolean,  label: 'Show location?' },
   avatar: { type: Types.CloudinaryImage },

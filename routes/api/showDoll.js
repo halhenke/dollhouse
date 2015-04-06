@@ -11,7 +11,6 @@ exports = module.exports = function(req, res) {
     doll: req.params.doll
   };
   locals.data = {
-    dolls: []
   };
 
   // Load the current doll
@@ -23,29 +22,14 @@ exports = module.exports = function(req, res) {
         slug: locals.filters.doll
       }).populate('owner categories');
 
+
+
     q.exec(function(err, result) {
       locals.data.doll = result;
       next(err);
     });
 
   });
-
-  // Load some similar dolls?
-  // - Think about this
-  // view.on('init', function(next) {
-  //
-  //   var q = keystone.list('Doll')
-  //     .model.find()
-  //     .where('state', 'public')
-  //     .sort('-publishedDate')
-  //     .populate('owner').limit('4');
-  //
-  //   q.exec(function(err, results) {
-  //     locals.data.dolls = results;
-  //     next(err);
-  //   });
-  //
-  // });
 
   // Return JSON
   view.render(function (err, req, res) {

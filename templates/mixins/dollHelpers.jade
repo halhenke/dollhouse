@@ -3,6 +3,10 @@ mixin eventDateFormat(event)
   //- p= event.date + " " + event.startTime + " - " + event.endTime
   | #{event.date}: #{event.startTime} - #{event.endTime}
 
+mixin fullName(name)
+  //- name.first + " " + name.last
+  | #{name.first} #{name.last}
+
 mixin simpleAddressFormat(location)
   p= location
   //- | #{location.street1} #{location.suburb} #{location.postcode}

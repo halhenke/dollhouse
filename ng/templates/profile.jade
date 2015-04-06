@@ -1,0 +1,17 @@
+//- h1 {{data.profile.userName}}
+a(href="#/profiles") Back to profiles
+.col-sm-8.col-md-9.jumbotron
+  - {{thisIsMine = user && (data.profile.user.id === user.id)}}
+  .profile(class={"my-profile": thisIsMine}) 
+    //- (data-ks-editable=editable(user, { list: 'profile', id: profile.id }))
+    .profile-header
+      h2: a(ng-href="/profiles/profile/{{data.profile.slug}}") {{thisIsMine ? "Me" : data.profile.userName}}
+      //- p.lead.text-muted Owned by
+    .profile-body
+      //- img(ng-if="profile.avatar" src=profile._.avatar.fit(100,100)).img.pull-right 
+      img(ng-if="data.profile.avatar" src="{{data.profile.avatar.url}}").img.pull-right 
+      //- img(ng-if="data.profile.avatar" width="100px" height="100px" src="{{data.profile.avatar.url}}").img.pull-right 
+      //- p!= {{profile.about.brief}}
+      p {{data.profile.about.brief}}
+      p.read-more(ng-if="data.profile.about.extended"): a(ng-href="/profiles/profile/{{data.profile.slug}}") Read more...
+

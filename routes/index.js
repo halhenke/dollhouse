@@ -36,8 +36,8 @@ var routes = {
 exports = module.exports = function(app) {
 
   // Views
-  // app.get('/', routes.views.index);
-  app.get('/', routes.views.index_ng);
+  app.get('/', routes.views.index);
+  // app.get('/', routes.views.index_ng);
   app.get('/blog/:category?', routes.views.blog);
   app.get('/blog/post/:post', routes.views.post);
   app.get('/gallery', routes.views.gallery);
@@ -45,11 +45,21 @@ exports = module.exports = function(app) {
   app.get('/events/event/:event', routes.views.event);
   app.get('/dolls', routes.views.dolls);
   app.get('/api/dolls', routes.api.dolls);
+  app.get('/api/dolls/show/:doll', routes.api.showDoll);
   app.get('/dolls/doll/:doll', routes.views.dollView);
-  app.get('/profiles', routes.views.profiles);
+  app.get('/api/profiles', routes.api.profiles);
+  app.get('/api/profiles/show/:profile', routes.api.showProfile);
   app.get('/users', routes.views.profiles);
+  app.get('/profiles', routes.views.profiles);
   app.get('/profiles/show/:profile', routes.views.profileView);
   app.get('/users/show/:profile', routes.views.profileView);
+
+  // app.get('/profiles', routes.views.indexProfiles)
+  app.all('/profiles/new', routes.views.newProfile)
+  // app.get('/profiles/profile:profile', routes.views.showProfile)
+  // app.get('/profiles/profile/:profile/edit', routes.views.editProfile)
+  // app.get('/profiles/profile/:profile/delete', routes.views.deleteProfile)
+
   app.all('/dolls/new', routes.views.newDoll);
   app.get('/about', routes.views.about);
   app.all('/contact', routes.views.contact);

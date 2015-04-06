@@ -19,11 +19,12 @@ exports = module.exports = function(req, res) {
   // Load the profiles
   view.on('init', function(next) {
 
-    var q = keystone.list('Profile').paginate({
-        page: req.query.page || 1,
-        perPage: 10,
-        maxPages: 10
-      })
+    var q = keystone.list('Profile').model.find()
+    // var q = keystone.list('Profile').paginate({
+    //     page: req.query.page || 1,
+    //     perPage: 10,
+    //     maxPages: 10
+    //   })
       .or([{'state': 'public'}, {'owner': (locals.user ? locals.user.id : null)}])
       // .sort('-publishedDate')
       .populate('owner dolls');
