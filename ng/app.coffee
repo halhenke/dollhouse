@@ -7,19 +7,18 @@ ngApp = angular.module('dollhouse', ['ngRoute', 'ngResource', 'templates'])
 
 ngApp.config ($routeProvider) ->
     $routeProvider
-      # .when '/note_tags',
+      # .when '/dolls',
       .when '/',
-        # templateUrl: 'main.html'
-        # template: "<p>This is a total crock of shit....</p>"
         templateUrl: 'dolls.html'
-        controller: 'DollController'
+        controller: 'DollsController'
+      .when "/dolls/doll/:dollSlug",
+        templateUrl: 'doll.html'
+        controller: 'DollShowController'
       .when "/profiles",
-        # template: "<p>This is a total crock of shit....</p>"
         templateUrl: 'profiles.html'
-        controller: 'ProfileController'
-      .when "/dollsNG",
-        templateUrl: 'main.html'
-        controller: 'MainController'
+        controller: 'ProfilesController'
+      .when "/profiles/profile/:profileSlug",
+        templateUrl: 'profile.html'
+        controller: 'ProfileShowController'
       .otherwise
         redirectTo: '/'
-        # redirectTo: '/note_tags'
