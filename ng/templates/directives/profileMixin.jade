@@ -2,12 +2,8 @@
 .profile(class={"my-profile": thisIsMine}) 
   //- (data-ks-editable=editable(user, { list: 'profile', id: profile.id }))
   .profile-header
-    h2: a(ng-href="/profiles/profile/{{profile.slug}}") {{profile.userName}}
+    h2: a(ng-href="#/profiles/profile/{{profile.slug}}") {{thisIsMine ? "Me" : profile.userName}}
     //- p.lead.text-muted Owned by
-    p.lead.text-muted(ng-if="profile.user")
-        //- | Owned by
-        //- a(href="/users/#{profile.user.id}") #{profile.user.name.full}
-        a(ng-href="/profiles/profile/{{profile.slug}}") {{thisIsMine ? "Me" : profile.userName}}
   .profile-body
     //- img(ng-if="profile.avatar" src=profile._.avatar.fit(100,100)).img.pull-right 
     img(ng-if="profile.avatar" width="100px" height="100px" src="{{profile.avatar.url}}").img.pull-right 

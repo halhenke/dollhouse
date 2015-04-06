@@ -19,13 +19,13 @@
   .profiles.angular
     //- PROFILES NOT GROUPED
     //- .row(ng-repeat="profile in data.profiles | filter:profileFilter")
-    .row
-      .col-sm-4.col-md-4(ng-repeat="profile in data.profiles")
-        profile-mixin(profile="profile")
-    //- //- PROFILES ALREADY GROUPED
-    //- .row(ng-repeat="profile_threes in data.profiles | filter:profileFilter")
-    //-   .col-sm-4.col-md-4(ng-repeat="profile in profile_threes")
+    //- .row
+    //-   .col-sm-4.col-md-4(ng-repeat="profile in data.profiles | filter:profileFilter")
     //-     profile-mixin(profile="profile")
+    //- //- PROFILES ALREADY GROUPED
+    .row(ng-repeat="profile_threes in data.profiles | filter:profileFilter")
+      .col-sm-4.col-md-4(ng-repeat="profile in profile_threes")
+        profile-mixin(profile="profile")
 .col-sm-4.col-md-3
   h2 Filter/Search Profiles
   ul.list-group(style='margin-top: 70px;')
@@ -40,12 +40,12 @@
       input(ng-model="profileFilter.userName")
     li.list-group-item
       label.label-primary User
-      input(ng-model="profileFilter.user.name.first")
+      input(ng-model="profileFilter.user.name")
     li.list-group-item
-      label.label-primary Maker
+      label.label-primary About
       input(ng-model="profileFilter.about.brief")
     li.list-group-item
-      label.label-primary Maker Two
+      label.label-primary About Two
       select(ng-model="profileFilter.about.brief")
         option(ng-repeat="model in ['Ipplehouse', 'Other Guys']" value ="{{model}}" ) {{model}}
         //- option(ng-repeat="model in ['Ipplehouse', 'Other Guys']" value = {{model}} ) {{model}}
@@ -67,7 +67,7 @@
       .col-sm-1: label User
       .col-sm-1: input(ng-model="profileFilter.user.name.first")
     .row
-      .col-sm-1: label Maker
+      .col-sm-1: label About
       .col-sm-1: input(ng-model="profileFilter.about.brief")
   form.form-horizontal
     .form-group
@@ -83,5 +83,5 @@
       span.input-group-addon User
       input(ng-model="profileFilter.user.name.first")
     .input-group
-      span.input-group-addon Maker
+      span.input-group-addon About
       input(ng-model="profileFilter.about.brief")
