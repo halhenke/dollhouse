@@ -1,8 +1,12 @@
 mixin eventDateFormat(event)
   //- p= event.date
-  //- p= event.date + " " + event.startTime + " - " + event.endTime 
+  //- p= event.date + " " + event.startTime + " - " + event.endTime
   | #{event.date}: #{event.startTime} - #{event.endTime}
-        
+
+mixin fullName(name)
+  //- name.first + " " + name.last
+  | #{name.first} #{name.last}
+
 mixin simpleAddressFormat(location)
   p= location
   //- | #{location.street1} #{location.suburb} #{location.postcode}
@@ -12,3 +16,17 @@ mixin simpleAddressFormat(location)
   //-   //- .col-sm-6.col-md-6.val= data.event.time
   //-   .col-sm-6.col-md-6.val.
   //-     #{location.street1} #{suburb} #{postcode}
+
+
+mixin navLinks(links)
+  each link in links
+    if link.dropdowns
+      //- .dropdown
+        li.dropdown-toggle(data-toggle="dropdown")= link.label
+      li.dropdown
+        a.dropdown-toggle(href="#" data-toggle="dropdown")= link.label
+        ul.dropdown-menu
+          each sublink in link.dropdowns
+            li(class=(section == sublink.key ? 'active' : null)): a(href=sublink.href)= sublink.label
+    else
+      li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label

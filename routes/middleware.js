@@ -29,7 +29,10 @@ exports.initLocals = function(req, res, next) {
     { label: 'Updates',		key: 'blog',		href: '/blog' },
     { label: 'Events',		key: 'events',		href: '/events' },
     { label: 'Gallery',		key: 'gallery',		href: '/gallery' },
-    { label: 'Our Dolls',		key: 'dolls',		href: '/dolls' },
+    { label: 'Community', dropdowns: [
+      { label: 'Our Dolls',   key: 'dolls',   href: '/dolls' },
+      { label: 'Our Users',   key: 'users',   href: '/profiles' },
+    ] },
     { label: 'Forum',		key: 'forum',		href: config.forumRoute },
     { label: 'About Us',		key: 'about',		href: '/about' },
     { label: 'Contact',		key: 'contact',		href: '/contact' }

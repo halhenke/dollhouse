@@ -1,0 +1,32 @@
+extends ../layouts/default_ng
+
+block content
+  .container: .jumbotron
+    .row
+      .col-md-4.col-sm-4
+        img.cover-girl(src='/images/dolls/20100212054834m.jpg', width='160')
+      .col-md-8.col-sm-8
+        h1 Welcome to The Angular DollHouse
+    .row
+      .col-md-8.col-md-offset-4
+        p.
+          The Dollhouse is a site for people into dolls in Sydney Australia
+        p.
+          Take a look around...
+    div(ng-app="dollhouse")
+      .row
+        //- div(ng-controller="MainCtrl")
+        //-   div(ng-repeat="thing in awesomeThings")
+        a(ng-click="console.log('Link got clicked!');" href="#/note_tags") Some Fucking Angular
+      .row
+        a(ng-click="console.log('Link got clicked!');") Lets log something...
+      .row
+        a(ng-click="console.log('Link got clicked!');" href="#/second") Some more Fucking Angular
+      .row
+        a(ng-click="console.log('Link got clicked!');" href="#/dollsNG") dolls
+      .row
+        //- div(ng-app="dollhouse")
+        p {{"Hello " + "there " }} {{ 4 + 5 }}
+        div(ng-view="")
+      //- .rowmain
+      //-   div(ng-app="dollhouse")

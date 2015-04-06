@@ -1,0 +1,87 @@
+.col-sm-8.col-md-9.jumbotron
+  h1 Profiles
+  //- .col-sm-8.col-md-9
+  //- if filters.category && !data.category
+  //-   h3.text-muted Invalid Category.
+  //- else
+  //- if profiles.length
+    //- if data.profiles.totalPages > 1
+  //- h4.text-weight-normal(ng-if="data.profiles.results.length && data.profiles.totalPages > 1") Showing 
+    //- strong {{data.profiles.first}}
+    //- |  to 
+    //- strong {{data.profiles.last}}
+    //- |  of 
+    //- strong {{data.profiles.total}}
+    //- |  profiles.      
+    //- else
+    //-   h4.text-weight-normal Showing #{utils.plural(data.profiles.results.length, '* profile')}.
+  h4.text-weight-normal Showing 
+  .profiles.angular
+    //- PROFILES NOT GROUPED
+    //- .row(ng-repeat="profile in data.profiles | filter:profileFilter")
+    //- .row
+    //-   .col-sm-4.col-md-4(ng-repeat="profile in data.profiles | filter:profileFilter")
+    //-     profile-mixin(profile="profile")
+    //- //- PROFILES ALREADY GROUPED
+    .row(ng-repeat="profile_threes in data.profiles | filter:profileFilter")
+      .col-sm-4.col-md-4(ng-repeat="profile in profile_threes")
+        profile-mixin(profile="profile")
+.col-sm-4.col-md-3
+  h2 Filter/Search Profiles
+  ul.list-group(style='margin-top: 70px;')
+    //- a(href='/blog', class=!data.category ? 'active' : false).list-group-item All Categories
+    //- each cat in data.categories
+    //-   a(href='/blog/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
+    li.list-group-item
+      label.label-primary Anything
+      input(ng-model="profileFilter.$")
+    li.list-group-item
+      label.label-primary Name
+      input(ng-model="profileFilter.userName")
+    li.list-group-item
+      label.label-primary User
+      input(ng-model="profileFilter.user.name")
+    li.list-group-item
+      label.label-primary About
+      input(ng-model="profileFilter.about.brief")
+    li.list-group-item
+      label.label-primary About Two
+      select(ng-model="profileFilter.about.brief")
+        option(ng-repeat="model in ['Ipplehouse', 'Other Guys']" value ="{{model}}" ) {{model}}
+        //- option(ng-repeat="model in ['Ipplehouse', 'Other Guys']" value = {{model}} ) {{model}}
+  h2 React
+    #reactiveProfile
+  //- .filters      
+  //- form.navbar-form.navbar-right
+  form.form-horizontal
+    .form-group
+      label.label-primary Anything
+      input(ng-model="profileFilter.$")
+    .row
+      .col-sm-1: label Anything
+      .col-sm-1: input(ng-model="profileFilter.$")
+    .row
+      .col-sm-1: label Name
+      .col-sm-1: input(ng-model="profileFilter.userName")
+    .row
+      .col-sm-1: label User
+      .col-sm-1: input(ng-model="profileFilter.user.name.first")
+    .row
+      .col-sm-1: label About
+      .col-sm-1: input(ng-model="profileFilter.about.brief")
+  form.form-horizontal
+    .form-group
+      label.label-primary Anything
+      input(ng-model="profileFilter.$")
+    .input-group
+      span.input-group-addon Anything
+      input(ng-model="profileFilter.$")
+    .input-group
+      span.input-group-addon Name
+      input(ng-model="profileFilter.userName")
+    .input-group
+      span.input-group-addon User
+      input(ng-model="profileFilter.user.name.first")
+    .input-group
+      span.input-group-addon About
+      input(ng-model="profileFilter.about.brief")

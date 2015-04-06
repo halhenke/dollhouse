@@ -19,13 +19,14 @@ exports = module.exports = function(req, res) {
   // Load the dolls
   view.on('init', function(next) {
 
-    var q = keystone.list('Doll').paginate({
-        page: req.query.page || 1,
-        perPage: 9,
-        maxPages: 10
-      })
-      // NOTE: Stop page breaking for people who arent loggged in
-      .or([{'state': 'public'}, {'owner': (locals.user ? locals.user.id : null)}])
+    var q = keystone.list('Doll').model.find()
+    // var q = keystone.list('Doll').paginate({
+    //     page: req.query.page || 1,
+    //     perPage: 9,
+    //     maxPages: 10
+    //   })
+    // NOTE: Stop page breaking for people who arent loggged in
+    .or([{'state': 'public'}, {'owner': (locals.user ? locals.user.id : null)}])
       // .sort('-publishedDate')
       .populate('owner');
 
@@ -36,6 +37,8 @@ exports = module.exports = function(req, res) {
 
   });
 
-  // Render the view
-  view.render('dolls');
+  // Return JSON
+  view.render(function (err, req, res) {
+    res.send(locals.data);
+  });
 };

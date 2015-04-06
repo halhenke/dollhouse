@@ -11,22 +11,22 @@ var keystone = require('keystone');
 
 keystone.init({
 
-	'name': 'dollhouse',
-	'brand': 'dollhouse',
-	
-	'sass': 'public',
-	'static': 'public',
-	'favicon': 'public/favicon.ico',
-	'views': 'templates/views',
-	'view engine': 'jade',
-	
-	'emails': 'templates/emails',
-	
-	'auto update': true,
-	'session': true,
-	'auth': true,
-	'user model': 'User',
-	'cookie secret': 'vAC=8h_#vl!SpFi&m1)_qFR@"nw9vRDT+/Q+&3-rc4+:D,bg_|"0I8wiRF-8tI|='
+  'name': 'dollhouse',
+  'brand': 'the dollhouse',
+
+  'sass': 'public',
+  'static': 'public',
+  'favicon': 'public/favicon.ico',
+  'views': 'templates/views',
+  'view engine': 'jade',
+
+  'emails': 'templates/emails',
+
+  'auto update': true,
+  'session': true,
+  'auth': true,
+  'user model': 'User',
+  'cookie secret': 'vAC=8h_#vl!SpFi&m1)_qFR@"nw9vRDT+/Q+&3-rc4+:D,bg_|"0I8wiRF-8tI|='
 
 });
 
@@ -39,10 +39,12 @@ keystone.import('models');
 // for each request) should be added to ./routes/middleware.js
 
 keystone.set('locals', {
-	_: require('underscore'),
-	env: keystone.get('env'),
-	utils: keystone.utils,
-	editable: keystone.content.editable
+  // _: require('underscore').mixin(require('./templates/jade_helpers')),
+  _: require('underscore'),
+  lo: require('lodash').mixin(require('./templates/jade_helpers')),
+  env: keystone.get('env'),
+  utils: keystone.utils,
+  editable: keystone.content.editable
 });
 
 // Load your project's Routes
@@ -53,18 +55,18 @@ keystone.set('routes', require('./routes'));
 // default email templates, you may remove them if you're using your own.
 
 keystone.set('email locals', {
-	logo_src: '/images/logo-email.gif',
-	logo_width: 194,
-	logo_height: 76,
-	theme: {
-		email_bg: '#f9f9f9',
-		link_color: '#2697de',
-		buttons: {
-			color: '#fff',
-			background_color: '#2697de',
-			border_color: '#1a7cb7'
-		}
-	}
+  logo_src: '/images/logo-email.gif',
+  logo_width: 194,
+  logo_height: 76,
+  theme: {
+    email_bg: '#f9f9f9',
+    link_color: '#2697de',
+    buttons: {
+      color: '#fff',
+      background_color: '#2697de',
+      border_color: '#1a7cb7'
+    }
+  }
 });
 
 // Setup replacement rules for emails, to automate the handling of differences
@@ -74,11 +76,11 @@ keystone.set('email locals', {
 // other rules your email templates require.
 
 keystone.set('email rules', [{
-	find: '/images/',
-	replace: (keystone.get('env') == 'production') ? 'http://www.your-server.com/images/' : 'http://localhost:3000/images/'
+  find: '/images/',
+  replace: (keystone.get('env') == 'production') ? 'http://www.your-server.com/images/' : 'http://localhost:3000/images/'
 }, {
-	find: '/keystone/',
-	replace: (keystone.get('env') == 'production') ? 'http://www.your-server.com/keystone/' : 'http://localhost:3000/keystone/'
+  find: '/keystone/',
+  replace: (keystone.get('env') == 'production') ? 'http://www.your-server.com/keystone/' : 'http://localhost:3000/keystone/'
 }]);
 
 // Load your project's email test routes
@@ -88,10 +90,10 @@ keystone.set('email tests', require('./routes/emails'));
 // Configure the navigation bar in Keystone's Admin UI
 
 keystone.set('nav', {
-	'posts': ['posts', 'post-categories'],
-	'galleries': 'galleries',
-	'enquiries': 'enquiries',
-	'users': 'users'
+  'posts': ['posts', 'post-categories'],
+  'galleries': 'galleries',
+  'enquiries': 'enquiries',
+  'users': 'users'
 });
 
 // Start Keystone to connect to your database and initialise the web server

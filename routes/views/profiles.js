@@ -7,35 +7,34 @@ exports = module.exports = function(req, res) {
     locals = res.locals;
 
   // Init locals
-  locals.section = 'dolls';
+  locals.section = 'profiles';
   locals.filters = {
     category: req.params.category
   };
   locals.data = {
-    dolls: [],
+    profiles: [],
     categories: []
   };
 
-  // Load the dolls
+  // Load the profiles
   view.on('init', function(next) {
 
-    var q = keystone.list('Doll').paginate({
+    var q = keystone.list('Profile').paginate({
         page: req.query.page || 1,
-        perPage: 9,
+        perPage: 10,
         maxPages: 10
       })
-      // NOTE: Stop page breaking for people who arent loggged in
       .or([{'state': 'public'}, {'owner': (locals.user ? locals.user.id : null)}])
       // .sort('-publishedDate')
-      .populate('owner');
+      .populate('owner dolls');
 
     q.exec(function(err, results) {
-      locals.data.dolls = results;
+      locals.data.profiles = results;
       next(err);
     });
 
   });
 
   // Render the view
-  view.render('dolls');
+  view.render('profiles');
 };

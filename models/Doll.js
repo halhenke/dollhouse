@@ -15,7 +15,7 @@ Doll.add({
   name: { type: String, required: true },
   owner: { type: Types.Relationship, ref: 'User', index: true },
   maker: { type: Types.Select, options: config.dolls.makers.join(', '), index: true },
-  state: { type: Types.Select, options: 'private, public', default: 'public', index: true },
+  state: { type: Types.Select, options: 'private, public', default: 'public', required: true },
   // publishedDate: { type: Types.Date, index: true, dependsOn: { state: 'published' } },
   image: { type: Types.CloudinaryImage },
   content: {
