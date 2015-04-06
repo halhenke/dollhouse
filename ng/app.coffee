@@ -13,10 +13,10 @@ ngApp.config ($routeProvider) ->
         # template: "<p>This is a total crock of shit....</p>"
         templateUrl: 'dolls.html'
         controller: 'DollController'
-      .when "/second",
+      .when "/profiles",
         # template: "<p>This is a total crock of shit....</p>"
-        templateUrl: 'next.html'
-        controller: 'MainController'
+        templateUrl: 'profiles.html'
+        controller: 'ProfileController'
       .when "/dollsNG",
         templateUrl: 'main.html'
         controller: 'MainController'
