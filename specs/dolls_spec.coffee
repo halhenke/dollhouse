@@ -55,9 +55,8 @@ setupTestServer = (done) ->
   keystone.import '../models'
 
 
-  _this = this
   valiStub = sinon.stub(keystone.security.csrf, "validate", ->
-    # _this.console.log "Validate stub called"
+    console.log "Validate stub called"
     return true
     )
   # sessionStub = sinon.stub(keystone.session, "signin").callsArg(4)
@@ -151,6 +150,8 @@ setupTestServer = (done) ->
   @keystone = keystone
   @mongoose = keystone.mongoose
   # Clear database first
+  @keystone.list('User').model.remove().exec ->
+    console.log "Users deleted from Test DB..."
   @keystone.list('Doll').model.remove().exec ->
     console.log "Dolls deleted from Test DB..."
   # console.log "Managed to drop Dolls: " + @mongoose.db.dolls.drop()
@@ -248,44 +249,31 @@ describe "the site", ->
         expect(body).to.have.string "Welcome to The Dollhouse"
         # expect(body).to.have.string "Hunome"
         done()
-    it 'should return some dolls in JSON form', (done) ->
-      # request "http://0.0.0.0:3000/api/dolls", (err, response, body) ->
-      request "http://0.0.0.0:4500/api/dolls", (err, response, body) ->
-        # console.log "err is #{err}"
-        # console.log "response is #{response}"
-        # console.log "body is #{body}"
-        # console.log "body is #{body}"
-        expect(err).to.be.null
-        expect(response.statusCode).to.eql 200
-        expect(JSON.parse(body)).to.contain.keys "dolls"
-        expect(JSON.parse(body).dolls.length).to.be.at.least(10)
-        # expect(body).to.contain.keys "data"
-        # expect(body.data.dolls.length).to.be.at.least(10) 
-        done()
-    describe "when a user is logged in", ->
-      csrf_token = ""
-      before (done) ->
-        console.log "stubarama"
-        request( 
-          url: "http://0.0.0.0:4500/signinTest"
-          method: "GET"
-          json: true
-          jar: jar
-          (err, response, body) ->
-            # csrf_token = tokenFetch(response.headers['set-cookie'])
+    describe.only "when a user is logged in", ->
+      # @timeout(10000)      
+      # csrf_token = ""
+      # before (done) ->
+      #   console.log "stubarama"
+      #   request( 
+      #     url: "http://0.0.0.0:4500/signinTest"
+      #     method: "GET"
+      #     json: true
+      #     jar: jar
+      #     (err, response, body) ->
+      #       # csrf_token = tokenFetch(response.headers['set-cookie'])
 
-            # # console.log "Keys: " + Object.keys(JSON.parse(body))
-            # # console.log "Keys: " + Object.keys(response.headers)
-            # # console.log "Keys: " + response.headers['set-cookie']
-            # console.log "Keys: " + (response.headers['set-cookie'])
-            # console.log "Keys: " + (Object.keys response.headers['set-cookie'])
-            # console.log "Keys: " + tokenFetch(response.headers['set-cookie'])
-            console.log body
-            console.log "JAR is "
-            console.log jar
-            done())
+      #       # # console.log "Keys: " + Object.keys(JSON.parse(body))
+      #       # # console.log "Keys: " + Object.keys(response.headers)
+      #       # # console.log "Keys: " + response.headers['set-cookie']
+      #       # console.log "Keys: " + (response.headers['set-cookie'])
+      #       # console.log "Keys: " + (Object.keys response.headers['set-cookie'])
+      #       # console.log "Keys: " + tokenFetch(response.headers['set-cookie'])
+      #       console.log body
+      #       console.log "JAR is "
+      #       console.log jar
+      #       done())
 
-      it.only "should let us log in", (done) ->
+      it "should let us log in", (done) ->
         request( 
           # url: "http://0.0.0.0:3000/keystone/signin"
           url: "http://0.0.0.0:4500/signinTest"
@@ -304,9 +292,54 @@ describe "the site", ->
             console.log "JAR is "
             console.log jar
             done())
-        
-      it "should return all of a users dolls even if they are not public"
-      it "should not return dolls from other users that are not public"
-    describe "when a user is not logged in", ->
-      it "should not return that users dolls that are unpublished"
-
+      it "should show we are logged in", (done) ->
+        request.get 
+          url: "http://0.0.0.0:4500/signinTest"
+          json: true
+          jar: jar
+          # body: 
+          #   email: userFixtures.adminGuy.email
+          #   password: userFixtures.adminGuy.password
+          #   # _csrf: csrf_token
+          (err, response, body) ->
+            expect(err).to.be.null
+            expect(response.statusCode).to.eql 200
+            expect(body).to.include "You're already signed in."
+            done()
+      it 'should return some dolls in JSON form', (done) ->
+        request "http://0.0.0.0:4500/api/dolls", (err, response, body) ->
+          expect(err).to.be.null
+          expect(response.statusCode).to.eql 200
+          expect(JSON.parse(body)).to.contain.keys "dolls"
+          expect(JSON.parse(body).dolls.length).to.be.at.least(10)
+          done()        
+      describe "when considering ownership", ->
+        before (done) ->
+          console.log "BEFORE BEGIN!"
+          # done()
+          keystone.list('User').model
+            .findOne email: userFixtures.adminGuy.email
+            .exec (err, result) ->
+              console.log "Found user"
+              if err
+                console.log "we had err: #{err}"
+              else
+                console.log "result length: #{result}"
+              keystone.list('Doll').model
+                .find(state: "private").limit(4)
+                .update {owner: result.id}, ->
+                  console.log "Dols updated"
+                  done()
+        it "should return all of a users dolls even if they are not public", (done) ->
+          console.log "DOLL TEST 4: go"
+          request.get 
+            url: "http://0.0.0.0:4500/api/dolls"
+            jar: jar
+            (err, response, body) ->
+              console.log "DOLL TEST 4: called"
+              expect(err).to.be.null
+              expect(response.statusCode).to.eql 200
+              expect(JSON.parse(body)).to.contain.keys "dolls"
+              expect(JSON.parse(body).dolls.length).to.equal(11)
+              done()        
+        it "should not return dolls from other users that are not public"

@@ -30,6 +30,13 @@ module.exports =
         state: "public"
       }
       {
+        slug: "django-fall"
+        maker: "Ipplehouse"
+        name: "Django Fall"
+        owner: "54e38ffc8d3aeee25bfcc648"
+        state: "private"
+      }
+      {
         slug: "bobba-fett"
         maker: "Ipplehouse"
         name: "Bobba Fett"
@@ -158,7 +165,6 @@ module.exports =
     ]
 
 sample_doll:
-  _id: "54fb8a3417f40010d61cf9a3"
   slug: "banjo-patterson"
   maker: "Ipplehouse"
   name: "Banjo Patterson"
