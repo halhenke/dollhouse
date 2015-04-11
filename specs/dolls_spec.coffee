@@ -15,49 +15,6 @@ tokenFetch = (cookie) ->
   # token = lo.filter(lo.values(cookie), (val, key) ->
       return val.match(/XSRF-TOKEN/))
   return lo.first(token).match(/XSRF-TOKEN=(.\S*)/)[1]
-# mockery.registerMock "mongoose", 
-#   find: ->
-#     [1,2,3,4,5,6,7,8,9,10,11]
-
-# mockery.registerMock "keystone", 
-#   mongoose: {}
-
-# mockery.enable({ useCleanCache: true })
-# mockery.enable()
-
-# keystone = require "keystone"
-
-# sinon.stub(keystone, "mongoose")
-# keystone.connect()
-
-# require "../models/Doll.js"
-
-# Doll = keystone.list "Doll"
-# User = keystone.list "User"
-
-
-# describe.skip 'A Doll', ->
-#   before (done) ->
-#     @user = new User.model 
-#       name: "Bono"
-#       email: "bono@gmail.com"
-#       password: "abdjdjdjdjdjdjd"
-#     done()
-#   it 'should have a name', ->
-#     d = new Doll.model 
-#       name: "ButterFace"
-#       owner: @user
-#     expect(d.name).to.equal "ButterFace"
-#   it 'should fetch properly', ->
-#     Doll.model.find()
-#       .exec (err, results) ->
-#         expect(results.length).to.be.at.least(10) 
-
-
-# jsdom.env
-#   url: "http://0.0.0.0:3000"
-#   done: (err, window)
-#     $ = window.$
 
 setupTestServer = (done) ->
   # Either:
@@ -132,24 +89,6 @@ setupTestServer = (done) ->
   # keystone = proxyquire "keystone",
   #   './lib/security/csrf': valiStub
 
-  # keystone.init
-  #   'name': 'dollhouse-test'
-  #   'brand': 'the dollhouse'
-  #   'port': 4500
-  #   'sass': '../public'
-  #   'static': '../public'
-  #   'favicon': '../public/favicon.ico'
-  #   'views': '../templates/views'
-  #   'view engine': 'jade'
-  #   'emails': '../templates/emails'
-  #   # 'auto update': true
-  #   'session': true
-  #   'auth': true
-  #   # 'auth': false
-  #   # 'session': false
-  #   'user model': 'User'
-  #   'cookie secret': 'vAC=8h_#vl!SpFi&m1)_qFR@"nw9vRDT+/Q+&3-rc4+:D,bg_|"0I8wiRF-8tI|='
-  # keystone.import '../models'
 
   # --------------------------------------------------------
   # ROUTES
@@ -219,22 +158,6 @@ setupTestServer = (done) ->
     console.log "Managed to drop Dolls completely..."
   dataCreate(keystone, mongoose, done)
 
-  # keystone.start ->
-  #   keystone.httpServer.on 'connection', () ->
-  #     console.log "KEYSTONE TEST SERVER - connection made"
-  # console.log "Keystone Test Server nominally started..."
-  # # We need to wait for server to initialise...
-  # @keystone = keystone
-  # @mongoose = keystone.mongoose
-  # # Clear database first
-  # @keystone.list('Doll').model.remove().exec ->
-  #   console.log "Dolls deleted from Test DB..."
-  # # console.log "Managed to drop Dolls: " + @mongoose.db.dolls.drop()
-  # @mongoose.connection.collections.dolls.drop ->
-  #   console.log "Managed to drop Dolls completely..."
-  # dataCreate(keystone, mongoose, done)
-
-
 
 dataCreate = (keystone, mongoose, done) ->
   keystone.list('User').model.create userFixtures.adminGuy, (err, ...) ->
@@ -262,19 +185,14 @@ describe "the site", ->
 
   before (done) ->
     # @keystone = setupTestServer    
-    # setupTestServer()
     setupTestServer(done)
-    # setTimeout(done, 4000)
-    # done()
   after (done) ->
-    # @keystone.httpServer.close()
     stopTestServer()
     done()
   describe 'Views rendered on the server', ->    
     it 'should be running', (done) ->
       console.log "It has begun..."
       jsdom.env
-        # url: "http://0.0.0.0:3000"
         url: "http://0.0.0.0:4500"
         headers:
           "Cache-Control": "no-cache"
@@ -345,37 +263,11 @@ describe "the site", ->
         # expect(body.data.dolls.length).to.be.at.least(10) 
         done()
     describe "when a user is logged in", ->
-      # beforeEach ->
       csrf_token = ""
       before (done) ->
-        # sinon.stub(keystone.security.csrf, "validate").returns(true)
-        # sinon.stub(keystone.security.csrf, "validate").throws
         console.log "stubarama"
-        # mockery.enable()
-        # keyMock = 
-        #   security:
-        #     csrf:
-        #       validate: ->
-        #         console.log "mockery called validate"
-        #         return true
-        # mockery.registerMock "../../", keyMock
-        # mockery.registerMock "../../index.js", keyMock
-
-        # sinon.stub(keystone.security.csrf, "validate", ->
-        #   console.log "Validate stub called"
-        #   return true
-        #   )
-        # # mockery.registerMock "keystone", keystone
-        # proxyquire "../node_modules/keystone/routes/views/signin.js", 
-        #   "../../": keystone
-
-        # mockery.registerMock "keystone", keyMock
-        # sinon.stub(keystone.security.csrf, "requestToken", ->
-        # sinon.stub(keystone.security.csrf, "getToken", ->
-        # sinon.stub(keystone.security.csrf.validate).returns true
         request( 
           url: "http://0.0.0.0:4500/signinTest"
-          # url: "http://0.0.0.0:3000/keystone/signin"
           method: "GET"
           json: true
           jar: jar
@@ -394,14 +286,6 @@ describe "the site", ->
             done())
 
       it.only "should let us log in", (done) ->
-        # We need the csrf token to do this
-        # keystone.security.csrf.requestToken(req) ??
-        # session = keystone.get('express session')
-        # console.log "session is: #{session}"
-        # session._csrf_secret = keystone.security.csrf.createSecret()
-        # keystone.set('express session', session)
-        # # console.log "csrf is: #{keystone.security.csrf.createToken({session: {}})}"
-        # debugger
         request( 
           # url: "http://0.0.0.0:3000/keystone/signin"
           url: "http://0.0.0.0:4500/signinTest"
@@ -412,8 +296,6 @@ describe "the site", ->
             email: userFixtures.adminGuy.email
             password: userFixtures.adminGuy.password
             # _csrf: csrf_token
-            # csrf_token_value: keystone.security.csrf.getToken(req, res)
-            # csrf_token_value: keystone.security.csrf.createToken({session: {}})
           (err, response, body) ->
             expect(err).to.be.null
             # expect(response.statusCode).to.eql 200
@@ -428,13 +310,3 @@ describe "the site", ->
     describe "when a user is not logged in", ->
       it "should not return that users dolls that are unpublished"
 
-
-# (done) ->
-#   request({url: "http://0.0.0.0:3000/keystone/signin"
-#     method: "POST"
-#     body: 
-#       email: "halhenke@gmail.com"
-#       password: "admin"}, (err, response, body) ->
-#       expect(err).to.be.null
-#       expect(response.statusCode).to.eql 200
-#       done())            
