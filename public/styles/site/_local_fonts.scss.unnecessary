@@ -1,0 +1,35 @@
+@font-face {
+  font-family: "AtomicAge Regular";
+  src: local("../../fonts/Atomic_Age/AtomicAge-Regular.ttf"); }
+@font-face {
+  font-family: "Cookie Regular";
+  src: local("../../fonts/Cookie/Cookie-Regular.ttf"); }
+@font-face {
+  font-family: "Eater Regular";
+  src: local("../../fonts/Eater/Eater-Regular.ttf"); }
+@font-face {
+  font-family: "EmilysCandy Regular";
+  src: local("../../fonts/Emilys_Candy/EmilysCandy-Regular.ttf"); }
+@font-face {
+  font-family: "Flavors Regular";
+  src: local("../../fonts/Flavors/Flavors-Regular.ttf"); }
+@font-face {
+  font-family: "HomemadeApple";
+  src: local("../../fonts/Homemade_Apple/HomemadeApple.ttf"); }
+@font-face {
+  font-family: "JollyLodger Regular";
+  src: local("../../fonts/Jolly_Lodger/JollyLodger-Regular.ttf"); }
+@font-face {
+  font-family: "Metamorphous Regular";
+  src: local("../../fonts/Metamorphous/Metamorphous-Regular.ttf"); }
+@font-face {
+  font-family: "Playball Regular";
+  src: local("../../fonts/Playball/Playball-Regular.ttf"); }
+@font-face {
+  font-family: "SwankyandMooMoo";
+  src: local("../../fonts/Swanky_and_Moo_Moo/SwankyandMooMoo.ttf"); }
+@font-face {
+  font-family: "WalterTurncoat";
+  src: local("../../fonts/Walter_Turncoat/WalterTurncoat.ttf"); }
+
+/*# sourceMappingURL=_local_fonts.scss.map */
