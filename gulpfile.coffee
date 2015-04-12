@@ -62,6 +62,7 @@ paths =
 
 nodemonOpts =
   script: "keystone.js"
+  ignore: "specs/*"
   # ext: "js coffee sass scss jade"
   ext: "js coffee sass scss"
 
