@@ -73,7 +73,7 @@ setupTestServer = (done) ->
 
   # PROXYQUIRE DOESNT SEEM TO BE NEEDED
   # signIN = require "../node_modules/keystone/routes/views/signin.js"
-  # signIN = proxyquire "../node_modules/keystone/routes/views/signin.js", 
+  # signIN = proxyquire "../node_modules/keystone/routes/views/signin.js",
   #   # "../../": valiStub
   #   "../../index.js": valiStub
   #   "keystone": valiStub
@@ -106,7 +106,7 @@ setupTestServer = (done) ->
   # keystone.pre 'render', middleware.flashMessages
   # keystone.pre 'render', middleware.logHeaders
   # # Import Route Controllers
-  # routes = 
+  # routes =
   #   views: importRoutes('./views')
   #   api: importRoutes('./api')
   # keystone.set 'routes', (app) ->
@@ -131,8 +131,8 @@ setupTestServer = (done) ->
   # keystone.app.all('/signinTest', require("../node_modules/keystone/routes/views/signin.js"))
 
     # console.log "la la la")
-  # keystone.app.all('/keystone/signin', -> 
-  # # keystone.set('/routes', -> 
+  # keystone.app.all('/keystone/signin', ->
+  # # keystone.set('/routes', ->
   #   console.log "la la la")
 
 
@@ -185,12 +185,12 @@ describe "the site", ->
   this.timeout(20000)
 
   before (done) ->
-    # @keystone = setupTestServer    
+    # @keystone = setupTestServer
     setupTestServer(done)
   after (done) ->
     stopTestServer()
     done()
-  describe 'Views rendered on the server', ->    
+  describe 'Views rendered on the server', ->
     it 'should be running', (done) ->
       console.log "It has begun..."
       jsdom.env
@@ -198,7 +198,7 @@ describe "the site", ->
         headers:
           "Cache-Control": "no-cache"
           # pragma: 'no-cache'
-          # "If-Modified-Since": "Sat, 29 Oct 1994 19:43:31 GMT" 
+          # "If-Modified-Since": "Sat, 29 Oct 1994 19:43:31 GMT"
         # scripts: "/js/lib/jquery/jquery-2.11.1.min.js"
         scripts: ["http://code.jquery.com/jquery.js"]
         done: (err, window) ->
@@ -231,9 +231,9 @@ describe "the site", ->
           # expect(response.statusCode).to.eql 200
           # expect(JSON.parse(window.document.body.innerText)).to.contain.keys "data"
           # expect(JSON.parse($('body').innerText)).to.contain.keys "data"
-          # expect(window.document.body.data.dolls.length).to.be.at.least(10) 
+          # expect(window.document.body.data.dolls.length).to.be.at.least(10)
           # expect(window.document.body).to.contain.keys "data"
-          # expect(window.document.body.data.dolls.length).to.be.at.least(10) 
+          # expect(window.document.body.data.dolls.length).to.be.at.least(10)
           done()
 
 
@@ -250,11 +250,11 @@ describe "the site", ->
         # expect(body).to.have.string "Hunome"
         done()
     describe.only "when a user is logged in", ->
-      # @timeout(10000)      
+      # @timeout(10000)
       # csrf_token = ""
       # before (done) ->
       #   console.log "stubarama"
-      #   request( 
+      #   request(
       #     url: "http://0.0.0.0:4500/signinTest"
       #     method: "GET"
       #     json: true
@@ -274,13 +274,13 @@ describe "the site", ->
       #       done())
 
       it "should let us log in", (done) ->
-        request( 
+        request(
           # url: "http://0.0.0.0:3000/keystone/signin"
           url: "http://0.0.0.0:4500/signinTest"
           method: "POST"
           json: true
           jar: jar
-          body: 
+          body:
             email: userFixtures.adminGuy.email
             password: userFixtures.adminGuy.password
             # _csrf: csrf_token
@@ -293,11 +293,11 @@ describe "the site", ->
             console.log jar
             done())
       it "should show we are logged in", (done) ->
-        request.get 
+        request.get
           url: "http://0.0.0.0:4500/signinTest"
           json: true
           jar: jar
-          # body: 
+          # body:
           #   email: userFixtures.adminGuy.email
           #   password: userFixtures.adminGuy.password
           #   # _csrf: csrf_token
@@ -312,7 +312,7 @@ describe "the site", ->
           expect(response.statusCode).to.eql 200
           expect(JSON.parse(body)).to.contain.keys "dolls"
           expect(JSON.parse(body).dolls.length).to.be.at.least(10)
-          done()        
+          done()
       describe "when considering ownership", ->
         before (done) ->
           console.log "BEFORE BEGIN!"
@@ -332,7 +332,7 @@ describe "the site", ->
                   done()
         it "should return all of a users dolls even if they are not public", (done) ->
           console.log "DOLL TEST 4: go"
-          request.get 
+          request.get
             url: "http://0.0.0.0:4500/api/dolls"
             jar: jar
             (err, response, body) ->
