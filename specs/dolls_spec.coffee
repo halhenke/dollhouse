@@ -33,7 +33,7 @@ setupTestServer = (done) ->
   #   detached: true
   # # @keystone.unref()
   require('dotenv').load();
-  
+
   keystone = require "keystone"
   keystone.init
     'name': 'dollhouse-test'
@@ -174,13 +174,19 @@ dataCreate = (keystone, mongoose, done) ->
   setTimeout(done, 4000)
 
 stopTestServer = ->
-  @keystone.list('Doll').model.remove().exec ->
-    console.log "Dolls deleted from Test DB..."
+  # NOTE: should prob move database cleanup stuff here
+  # instead of beginning of test
   # @keystone.httpServer.close()
   console.log "Keystone Test Server nominally stopped..."
+  # NOTE: mongoose seems to keep some kind of cache
+  # - even between completely separate invocations of the test suite
+  # - disconnect is necessary to reset it
+  @mongoose.disconnect ->
+    console.log "Disconnected from Mongoose..."
 
 
-# USING JSDOM    
+
+# USING JSDOM
 describe "the site", ->
   this.timeout(20000)
 
