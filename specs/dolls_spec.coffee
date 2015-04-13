@@ -312,7 +312,7 @@ describe "the site", ->
             expect(response.statusCode).to.eql 200
             expect(body).to.include "You're already signed in."
             done()
-      it 'should return some dolls in JSON form', (done) ->
+      it.skip 'should return some dolls in JSON form', (done) ->
         request "http://0.0.0.0:4500/api/dolls", (err, response, body) ->
           expect(err).to.be.null
           expect(response.statusCode).to.eql 200
