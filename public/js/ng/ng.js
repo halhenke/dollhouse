@@ -3,7 +3,7 @@
 
   console.log('Angular loaded');
 
-  ngApp = angular.module('dollhouse', ['ngRoute', 'ngResource', 'templates']);
+  ngApp = angular.module('dollhouse', ['ngRoute', 'ngResource', 'ui.bootstrap', 'templates']);
 
   ngApp.config(function($routeProvider) {
     return $routeProvider.when('/', {
