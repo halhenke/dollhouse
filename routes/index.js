@@ -43,7 +43,7 @@ exports = module.exports = function(app) {
   app.get('/gallery', routes.views.gallery);
   app.get('/events', routes.views.events);
   app.get('/events/event/:event', routes.views.event);
-  app.get('/dolls', routes.views.dolls);
+  app.get('/community', routes.views.dolls);
   app.get('/api/dolls', routes.api.dolls);
   app.get('/api/dolls/show/:doll', routes.api.showDoll);
   app.get('/dolls/doll/:doll', routes.views.dollView);
