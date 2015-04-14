@@ -3,7 +3,9 @@ module.exports = {
   dolls: {
     makers: [
       "Ipplehouse",
-      "Other Guys"
+      "Other Guys",
+      "firstGuy",
+      "secondGuy"
     ]
   }
 };
