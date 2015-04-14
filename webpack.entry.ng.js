@@ -1,4 +1,3 @@
-
 module.exports = {
   lo: require('lodash'),
   angular: require("angular"),
@@ -18,6 +17,10 @@ module.exports = {
   // doll: require("jade-react!./react/components/jade/doll.jade")
   // doll: require("coffee-jsx!./react/components/cjsx/Doll.cjsx")
 };
+
+// Doesnt need to be exported
+// - must come after angular require though
+require("script!./node_modules/angular-ui-bootstrap/ui-bootstrap.js");
 
 
 // module.exports = {
