@@ -34,54 +34,5 @@ block intro
         a.btn.btn-primary(href="/profiles/new") Create my profile
 
 block content
-  .container(ng-app="dollhouse" ng-controller="ProfilesController"): .row.jumbotron(ng-view="")
-    //- .col-sm-8.col-md-9
-    //-   if filters.category && !data.category
-    //-     h3.text-muted Invalid Category.
-    //-   else
-    //-     if data.profiles.results.length
-    //-       if data.profiles.totalPages > 1
-    //-         h4.text-weight-normal Showing
-    //-           strong #{data.profiles.first}
-    //-           |  to
-    //-           strong #{data.profiles.last}
-    //-           |  of
-    //-           strong #{data.profiles.total}
-    //-           |  profiles.
-    //-       else
-    //-         h4.text-weight-normal Showing #{utils.plural(data.profiles.results.length, '* profile')}.
-    //-       .profiles
-    //-         - doll_threed = lo.chunk(data.profiles.results, 3)
-    //-         each doll_threes in doll_threed
-    //-           .row
-    //-             each profile in doll_threes
-    //-               .col-sm-4.col-md-4
-    //-                 +profile(profile)
-
-    //-       if data.profiles.totalPages > 1
-    //-         ul.pagination
-    //-           if data.profiles.previous
-    //-             li: a(href='?page=' + data.profiles.previous): span.glyphicon.glyphicon-chevron-left
-    //-           else
-    //-             li.disabled: a(href='?page=' + 1): span.glyphicon.glyphicon-chevron-left
-    //-           each p, i in data.profiles.pages
-    //-             li(class=data.profiles.currentPage == p ? 'active' : null)
-    //-               a(href='?page=' + (p == '...' ? (i ? data.profiles.totalPages : 1) : p ))= p
-    //-           if data.profiles.next
-    //-             li: a(href='?page=' + data.profiles.next): span.glyphicon.glyphicon-chevron-right
-    //-           else
-    //-             li.disabled: a(href='?page=' + data.profiles.totalPages): span.entypo.glyphicon.glyphicon-chevron-right
-    //-     else
-    //-       if data.category
-    //-         h3.text-muted There are no profiles in the category #{data.category.name}.
-    //-       else
-    //-         h3.text-muted There are no profiles yet.
-
-    //- //- if data.categories.length
-    //- .col-sm-4.col-md-3
-    //-   h2 Filter/Search profiles
-    //-   //- h2 Categories
-    //-   .list-group(style='margin-top: 70px;')
-    //-     a(href='/blog', class=!data.category ? 'active' : false).list-group-item All Categories
-    //-     each cat in data.categories
-    //-       a(href='/blog/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
+  .container(ng-app="dollhouse"): .row.jumbotron(ng-view="")
+  //- .container(ng-app="dollhouse" ng-controller="ProfilesController"): .row.jumbotron(ng-view="")

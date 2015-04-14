@@ -1,28 +1,6 @@
 //- extends ../layouts/default
 //- extends ../layouts/default_react
-extends ../layouts/default_ng
-
-//- mixin doll(doll)
-//-   //- - thisIsMine = (doll.owner.id === user.id)
-//-   - thisIsMine = (user && doll.owner.id === user.id)
-//-   //- .doll(class={"my-doll": doll.owner.id === user.id})(data-ks-editable=editable(user, { list: 'Doll', id: doll.id }))
-//-   .doll(class={"my-doll": thisIsMine} data-ks-editable=editable(user, { list: 'Doll', id: doll.id }))
-//-     .doll-header
-//-       h2: a(href='/dolls/doll/' + doll.slug)= doll.name
-//-       //- p.lead.text-muted Owned by
-//-       p.lead.text-muted
-//-         if doll.owner
-//-           | Owned by
-//-           //- a(href="/users/#{doll.owner.id}") #{doll.owner.name.full}
-//-           a(href="/users/#{doll.owner.id}") #{thisIsMine ? "You" : doll.owner.name.full}
-//-     .doll-body      
-//-       if doll.image.exists
-//-         //- img(src=doll._.image.fit(160,160)).img.pull-right
-//-         img(src=doll._.image.fit(100,100)).img.pull-right
-//-       p!= doll.content.brief
-//-       if doll.content.extended
-//-         p.read-more: a(href='/dolls/doll/' + doll.slug) Read more...
-        
+extends ../layouts/default_ng        
 
 block intro
   .container: .row
@@ -35,18 +13,5 @@ block content
   //- .container: .row
     //- .col-sm-4.col-sm-offset-8.col-md-4.col-md-offset-8
     //-   a.btn.btn-primary(href="/dolls/new") Add a doll to the database...
-  .container(ng-app="dollhouse" ng-controller="DollsController"): .row(ng-view="")
-        //- window.sample_doll = #{JSON.stringify(data.dolls.results[1])}
-        //- React.render(doll({doll: #{data.dolls.results[1]}}), document.getElementById("reactiveDoll"));
-        //- React.render(doll({local: {doll: #{data.dolls.results}}}), document.getElementById("reactiveDoll"));
-        //- var sample_doll = {doll: {name: "Bob", publishedDate: "222222", content: {full: "Not much to say"}} };
-        //- window.sample_doll = #{data.dolls.results[1]}
-
-        //- script.doll.
-          window.sample_doll = {doll: { _id: "54fb8a3417f40010d61cf9a3", slug: 'banjo-patterson', maker: 'Ipplehouse', name: 'Banjo Patterson', owner: { _id: "54e38ffc8d3aeee25bfcc648", isAdmin: true, password: '$2a$10$1JbnrIbeYdPvEfcyI2W9K.mZe9FO8cCV91AC0ijFzczSGazgUMmAG', email: 'halhenke@gmail.com', __v: 0, location: {}, name: { last: 'Johnson', first: 'Don' } }, __v: 0, content: {}, image: {}, state: 'public' }};
-          window.onload = function() {
-            React.render(React.createElement(doll.DollComponent), document.getElementById("reactiveDoll"));          
-          };
-          // React.render(React.createElement(doll.DollComponent(sample_doll)), document.getElementById("reactiveDoll"));
-          // React.render(doll(sample_doll), document.getElementById("reactiveDoll"));
-          
+  .container(ng-app="dollhouse"): .row(ng-view="")
+  //- .container(ng-app="dollhouse" ng-controller="DollsController"): .row(ng-view="")

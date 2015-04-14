@@ -5,4 +5,4 @@ ngApp.factory "Profiles", [ "$resource", ($resource) ->
 ]
   .factory "Profile", [ "$resource", ($resource) ->
     $resource "/api/profiles/show/:profile"
-]
+  ]
