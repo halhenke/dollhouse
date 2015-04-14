@@ -9,6 +9,9 @@
     return $routeProvider.when('/', {
       templateUrl: 'dolls.html',
       controller: 'DollsController'
+    }).when('/dolls', {
+      templateUrl: 'dolls.html',
+      controller: 'DollsController'
     }).when("/dolls/doll/:dollSlug", {
       templateUrl: 'doll.html',
       controller: 'DollShowController'
@@ -31,8 +34,9 @@
   ngApp = angular.module("dollhouse");
 
   ngApp.controller("DollsController", [
-    '$scope', '$log', 'Dolls', function($scope, $log, Dolls) {
+    '$scope', '$location', '$log', 'Dolls', function($scope, $location, $log, Dolls) {
       $log.log("DollsController loaded...");
+      $log.log("location is " + ($location.url()));
       $scope.log = $log;
       return Dolls.get().$promise.then(function(data) {
         console.log("dollyData is ");
