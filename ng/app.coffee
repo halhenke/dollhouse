@@ -11,6 +11,9 @@ ngApp.config ($routeProvider) ->
       .when '/',
         templateUrl: 'dolls.html'
         controller: 'DollsController'
+      .when '/dolls',
+        templateUrl: 'dolls.html'
+        controller: 'DollsController'
       .when "/dolls/doll/:dollSlug",
         templateUrl: 'doll.html'
         controller: 'DollShowController'
