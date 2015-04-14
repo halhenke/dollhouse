@@ -3,7 +3,6 @@ module.exports =
   dollList:
     dolls: [
       {
-        slug: "annabelle"
         maker: "Other Guys"
         name: "Annabelle"
         owner: "54e38ffc8d3aeee25bfcc648"
@@ -23,35 +22,44 @@ module.exports =
         state: "public"
       }
       {
-        slug: "banjo-patterson"
         maker: "Ipplehouse"
         name: "Banjo Patterson"
         owner: "54e38ffc8d3aeee25bfcc648"
         state: "public"
       }
+      # Private Dolls
+      # - maker field used
       {
-        slug: "django-fall"
-        maker: "Ipplehouse"
+        maker: "firstGuy"
         name: "Django Fall"
         owner: "54e38ffc8d3aeee25bfcc648"
         state: "private"
       }
       {
-        slug: "bobba-fett"
+        maker: "secondGuy"
+        name: "Louis CK"
+        owner: "54e38ffc8d3aeee25bfcc648"
+        state: "private"
+      }
+      {
+        maker: "secondGuy"
+        name: "Dennis Hopper"
+        owner: "54e38ffc8d3aeee25bfcc648"
+        state: "private"
+      }
+      {
         maker: "Ipplehouse"
         name: "Bobba Fett"
         owner: "54e38ffc8d3aeee25bfcc648"
         state: "public"
       }
       {
-        slug: "doc-brown"
         maker: "Ipplehouse"
         name: "Doc Brown"
         owner: "54e38ffc8d3aeee25bfcc648"
         state: "public"
       }
       {
-        slug: "wont-work"
         maker: "Ipplehouse"
         name: "Wont Work"
         owner: "54e38ffc8d3aeee25bfcc648"
@@ -68,7 +76,6 @@ module.exports =
         state: "public"
       }
       {
-        slug: "tron"
         maker: "Other Guys"
         name: "Tron"
         owner: "54e38ffc8d3aeee25bfcc648"
@@ -87,7 +94,6 @@ module.exports =
         state: "public"
       }
       {
-        slug: "chuck"
         maker: "Other Guys"
         name: "Chuck"
         owner: "54e38ffc8d3aeee25bfcc648"
@@ -106,7 +112,6 @@ module.exports =
         state: "public"
       }
       {
-        slug: "john-hell"
         maker: "Other Guys"
         name: "John Hell"
         owner: "54e38ffc8d3aeee25bfcc648"
@@ -125,26 +130,6 @@ module.exports =
         state: "public"
       }
       {
-        slug: "john-hell-1"
-        maker: "Other Guys"
-        name: "John Hell"
-        owner: "54e38ffc8d3aeee25bfcc648"
-        content:
-          brief: "I'm in your yard..."
-        image:
-          public_id: "bqjo1gxd8fyamnsser7o"
-          version: 1425813019
-          signature: "3f9c932bc049d4c94718d80ac328c213a076af7a"
-          width: 577
-          height: 555
-          format: "jpg"
-          resource_type: "image"
-          url: "http://res.cloudinary.com/keystone-demo/image/upload/v1425813019/bqjo1gxd8fyamnsser7o.jpg"
-          secure_url: "https://res.cloudinary.com/keystone-demo/image/upload/v1425813019/bqjo1gxd8fyamnsser7o.jpg"
-        state: "public"
-      }
-      {
-        slug: "public-stamos-doll-54fc7723cd8fc8277ed35107"
         maker: "Ipplehouse"
         name: "Public Stamos Doll"
         owner: "54fc7723cd8fc8277ed35107"
@@ -165,7 +150,6 @@ module.exports =
     ]
 
 sample_doll:
-  slug: "banjo-patterson"
   maker: "Ipplehouse"
   name: "Banjo Patterson"
   owner: "54e38ffc8d3aeee25bfcc648"

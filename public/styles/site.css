@@ -4892,8 +4892,8 @@ a.navbar-brand {
   font-size: 3rem;
   font-weight: bold; }
 
-img.cover-girl {
-  transform: rotateX(0.5turn) translate(4rem) scale(0.5);
+img.cover-girl:hover {
+  transform: rotate(0.5turn) translate(4rem) scale(0.5);
   transition-duration: 2s; }
 
 .list-group-item.active {
