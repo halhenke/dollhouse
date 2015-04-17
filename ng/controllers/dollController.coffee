@@ -1,6 +1,6 @@
 ngApp = angular.module "dollhouse"
 
-ngApp.controller "DollsController", ['$scope', '$log', 'Dolls', ($scope, $log, Dolls) ->
+ngApp.controller "DollsController", ['$scope', 'lo', '$log', 'Dolls', ($scope, lo, $log, Dolls) ->
     $log.log "DollsController loaded..."
     $scope.log = $log
 

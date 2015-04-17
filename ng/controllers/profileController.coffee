@@ -11,7 +11,10 @@ ngApp.controller "ProfilesController", ['$scope', '$log', 'Profiles', ($scope, $
       $scope.data = data
     ]
 
-ngApp.controller "ProfileShowController", ['$scope', '$routeParams', 'Profile', ($scope, $routeParams, Profile) ->
+ngApp.controller "ProfileShowController", ['$scope', "lo", '$routeParams', 'Profile', ($scope, lo, $routeParams, Profile) ->
+
+    console.log "ProfileShowController loaded..."
+    $scope.lo = lo
 
     Profile.get(profile: $routeParams.profileSlug).$promise.then (data) ->
       console.log "profileData is "
