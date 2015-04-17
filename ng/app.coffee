@@ -25,3 +25,13 @@ ngApp.config ($routeProvider) ->
         controller: 'ProfileShowController'
       .otherwise
         redirectTo: '/'
+
+  .run ['$rootScope', '$location', ($rootScope, $location) ->
+    $rootScope.$on '$locationChangeStart', (event, absNewURL, absOldURL) ->
+      # console.log "Location change #{absOldURL}"
+      if absOldURL is $location.absUrl()
+        $rootScope.previousPage = "#/dolls"
+        console.log "Fake Previous Page #{$rootScope.previousPage}"
+      else
+        $rootScope.previousPage = absOldURL
+  ]
