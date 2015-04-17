@@ -6,7 +6,8 @@
     h2: a(ng-href="#/dolls/doll/{{doll.slug}}") {{doll.name}}
     p.lead.text-muted(ng-if="doll.owner")    
       | Owned by
-      a(ng-href="/users/{{doll.owner.id}}") {{ " " + (thisIsMine ? "You" : doll.owner.name | fullName)}}
+      //- NOTE: Need to fetch the profile slug...sucks
+      a(ng-href="#/profiles/profile/{{doll.owner.slug}}") {{ " " + (thisIsMine ? "You" : doll.owner.name | fullName)}}
   .doll-body
     img(src="{{doll.image.url}}" width="100px" height="100px").img.pull-right(ng-if="doll.image")
     //- img(src=doll._.image.fit(100,100)).img.pull-right(ng-if="doll.image.exists")
