@@ -45,9 +45,8 @@
   ngApp = angular.module("dollhouse");
 
   ngApp.controller("DollsController", [
-    '$scope', '$location', '$log', 'Dolls', function($scope, $location, $log, Dolls) {
+    '$scope', 'lo', '$log', 'Dolls', function($scope, lo, $log, Dolls) {
       $log.log("DollsController loaded...");
-      $log.log("location is " + ($location.url()));
       $scope.log = $log;
       return Dolls.get().$promise.then(function(data) {
         console.log("dollyData is ");
@@ -59,14 +58,13 @@
   ]);
 
   ngApp.controller("DollShowController", [
-    '$rootScope', '$scope', '$routeParams', 'Doll', function($rootScope, $scope, $routeParams, Doll) {
+    '$scope', '$routeParams', 'Doll', function($scope, $routeParams, Doll) {
       return Doll.get({
         doll: $routeParams.dollSlug
       }).$promise.then(function(data) {
         console.log("dollData is ");
         console.dir(data);
-        $scope.data = data;
-        return $scope.previousPage = $rootScope.previousPage;
+        return $scope.data = data;
       });
     }
   ]);
