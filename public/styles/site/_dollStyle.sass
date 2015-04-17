@@ -8,6 +8,8 @@ $event-bg: rgb(240, 216, 227)
 $pale-panel-bg: #f8f8f8
 $event-text-color: rgb(107, 104, 92)
 $link-primary-color: #9E5873
+$button-primary-color: #9819BB
+$button-primary-border: #5A2D66
 $my-dolls: rgba(239, 195, 217, 0.57)
 
 // To force column heights to be the same
@@ -30,6 +32,11 @@ body
 
 a
   color: $link-primary-color
+
+// .btn.btn-primary
+.btn-primary
+  background-color: $button-primary-color
+  border-color: $button-primary-border
 
 h1
   font:
@@ -91,3 +98,9 @@ form.newDoll
     font:
       size: 2rem
       family: "Metamorphous"
+
+// PROFILES
+.show-profile, .show-doll
+  margin: 1rem
+  img.media-object
+    height: 20rem

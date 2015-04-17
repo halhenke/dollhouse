@@ -4884,6 +4884,10 @@ body {
 a {
   color: #9E5873; }
 
+.btn-primary {
+  background-color: #9819BB;
+  border-color: #5A2D66; }
+
 h1 {
   font-family: "HomemadeApple"; }
 
@@ -4922,3 +4926,8 @@ dt {
 form.newDoll label {
   font-size: 2rem;
   font-family: "Metamorphous"; }
+
+.show-profile, .show-doll {
+  margin: 1rem; }
+  .show-profile img.media-object, .show-doll img.media-object {
+    height: 20rem; }
