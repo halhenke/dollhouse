@@ -24,7 +24,18 @@
     }).otherwise({
       redirectTo: '/'
     });
-  });
+  }).run([
+    '$rootScope', '$location', function($rootScope, $location) {
+      return $rootScope.$on('$locationChangeStart', function(event, absNewURL, absOldURL) {
+        if (absOldURL === $location.absUrl()) {
+          $rootScope.previousPage = "#/dolls";
+          return console.log("Fake Previous Page " + $rootScope.previousPage);
+        } else {
+          return $rootScope.previousPage = absOldURL;
+        }
+      });
+    }
+  ]);
 
 }).call(this);
 
@@ -34,9 +45,8 @@
   ngApp = angular.module("dollhouse");
 
   ngApp.controller("DollsController", [
-    '$scope', '$location', '$log', 'Dolls', function($scope, $location, $log, Dolls) {
+    '$scope', 'lo', '$log', 'Dolls', function($scope, lo, $log, Dolls) {
       $log.log("DollsController loaded...");
-      $log.log("location is " + ($location.url()));
       $scope.log = $log;
       return Dolls.get().$promise.then(function(data) {
         console.log("dollyData is ");
@@ -95,12 +105,15 @@
   ]);
 
   ngApp.controller("ProfileShowController", [
-    '$scope', '$routeParams', 'Profile', function($scope, $routeParams, Profile) {
+    '$scope', "lo", '$routeParams', 'Profile', function($scope, lo, $routeParams, Profile) {
+      console.log("ProfileShowController loaded...");
+      $scope.lo = lo;
       return Profile.get({
         profile: $routeParams.profileSlug
       }).$promise.then(function(data) {
         console.log("profileData is ");
         console.dir(data);
+        data.dolls = lo.chunk(data.dolls, 3);
         return $scope.data = data;
       });
     }
@@ -142,6 +155,24 @@
     return function(name) {
       return name.first + " " + name.last;
     };
+  }).filter("loChunk", function() {
+    return function(list) {
+      return lo.chunk(list, 3);
+    };
+  }).filter("backName", function() {
+    return function(url) {
+      if (url.match(/dolls\/doll/)) {
+        return "Doll";
+      } else if (url.match(/dolls/)) {
+        return "Dolls";
+      } else if (url.match(/profiles\/profile/)) {
+        return "Profile";
+      } else if (url.match(/profiles/)) {
+        return "Profiles";
+      } else {
+        return "Previous Page";
+      }
+    };
   });
 
 }).call(this);
@@ -158,6 +189,21 @@
   ]).factory("Doll", [
     "$resource", function($resource) {
       return $resource("/api/dolls/show/:doll");
+    }
+  ]);
+
+}).call(this);
+
+(function() {
+  var ngApp;
+
+  ngApp = angular.module("dollhouse");
+
+  ngApp.factory("lo", [
+    "$window", function($window) {
+      var lo;
+      lo = $window.lo;
+      return lo;
     }
   ]);
 

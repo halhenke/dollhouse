@@ -18,15 +18,23 @@ exports = module.exports = function(req, res) {
 
     var q = keystone.list('Profile')
       .model.findOne({
-        // any other conditions that need to be met
         slug: locals.filters.profile
-      });
-      // Use this if you need to populate any related Fields
-      // }).populate('...');
+      })
+      .populate("user");
 
     q.exec(function(err, result) {
-      locals.data.profile = result;
-      next(err);
+      keystone.list('Doll').model
+        .find()
+        .where({owner: result.user })
+        .exec()
+        .then(function (dolls) {
+          console.log('Dolls found for ' + result.user.name + " are " + dolls);
+          // NOTE: this doesnt work
+          // result.dolls = dolls;
+          locals.data.dolls = dolls;
+          locals.data.profile = result;
+          next(err);
+        });
     });
 
   });
