@@ -16,5 +16,6 @@ ngApp.controller "ProfileShowController", ['$scope', '$routeParams', 'Profile', 
     Profile.get(profile: $routeParams.profileSlug).$promise.then (data) ->
       console.log "profileData is "
       console.dir data
+      data.dolls = lo.chunk(data.dolls, 3)
       $scope.data = data
     ]
