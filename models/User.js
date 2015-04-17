@@ -15,8 +15,9 @@ User.add({
     note: "Sharing your location helps you locate others who may be near you",
     initial: true, collapse: true },
   password: { type: Types.Password, initial: true, required: true }
-}, 'Permissions', {
-  isAdmin: { type: Boolean, label: 'Can access Keystone', index: true }
+  },
+  'Permissions', {
+    isAdmin: { type: Boolean, label: 'Can access Keystone', index: true }
 });
 
 // Provide access to Keystone
