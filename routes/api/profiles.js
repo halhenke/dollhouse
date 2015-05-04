@@ -27,7 +27,7 @@ exports = module.exports = function(req, res) {
     //   })
       .or([{'state': 'public'}, {'owner': (locals.user ? locals.user.id : null)}])
       // .sort('-publishedDate')
-      .populate('owner dolls');
+      .populate('user');
 
     q.exec(function(err, results) {
       locals.data.profiles = results;
