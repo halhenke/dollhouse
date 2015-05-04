@@ -49,4 +49,7 @@
             img.media-object(src="{{doll.image.url}}")
           .media-body
             h4.media-heading {{doll.name}}
-        
+  .row(ng-if"data.links"): .col-sm-4
+    h2 My Community Links 
+  .row(ng-repeat="link in data.links")
+    link-mixin(link="link" user="user")
