@@ -38,12 +38,10 @@
   //- .row(ng-repeat="doll_threes in ::lo.chunk(data.dolls, 3)")
   //- .row(ng-repeat="doll_threes in data.dolls | loChunk")
   .row(ng-repeat="doll_threes in data.dolls")
-    //- .col-sm-4.col-md-4(ng-repeat="doll in doll_threes")
-      //- doll-mixin(doll="doll")
-    //- h2 Apple
     .col-sm-4.col-md-4(ng-repeat="doll in doll_threes")
       //- doll-mixin(doll="doll")
-      .media
+      //- .media
+      .thumbnail
         a(ng-href="#/dolls/doll/{{doll.slug}}")
           .media-left
             img.media-object(src="{{doll.image.url}}")
