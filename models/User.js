@@ -1,5 +1,6 @@
 var keystone = require('keystone'),
-  Types = keystone.Field.Types;
+  Types = keystone.Field.Types,
+  relationship = require("mongoose-relationship");
 
 /**
  * User Model
@@ -9,6 +10,7 @@ var keystone = require('keystone'),
 var User = new keystone.List('User');
 
 User.add({
+  profile: { type: Types.Relationship, ref: 'Profile', childPath: "user" },
   name: { type: Types.Name, required: true, index: true },
   email: { type: Types.Email, initial: true, required: true, index: true },
   location: { type: Types.Location,
@@ -19,6 +21,12 @@ User.add({
   'Permissions', {
     isAdmin: { type: Boolean, label: 'Can access Keystone', index: true }
 });
+
+/**
+ * Plugins
+ */
+
+User.schema.plugin(relationship, { relationshipPathName: 'profile' });
 
 /**
  * Virtuals

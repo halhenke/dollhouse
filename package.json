@@ -7,6 +7,8 @@
     "dotenv": "~0.4.0",
     "keystone": "~0.3.0",
     "lodash": "^3.3.1",
+    "mongoose": "^4.0.1",
+    "mongoose-relationship": "^0.1.4",
     "node-sass": "~1.0.1",
     "node-sass-middleware": "^0.4.0",
     "underscore": "~1.7.0"
