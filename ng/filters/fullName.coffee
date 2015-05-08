@@ -17,5 +17,7 @@ angular.module("dollhouse").filter "fullName", ->
       return "Profile"
     else if url.match /profiles/
       return "Profiles"
+    else if url.match /links/
+      return "Community Links"
     else
       return "Previous Page"

@@ -1,0 +1,22 @@
+- {{thisIsMine = (user && link.owner.id === user.id)}}
+.link(class={"my-link": thisIsMine})
+  //- Think this editable function is only server side
+  //- (data-ks-editable=editable(user, { list: 'link', id: link.id }))
+  .row.link-header
+    .col-sm-offset-1.col-sm-4
+      h2 {{link.title}}
+        //- .col-sm-4
+        //- p.lead.text-muted(ng-if="link.owner")    
+        small.lead.text-muted(ng-if="link.owner")    
+          | Owned by 
+          //- NOTE: Need to fetch the profile slug...sucks      
+          //- a(ng-href="#/profiles/profile/{{link.owner.slug}}") {{ " " + (thisIsMine ? "You" : link.owner.name | fullName)}}
+          a(ng-href="#/profiles/profile/{{link.owner.slug}}") {{link.owner.userName}}
+  .row: .link-body.col-sm-offset-2
+    //- .col-sm-offset-2
+    p(ng-if="link.description") {{link.description}}
+    a(ng-href="{{link.link}}") {{link.link}}
+    //- img(src="{{link.image.url}}" width="100px" height="100px").img.pull-right(ng-if="link.image")
+    //- img(src=link._.image.fit(100,100)).img.pull-right(ng-if="link.image.exists")
+    //- p!= {{link.content.brief}}
+    p(ng-if="link.keywords") {{link.keywords}}

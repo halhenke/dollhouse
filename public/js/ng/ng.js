@@ -9,6 +9,9 @@
     return $routeProvider.when('/', {
       templateUrl: 'dolls.html',
       controller: 'DollsController'
+    }).when('/links', {
+      templateUrl: 'links.html',
+      controller: 'LinksController'
     }).when('/dolls', {
       templateUrl: 'dolls.html',
       controller: 'DollsController'
@@ -63,6 +66,25 @@
         doll: $routeParams.dollSlug
       }).$promise.then(function(data) {
         console.log("dollData is ");
+        console.dir(data);
+        return $scope.data = data;
+      });
+    }
+  ]);
+
+}).call(this);
+
+(function() {
+  var ngApp;
+
+  ngApp = angular.module("dollhouse");
+
+  ngApp.controller("LinksController", [
+    '$scope', 'lo', '$log', 'Links', function($scope, lo, $log, Links) {
+      $log.log("LinksController loaded...");
+      $scope.log = $log;
+      return Links.get().$promise.then(function(data) {
+        console.log("LinkData is ");
         console.dir(data);
         return $scope.data = data;
       });
@@ -148,6 +170,17 @@
     }
   ]);
 
+  ngApp.directive("linkMixin", [
+    "$templateCache", function($templateCache) {
+      return {
+        scope: {
+          link: "="
+        },
+        template: $templateCache.get("directives/linkMixin.html")
+      };
+    }
+  ]);
+
 }).call(this);
 
 (function() {
@@ -169,6 +202,8 @@
         return "Profile";
       } else if (url.match(/profiles/)) {
         return "Profiles";
+      } else if (url.match(/links/)) {
+        return "Community Links";
       } else {
         return "Previous Page";
       }
@@ -189,6 +224,19 @@
   ]).factory("Doll", [
     "$resource", function($resource) {
       return $resource("/api/dolls/show/:doll");
+    }
+  ]);
+
+}).call(this);
+
+(function() {
+  var ngApp;
+
+  ngApp = angular.module("dollhouse");
+
+  ngApp.factory("Links", [
+    "$resource", function($resource) {
+      return $resource("/api/links");
     }
   ]);
 
