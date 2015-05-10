@@ -16,7 +16,10 @@ CommunityLink.add({
   link: { type: Types.Url, required: true, initial: true },
   description: { type: Types.Text, initial: true },
   owner: { type: Types.Relationship, ref: 'Profile', index: true },
-  keyWords: { type: Types.Text, initial: true }
+  keyWords: { type: Types.Text, initial: true },
+  image: { type: Types.CloudinaryImage },
+  approved: { type: Types.Boolean, required: true, default: false, initial: true, index: true,
+    note: "An admin must approve a user submitted link for it to be displayed..."}
 });
 
 /**
@@ -24,6 +27,11 @@ CommunityLink.add({
  */
 
 // Profile.relationship({ ref: 'User', path: 'users', refPath: 'author' });
+
+/**
+ * Virtuals
+ */
+ // A method to notify an admin when a new one is created?
 
 
 /**
