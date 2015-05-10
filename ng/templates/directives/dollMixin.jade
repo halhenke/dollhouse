@@ -1,5 +1,9 @@
 - {{thisIsMine = (user && doll.owner.id === user.id)}}
-.doll(class={"my-doll": thisIsMine})
+
+// {{ dollStyle = getAvatar("bob") }}
+//- .doll(class={"my-doll": thisIsMine} ng-style="dollStyle")
+//- .doll(class={"my-doll": thisIsMine} ng-style="{ 'background-image': 'url({{doll.image.url}})' }")
+.doll(class={"my-doll": thisIsMine} ng-style="getAvatar(doll.image.url)")
   //- Think this editable function is only server side
   //- (data-ks-editable=editable(user, { list: 'Doll', id: doll.id }))
   .doll-header
@@ -8,9 +12,7 @@
       | Owned by
       //- NOTE: Need to fetch the profile slug...sucks
       a(ng-href="#/profiles/profile/{{doll.owner.slug}}") {{ " " + (thisIsMine ? "You" : doll.owner.name | fullName)}}
-  .doll-body
-    img(src="{{doll.image.url}}" width="100px" height="100px").img.pull-right(ng-if="doll.image")
-    //- img(src=doll._.image.fit(100,100)).img.pull-right(ng-if="doll.image.exists")
-    //- p!= {{doll.content.brief}}
+  //- .doll-body
+    //- img(src="{{doll.image.url}}" width="100px" height="100px").img.pull-right(ng-if="doll.image")
     p {{doll.content.brief}}
     p.read-more(ng-if="doll.content.extended"): a(ng-href="/dolls/doll/{{doll.slug}}") Read more...
