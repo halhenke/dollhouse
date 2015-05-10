@@ -20,6 +20,7 @@
     "coffee-jsx-loader": "^0.1.0",
     "coffee-react": "^2.1.2",
     "coffee-script": "^1.9.1",
+    "css-loader": "^0.12.0",
     "faker": "^2.1.2",
     "gulp": "^3.8.11",
     "gulp-angular-templatecache": "^1.5.0",
@@ -50,7 +51,8 @@
     "react": "^0.13.1",
     "request": "^2.55.0",
     "script-loader": "^0.6.1",
-    "sinon": "^1.14.1"
+    "sinon": "^1.14.1",
+    "style-loader": "^0.12.2"
   },
   "engines": {
     "node": ">=0.10.22",

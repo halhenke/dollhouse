@@ -21,7 +21,11 @@ module.exports = {
 // Doesnt need to be exported
 // - must come after angular require though
 require("script!./node_modules/angular-ui-bootstrap/ui-bootstrap.js");
-
+require("script!./bower/moment/min/moment.min.js");
+require("script!./bower/angular-ui-calendar/src/calendar.js");
+require("script!./bower/fullcalendar/dist/fullcalendar.min.js");
+require("script!./bower/fullcalendar/dist/gcal.js");
+require("style/url!./bower/fullcalendar/dist/fullcalendar.min.css");
 
 // module.exports = {
 //   // _: require('lodash'),

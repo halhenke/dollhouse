@@ -1,0 +1,9 @@
+//- h1 Here is a Doll
+//- .col-sm-8.col-md-9.jumbotron
+.show-calendar
+  .row: .col-offset-8.col-sm-2  
+    a(ng-href="{{previousPage}}") 
+      button.btn.btn-primary Back to {{ previousPage | backName }}
+  .row
+    .col-sm-8.col-md-9
+      div(ui-calendar ng-model='eventSources')
