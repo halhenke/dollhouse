@@ -30,7 +30,7 @@ Profile.add({
  * Relationships
  */
 
-// Profile.relationship({ ref: 'User', path: 'users', refPath: 'author' });
+Profile.relationship({ ref: 'CommunityLink', path: 'links', refPath: 'owner' });
 
 
 /**

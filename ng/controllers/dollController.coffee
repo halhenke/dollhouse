@@ -4,6 +4,12 @@ ngApp.controller "DollsController", ['$scope', 'lo', '$log', 'Dolls', ($scope, l
     $log.log "DollsController loaded..."
     $scope.log = $log
 
+    $scope.getAvatar = (url) ->
+      if url
+        { 'background-image': "url(#{url})" }
+      else
+        { 'background-image': "url(http://res.cloudinary.com/keystone-demo/image/upload/v1425761612/qkeekodoglor4wje5hug.jpg)" }
+
     Dolls.get().$promise.then (data) ->
       console.log "dollyData is "
       console.dir data

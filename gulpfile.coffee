@@ -73,8 +73,8 @@ gulp.task "lint", ->
     .pipe(jshint.reporter(jshintReporter))
 
 gulp.task "jscs", ->
-  return gulp.src(paths.src)
-  .pipe jscs(configPath: paths.jscs.json )
+  # return gulp.src(paths.src)
+  # .pipe jscs(configPath: paths.jscs.json )
 
 gulp.task "jscs-cson", ->
   return gulp.src(paths.jscs.cson)

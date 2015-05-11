@@ -20,10 +20,51 @@ User.add({
     isAdmin: { type: Boolean, label: 'Can access Keystone', index: true }
 });
 
+/**
+ * Virtuals
+ */
+
 // Provide access to Keystone
 User.schema.virtual('canAccessKeystone').get(function() {
   return this.isAdmin;
 });
+
+User.schema.virtual('fullAddress').get(function() {
+  if (this.location) {
+    return this.location.name + " " +
+      this.number + " " +
+      this.street1 + " " +
+      this.street2 + " " +
+      this.suburb + " " +
+      this.state + " " +
+      this.postcode + " " +
+      this.country;
+      // this.geo;
+  }
+});
+
+
+/**
+ * Hooks
+ */
+
+User.schema.pre('save', function (next) {
+  if (this.location) {
+    this._.location.googleLookup("au", "true",
+      function(err, location, result) {
+        if (err) {
+          console.log('Error getting Address from Google ' + err);
+          next();
+        }
+        else {
+          console.log('Address succesfully checked with Google ');
+          console.dir(location);
+          next();
+        }
+      }
+    );
+  }
+})
 
 
 /**

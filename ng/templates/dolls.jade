@@ -1,22 +1,6 @@
 
 .col-sm-8.col-md-9.jumbotron
   h1 Here are some dolls
-  //- .col-sm-8.col-md-9
-  //- if filters.category && !data.category
-  //-   h3.text-muted Invalid Category.
-  //- else
-  //- if dolls.length
-    //- if data.dolls.totalPages > 1
-  //- h4.text-weight-normal(ng-if="data.dolls.results.length && data.dolls.totalPages > 1") Showing 
-    //- strong {{data.dolls.first}}
-    //- |  to 
-    //- strong {{data.dolls.last}}
-    //- |  of 
-    //- strong {{data.dolls.total}}
-    //- |  dolls.      
-    //- else
-    //-   h4.text-weight-normal Showing #{utils.plural(data.dolls.results.length, '* doll')}.
-  h4.text-weight-normal Showing 
   .dolls.angular
     //- DOLLS ALREADY GROUPED
     .row(ng-repeat="doll_threes in data.dolls | filter:dollFilter")

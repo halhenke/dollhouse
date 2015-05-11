@@ -3,7 +3,7 @@ console.log('Angular loaded');
 # console.log('Angular path ' + $location.url());
 
 
-ngApp = angular.module('dollhouse', ['ngRoute', 'ngResource', 'ui.bootstrap', 'templates'])
+ngApp = angular.module('dollhouse', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.calendar', 'templates'])
 
 ngApp.config ($routeProvider) ->
     $routeProvider
@@ -11,6 +11,12 @@ ngApp.config ($routeProvider) ->
       .when '/',
         templateUrl: 'dolls.html'
         controller: 'DollsController'
+      .when '/links',
+        templateUrl: 'links.html'
+        controller: 'LinksController'
+      .when '/calendar',
+        templateUrl: 'calendar.html'
+        controller: 'CalendarController'
       .when '/dolls',
         templateUrl: 'dolls.html'
         controller: 'DollsController'
