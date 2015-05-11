@@ -4918,10 +4918,21 @@ dt {
   dt:after {
     content: ": "; }
 
-.doll .doll-header {
-  background-color: #f8f8f8; }
-.doll.my-doll .doll-header {
-  background-color: rgba(239, 195, 217, 0.57); }
+.dolls .row {
+  padding: 0.5rem 0; }
+.dolls [class^='col-sm'] {
+  padding: 0 0.5rem; }
+
+.doll {
+  background-size: cover;
+  height: 18rem;
+  padding-top: 8rem; }
+  .doll a {
+    color: white; }
+  .doll .doll-header {
+    padding: 0 0.5rem; }
+  .doll.my-doll .doll-header {
+    background-color: rgba(239, 195, 217, 0.57); }
 
 form.newDoll label {
   font-size: 2rem;

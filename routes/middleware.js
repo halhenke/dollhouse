@@ -30,8 +30,8 @@ exports.initLocals = function(req, res, next) {
     { label: 'Events',		key: 'events',		href: '/events' },
     { label: 'Gallery',		key: 'gallery',		href: '/gallery' },
     { label: 'Community', dropdowns: [
-      { label: 'Our Dolls',   key: 'dolls',   href: '/community/#/dolls' },
-      { label: 'Our Users',   key: 'users',   href: '/community/#/profiles' },
+      { label: 'Doll Database',   key: 'dolls',   href: '/community/#/dolls' },
+      { label: 'Our Members',   key: 'users',   href: '/community/#/profiles' },
       { label: 'Our Links',   key: 'links',   href: '/community/#/links' },
       { label: 'Our Events',   key: 'calendar',   href: '/community/#/calendar' },
     ] },
