@@ -45,10 +45,10 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
-	  lo: __webpack_require__(1),
-	  angular: __webpack_require__(2),
+	  lo: __webpack_require__(2),
+	  angular: __webpack_require__(1),
 	  "angular-route": __webpack_require__(3),
-	  "angular-resource": __webpack_require__(9),
+	  "angular-resource": __webpack_require__(4),
 
 	  // jade: require('jade/runtime'),
 	  // React: require('react'),
@@ -66,11 +66,11 @@
 
 	// Doesnt need to be exported
 	// - must come after angular require though
-	__webpack_require__(4);
 	__webpack_require__(5);
 	__webpack_require__(6);
 	__webpack_require__(7);
 	__webpack_require__(8);
+	__webpack_require__(9);
 	__webpack_require__(18);
 
 	// module.exports = {
@@ -90,6 +90,14 @@
 
 /***/ },
 /* 1 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(23);
+	module.exports = angular;
+
+
+/***/ },
+/* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/**
@@ -11523,14 +11531,6 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(28)(module), (function() { return this; }())))
 
 /***/ },
-/* 2 */
-/***/ function(module, exports, __webpack_require__) {
-
-	__webpack_require__(23);
-	module.exports = angular;
-
-
-/***/ },
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -11542,39 +11542,39 @@
 /* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(11)(__webpack_require__(12))
+	__webpack_require__(25);
+	module.exports = 'ngResource';
+
 
 /***/ },
 /* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(11)(__webpack_require__(13))
+	__webpack_require__(11)(__webpack_require__(12))
 
 /***/ },
 /* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(11)(__webpack_require__(14))
+	__webpack_require__(11)(__webpack_require__(13))
 
 /***/ },
 /* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(11)(__webpack_require__(15))
+	__webpack_require__(11)(__webpack_require__(14))
 
 /***/ },
 /* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(11)(__webpack_require__(16))
+	__webpack_require__(11)(__webpack_require__(15))
 
 /***/ },
 /* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(25);
-	module.exports = 'ngResource';
-
+	__webpack_require__(11)(__webpack_require__(16))
 
 /***/ },
 /* 10 */,
