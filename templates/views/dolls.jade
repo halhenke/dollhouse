@@ -6,8 +6,9 @@ block intro
   .container: .row
     .col-sm-4.col-md-4
       h1= data.category ? data.category.name : 'Dolls'
-    .col-sm-3.col-sm-offset-5.col-md-3.col-md-offset-5
-      a.btn.btn-primary(href="/dolls/new") Add a doll to the database...
+    if user
+      .col-sm-3.col-sm-offset-5.col-md-3.col-md-offset-5
+        a.btn.btn-primary(href="/dolls/new") Add a doll to the database...
 
 block content
   //- .container: .row
