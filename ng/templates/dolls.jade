@@ -3,8 +3,8 @@
   h1 Here are some dolls
   .dolls.angular
     //- DOLLS ALREADY GROUPED
-    .row(ng-repeat="doll_threes in data.dolls | filter:dollFilter")
-      .col-sm-4.col-md-4(ng-repeat="doll in doll_threes")
+    .row(ng-repeat="doll_threes in data.dolls")
+      .col-sm-4.col-md-4(ng-repeat="doll in doll_threes | filter:dollFilter")
         doll-mixin(doll="doll")
 .col-sm-4.col-md-3
   h2 Filter/Search Dolls
