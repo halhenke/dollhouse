@@ -11,6 +11,7 @@ $link-primary-color: #9E5873
 $button-primary-color: #9819BB
 $button-primary-border: #5A2D66
 $my-dolls: rgba(239, 195, 217, 0.57)
+$background-pattern: "http://res.cloudinary.com/hal9zillion/image/upload/v1431448088/damask_pattern_fcjc2o.jpg"
 
 // To force column heights to be the same
 // see http://stackoverflow.com/a/18227564/935470
@@ -20,7 +21,8 @@ $my-dolls: rgba(239, 195, 217, 0.57)
   position: absolute
 
 body
-  background-color: $body-bg
+  // background-color: $body-bg
+  background: linear-gradient(to bottom, rgba(202, 165, 173, 0.4), rgba(202, 165, 173, 1)), url($background-pattern)
 
 .navbar.navbar-defaut
   background-color: $pale-panel-bg
