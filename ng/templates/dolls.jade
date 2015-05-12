@@ -20,15 +20,15 @@
       input(ng-model="dollFilter.name")
     li.list-group-item
       label.label-primary Owner
-      input(ng-model="dollFilter.owner.name.first")
+      input(ng-model="dollFilter.owner.name.full")
     li.list-group-item
       label.label-primary Maker
       input(ng-model="dollFilter.maker")
     li.list-group-item
       label.label-primary Maker Two
       select(ng-model="dollFilter.maker")
-        option(ng-repeat="model in ['Ipplehouse', 'Other Guys']" value ="{{model}}" ) {{model}}
-        //- option(ng-repeat="model in ['Ipplehouse', 'Other Guys']" value = {{model}} ) {{model}}
+        option(value="")
+        option(ng-repeat="maker in makers" value ="{{maker}}" ) {{maker}}
   h2 React
     #reactiveDoll
   //- .filters      
@@ -45,7 +45,7 @@
       .col-sm-1: input(ng-model="dollFilter.name")
     .row
       .col-sm-1: label Owner
-      .col-sm-1: input(ng-model="dollFilter.owner.name.first")
+      .col-sm-1: input(ng-model="dollFilter.owner.name.full")
     .row
       .col-sm-1: label Maker
       .col-sm-1: input(ng-model="dollFilter.maker")
@@ -61,7 +61,7 @@
       input(ng-model="dollFilter.name")
     .input-group
       span.input-group-addon Owner
-      input(ng-model="dollFilter.owner.name.first")
+      input(ng-model="dollFilter.owner.name.full")
     .input-group
       span.input-group-addon Maker
       input(ng-model="dollFilter.maker")
