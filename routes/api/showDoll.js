@@ -18,7 +18,6 @@ exports = module.exports = function(req, res) {
 
     var q = keystone.list('Doll')
       .model.findOne({
-        state: 'public',
         slug: locals.filters.doll
       }).populate('owner categories');
 
