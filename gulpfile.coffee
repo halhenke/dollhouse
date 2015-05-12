@@ -33,8 +33,6 @@ paths =
     jade: "./ng/templates/**/*.jade"
     html: "./ng/templates/html/"
   react:
-    # coffee: "./ng/**/*.coffee"
-    # js: "./ng/**/*.js"
     in:
       jade: "./react/components/jade/**.jade"
       html: "./react/components/html/**.html"
@@ -63,7 +61,6 @@ paths =
 nodemonOpts =
   script: "keystone.js"
   ignore: [ "specs/*", "node_modules/**/*", "bower/**/*" ]
-  # ext: "js coffee sass scss jade"
   ext: "js coffee sass scss"
 
 # gulp lint

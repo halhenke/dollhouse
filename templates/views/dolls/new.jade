@@ -24,34 +24,16 @@ block content
               each type in dolls.makers
                 option(value=type, selected=formData.maker == type)= type
           .form-group
-            label Make This Public?
-            select(name='state').form-control
-              option(value='') (select one)
-              each type in [{value: 'private', label: "No"}, {value: 'public', label: "Yes"}]
-                option(value=type.value, selected=formData.state == type.value)= type.label
+            label Sculpt
+            input(type='text', name='sculpt', value=formData['sculpt']).form-control
           .form-group(class=validationErrors.image ? 'has-error' : null)
             label Pic 
             input(type='file', name='image_upload', value=formData.image).form-control
-            //- input(ref='fileField' type='file' name='image', value=formData.image  className='field-upload').form-control
-            //- input(type='hidden' name={this.props.paths.action} className='field-action' value={this.state.action})
-            //- input(ref='fileField' type='file' name={this.props.paths.upload} className='field-upload' onChange={this.fileChanged})
-            //- input(type='hidden' name={this.props.paths.action} className='field-action' value={this.state.action})
-
-          .form-group(class=validationErrors.content ? 'has-error' : null)
-            label Notes 
-            textarea(name='content.brief', placeholder='Tell us about your doll...' rows=4).form-control= formData.content_brief
-            //- textarea(name='content', placeholder='Tell us about your doll...' rows=4).form-control= formData.content
-          //- .form-group
-          //-   label Phone
-          //-   input(type='text', name='phone', value=formData.phone, placeholder='(optional)').form-control
-          //- .form-group(class=validationErrors.enquiryType ? 'has-error' : null)
-          //-   label What are you contacting us about?
-          //-   select(name='enquiryType').form-control
-          //-     option(value='') (select one)
-          //-     each type in enquiryTypes
-          //-       option(value=type.value, selected=formData.enquiryType == type.value)= type.label
-          //- .form-group(class=validationErrors.message ? 'has-error' : null)
-          //-   label Message
-          //-   textarea(name='message', placeholder='Leave us a message...' rows=4).form-control= formData.message
+          .form-group(class=validationErrors.info_description ? 'has-error' : null)
+            label Physical Description 
+            textarea(name='info_description', placeholder='Does this doll have any other distinguishing characteristics...' rows=4).form-control= formData.info_description
+          .form-group(class=validationErrors.info_biography ? 'has-error' : null)
+            label Biography
+            textarea(name='info_biography', placeholder='Does this doll have a backstory...' rows=4).form-control= formData.info_biography
           .form-actions
             button(type='submit').btn.btn-primary Send

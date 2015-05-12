@@ -4872,7 +4872,7 @@ button.close {
   position: absolute; }
 
 body {
-  background-color: rgba(171, 110, 123, 0.62); }
+  background: linear-gradient(to bottom, rgba(202, 165, 173, 0.4), #caa5ad), url("http://res.cloudinary.com/hal9zillion/image/upload/v1431448088/damask_pattern_fcjc2o.jpg"); }
 
 .navbar.navbar-defaut {
   background-color: #f8f8f8; }
