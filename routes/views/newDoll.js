@@ -25,7 +25,7 @@ exports = module.exports = function(req, res) {
         .getUpdateHandler(req, res)
         .process(req.body, {
           flashErrors: true,
-          fields: 'name, owner, maker, state, image, content.brief',
+          fields: 'name, owner, maker, sculpt, image, info.description, info.biography',
           errorMessage: 'Hmmmm: There was a problem submitting your doll...'
         }, function(err) {
           if (err) {
@@ -41,7 +41,7 @@ exports = module.exports = function(req, res) {
   // console.log("New Doll got called..." + req.method);
   view.render(function (err, req, res) {
     if (req.method === 'POST' && res.locals.dollSubmitted) {
-      res.redirect('/dolls');
+      res.redirect('/community/#/dolls');
     }
     else
       res.render('dolls/new');
