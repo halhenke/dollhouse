@@ -1,8 +1,10 @@
 ngApp = angular.module "dollhouse"
 
-ngApp.controller "DollsController", ['$scope', 'lo', '$log', 'Dolls', ($scope, lo, $log, Dolls) ->
+ngApp.controller "DollsController", ['$scope', 'lo', '$log', 'Dolls', 'DollFacts', ($scope, lo, $log, Dolls, DollFacts) ->
     $log.log "DollsController loaded..."
     $scope.log = $log
+
+    $scope.makers = DollFacts.makers
 
     $scope.getAvatar = (url) ->
       if url
