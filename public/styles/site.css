@@ -4922,16 +4922,15 @@ dt {
   padding: 0.5rem 0; }
 .dolls [class^='col-sm'] {
   padding: 0 0.5rem; }
-
-.doll {
+.dolls .doll {
   background-size: cover;
   height: 18rem;
   padding-top: 8rem; }
-  .doll a {
+  .dolls .doll a {
     color: white; }
-  .doll .doll-header {
+  .dolls .doll .doll-header {
     padding: 0 0.5rem; }
-  .doll.my-doll .doll-header {
+  .dolls .doll.my-doll .doll-header {
     background-color: rgba(239, 195, 217, 0.57); }
 
 form.newDoll label {
@@ -4942,3 +4941,5 @@ form.newDoll label {
   margin: 1rem; }
   .show-profile img.media-object, .show-doll img.media-object {
     height: 20rem; }
+  .show-profile .doll img, .show-doll .doll img {
+    max-width: 100%; }
