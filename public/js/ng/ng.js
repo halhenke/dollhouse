@@ -3,7 +3,7 @@
 
   console.log('Angular loaded');
 
-  ngApp = angular.module('dollhouse', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.calendar', 'templates']);
+  ngApp = angular.module('dollhouse', ['ngRoute', 'ngResource', "ngSanitize", 'ui.bootstrap', 'ui.calendar', 'templates']);
 
   ngApp.config(function($routeProvider) {
     return $routeProvider.when('/', {
@@ -181,7 +181,9 @@
       }).$promise.then(function(data) {
         console.log("profileData is ");
         console.dir(data);
-        data.dolls = lo.chunk(data.dolls, 3);
+        if (data.dolls) {
+          data.dolls = lo.chunk(data.dolls, 3);
+        }
         return $scope.data = data;
       });
     }

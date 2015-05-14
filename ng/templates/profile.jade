@@ -15,9 +15,8 @@
           //- img(ng-if="profile.avatar" src=profile._.avatar.fit(100,100)).img.pull-right 
           img(ng-if="data.profile.avatar" src="{{data.profile.avatar.url}}").img.pull-right 
           //- img(ng-if="data.profile.avatar" width="100px" height="100px" src="{{data.profile.avatar.url}}").img.pull-right 
-          //- p!= {{profile.about.brief}}
-          p {{data.profile.about.brief}}
-          p.read-more(ng-if="data.profile.about.extended") {{data.profile.about.extended}}
+          .read-more(ng-if="data.profile.about.brief" ng-bind-html="data.profile.about.brief")
+          .read-more(ng-if="data.profile.about.extended" ng-bind-html="data.profile.about.extended")
           //- p User is {{data.profile.user}}
           //- p Dolls are {{data.dolls}}
           //- .row(ng-repeat="doll in {{data.profile.user.dolls}}")
