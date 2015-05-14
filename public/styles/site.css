@@ -4937,9 +4937,20 @@ form.newDoll label {
   font-size: 2rem;
   font-family: "Metamorphous"; }
 
-.show-profile, .show-doll {
+.show-doll {
   margin: 1rem; }
-  .show-profile img.media-object, .show-doll img.media-object {
+  .show-doll img.media-object {
     height: 20rem; }
-  .show-profile .doll img, .show-doll .doll img {
+  .show-doll .doll img {
     max-width: 100%; }
+  .show-doll .doll p.description, .show-doll .doll p.biography {
+    margin: 4rem 4rem; }
+
+.show-profile {
+  margin: 1rem; }
+  .show-profile img.media-object {
+    height: 20rem; }
+  .show-profile .profile img {
+    max-width: 100%; }
+  .show-profile .profile p.description, .show-profile .profile p.biography {
+    margin: 4rem 4rem; }

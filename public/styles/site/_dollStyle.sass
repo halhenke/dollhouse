@@ -113,13 +113,18 @@ form.newDoll
       size: 2rem
       family: "Metamorphous"
 
-// PROFILES
-.show-profile, .show-doll
-  margin: 1rem
-  img.media-object
-    height: 20rem
-  .doll
-    img
-      max-width: 100%
-    p.description, p.biography
-      margin: 4rem  4rem
+// INDIVIDUAL PROFILES & DOLLs
+// - this really could be better optimized with a mixin
+@mixin img-constrain
+  img
+    max-width: 100%
+
+@each $resource in doll, profile
+  .show-#{$resource}
+    margin: 1rem
+    img.media-object
+      height: 20rem
+    .#{$resource}
+      @include img-constrain
+      p.description, p.biography
+        margin: 4rem  4rem

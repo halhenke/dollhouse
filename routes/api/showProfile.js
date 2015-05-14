@@ -42,9 +42,9 @@ exports = module.exports = function(req, res) {
         console.log('Dolls found for ' + locals.data.profile.user.name + " are " + dolls);
         // NOTE: this doesnt work
         // result.dolls = dolls;
-        locals.data.dolls = dolls;
-      //   next()
-      // })
+        if (dolls.length > 0) {
+          locals.data.dolls = dolls;
+        }
         return keystone.list('CommunityLink').model
           .find()
           .where({ owner: locals.data.profile })
@@ -55,7 +55,9 @@ exports = module.exports = function(req, res) {
       .then(function (links) {
         console.log('Links found for ' + locals.data.profile.user.name + " are " + links);
         // Handle Links
-        locals.data.links = links;
+        if (links.length > 0) {
+          locals.data.links = links;
+        }
         return keystone.list('User').model
           .find({
             // Make sure we dont return the same fucking profile!
