@@ -1,5 +1,6 @@
 var keystone = require('keystone'),
-  Types = keystone.Field.Types;
+  Types = keystone.Field.Types,
+  sanitizer = require('sanitizer');
 
 /**
  * Profile Model
@@ -25,6 +26,16 @@ Profile.add({
     extended: { type: Types.Html, wysiwyg: true, height: 400 }
   }
 });
+
+/**
+ * Hooks
+ */
+
+//  Profile.schema.pre('save', function(next) {
+//     this.about.brief = sanitizer.sanitize(this.about.brief);
+//     this.about.extended = sanitizer.sanitize(this.about.extended);
+//     next();
+// });
 
 /**
  * Relationships
