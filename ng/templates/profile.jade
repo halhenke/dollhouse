@@ -26,7 +26,7 @@
         h2 Here are some doll members in your area
       .row(ng-repeat="neighbour in data.neighbours"): .col-sm-12
         profile-mixin(profile="neighbour")        
-  .row(ng-if"data.dolls"): .col-sm-2
+  .row(ng-if="data.dolls"): .col-sm-2
     h2 My Dolls  
     //- {{ aba = data.dolls[0] }}
     //- h2 First Doll {{ aba.name }}
@@ -52,7 +52,7 @@
             img.media-object(src="{{doll.image.url}}")
           .media-body
             h4.media-heading {{doll.name}}
-  .row(ng-if"data.links"): .col-sm-4
+  .row(ng-if="data.links"): .col-sm-4
     h2 My Community Links 
   .row(ng-repeat="link in data.links")
     link-mixin(link="link" user="user")
