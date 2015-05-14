@@ -20,5 +20,5 @@
           img(ng-if="data.doll.image" src="{{data.doll.image.url}}").img.pull-right
           //- img(src="{{data.doll.image.url}}" width="100px" height="100px").img.pull-right(ng-if="data.doll.image")
           //- p!= {{data.doll.content.brief}}
-          p.description(ng-if="data.doll.info.description") {{data.doll.info.description}}
-          p.biography.read-more(ng-if="data.doll.info.biography") {{data.doll.info.biography}}
+          .description(ng-if="data.doll.info.description" ng-bind-html="data.doll.info.description")
+          .biography.read-more(ng-if="data.doll.info.biography" ng-bind-html="data.doll.info.biography")
