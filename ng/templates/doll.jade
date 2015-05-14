@@ -21,4 +21,4 @@
           //- img(src="{{data.doll.image.url}}" width="100px" height="100px").img.pull-right(ng-if="data.doll.image")
           //- p!= {{data.doll.content.brief}}
           p.description(ng-if="data.doll.info.description") {{data.doll.info.description}}
-          p.biography.read-more(ng-if="data.doll.info.biography"): a(ng-href="/dolls/doll/{{data.doll.slug}}") Read more...
+          p.biography.read-more(ng-if="data.doll.info.biography") {{data.doll.info.biography}}
