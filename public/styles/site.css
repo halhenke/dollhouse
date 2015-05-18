@@ -4866,16 +4866,32 @@ button.close {
   font-family: "WalterTurncoat";
   src: local("../../fonts/Walter_Turncoat/WalterTurncoat.ttf"); }
 
+@font-face {
+  font-family: "AngelicSerif";
+  src: local("../../fonts/Angelic_Serif/AngelicSerif.ttf"); }
+
 .same-height {
   bottom: 0;
   top: 0;
   position: absolute; }
 
 body {
-  background: linear-gradient(to bottom, rgba(202, 165, 173, 0.4), #caa5ad), url("http://res.cloudinary.com/hal9zillion/image/upload/v1431448088/damask_pattern_fcjc2o.jpg"); }
+  background: linear-gradient(to bottom, rgba(202, 165, 173, 0.4), #caa5ad), url("http://res.cloudinary.com/hal9zillion/image/upload/v1431448088/damask_pattern_fcjc2o.jpg");
+  font-family: Georgia; }
 
-.navbar.navbar-defaut {
-  background-color: #f8f8f8; }
+body .navbar.navbar-default {
+  background-color: transparent;
+  border-style: none;
+  border-color: transparent; }
+  body .navbar.navbar-default ul.dropdown-menu {
+    border-style: none;
+    box-shadow: none; }
+  body .navbar.navbar-default li.dropdown a, body .navbar.navbar-default ul.dropdown-menu {
+    background-color: transparent;
+    padding: 0; }
+    body .navbar.navbar-default li.dropdown a button, body .navbar.navbar-default ul.dropdown-menu button {
+      margin-top: 0;
+      margin-bottom: 0; }
 
 #body > div:nth-child(2) {
   background-color: #f0d8e3;
@@ -4888,8 +4904,9 @@ a {
   background-color: #9819BB;
   border-color: #5A2D66; }
 
-h1 {
-  font-family: "HomemadeApple"; }
+h1, .jumbotron h1 {
+  font-family: "AngelicSerif";
+  color: #caa5ad; }
 
 a.navbar-brand {
   font-family: "EmilysCandy";
@@ -4932,6 +4949,9 @@ dt {
     padding: 0 0.5rem; }
   .dolls .doll.my-doll .doll-header {
     background-color: rgba(239, 195, 217, 0.57); }
+
+.doll-filter-col li label.label-doll {
+  background-color: rgba(195, 174, 245, 0.54); }
 
 form.newDoll label {
   font-size: 2rem;
