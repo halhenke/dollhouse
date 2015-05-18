@@ -10,6 +10,8 @@ $event-text-color: rgb(107, 104, 92)
 $link-primary-color: #9E5873
 $button-primary-color: #9819BB
 $button-primary-border: #5A2D66
+
+$filter-label-bg: rgba(195, 174, 245, 0.54)
 $my-dolls: rgba(239, 195, 217, 0.57)
 $background-pattern: "http://res.cloudinary.com/hal9zillion/image/upload/v1431448088/damask_pattern_fcjc2o.jpg"
 
@@ -106,6 +108,12 @@ dt
     &.my-doll
       .doll-header
         background-color: $my-dolls
+// FILTER
+.doll-filter-col
+  li
+    label.label-doll
+      background-color: $filter-label-bg
+
 // NEW DOLL FORM
 form.newDoll
   label

@@ -6,52 +6,33 @@
     .row(ng-repeat="doll_threes in data.dolls")
       .col-sm-4.col-md-4(ng-repeat="doll in doll_threes | filter:dollFilter")
         doll-mixin(doll="doll")
-.col-sm-4.col-md-3
+.col-sm-4.col-md-3.doll-filter-col
   h2 Filter/Search Dolls
   ul.list-group(style='margin-top: 70px;')
     //- a(href='/blog', class=!data.category ? 'active' : false).list-group-item All Categories
     //- each cat in data.categories
     //-   a(href='/blog/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
     li.list-group-item
-      label.label-primary Anything
+      label.label-doll Anything
       input(ng-model="dollFilter.$")
     li.list-group-item
-      label.label-primary Name
+      label.label-doll Name
       input(ng-model="dollFilter.name")
     li.list-group-item
-      label.label-primary Owner
+      label.label-doll Owner
       input(ng-model="dollFilter.owner.name.full")
+    //- li.list-group-item
+    //-   label.label-doll Maker
+    //-   input(ng-model="dollFilter.maker")
     li.list-group-item
-      label.label-primary Maker
-      input(ng-model="dollFilter.maker")
-    li.list-group-item
-      label.label-primary Maker Two
+      label.label-doll Maker
       select(ng-model="dollFilter.maker")
         option(value="")
         option(ng-repeat="maker in makers" value ="{{maker}}" ) {{maker}}
-  h2 React
-    #reactiveDoll
-  //- .filters      
-  //- form.navbar-form.navbar-right
+
   form.form-horizontal
     .form-group
-      label.label-primary Anything
-      input(ng-model="dollFilter.$")
-    .row
-      .col-sm-1: label Anything
-      .col-sm-1: input(ng-model="dollFilter.$")
-    .row
-      .col-sm-1: label Name
-      .col-sm-1: input(ng-model="dollFilter.name")
-    .row
-      .col-sm-1: label Owner
-      .col-sm-1: input(ng-model="dollFilter.owner.name.full")
-    .row
-      .col-sm-1: label Maker
-      .col-sm-1: input(ng-model="dollFilter.maker")
-  form.form-horizontal
-    .form-group
-      label.label-primary Anything
+      label.label-doll Anything
       input(ng-model="dollFilter.$")
     .input-group
       span.input-group-addon Anything
@@ -64,4 +45,6 @@
       input(ng-model="dollFilter.owner.name.full")
     .input-group
       span.input-group-addon Maker
-      input(ng-model="dollFilter.maker")
+      select(ng-model="dollFilter.maker")
+        option(value="")
+        option(ng-repeat="maker in makers" value ="{{maker}}" ) {{maker}}
