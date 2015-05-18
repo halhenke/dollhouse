@@ -25,6 +25,7 @@ $background-pattern: "http://res.cloudinary.com/hal9zillion/image/upload/v143144
 body
   // background-color: $body-bg
   background: linear-gradient(to bottom, rgba(202, 165, 173, 0.4), rgba(202, 165, 173, 1)), url($background-pattern)
+  font-family: Georgia
 
 .navbar.navbar-defaut
   background-color: $pale-panel-bg
@@ -42,9 +43,15 @@ a
   background-color: $button-primary-color
   border-color: $button-primary-border
 
-h1
+@mixin doll-header
   font:
-    family: "HomemadeApple"
+    // family: "HomemadeApple"
+    family: "AngelicSerif"
+  color: $heading-color
+
+h1, .jumbotron h1
+  @include doll-header
+
 
 a.navbar-brand
   font:
