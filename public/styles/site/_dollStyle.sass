@@ -3,6 +3,12 @@
 // COLOURS
 $blueish: rgba(154, 186, 213, 0.76)
 $body-bg: rgba(171, 110, 123, 0.62)
+
+$body-gradient-top: rgba(202, 165, 173, 0.4)
+$body-gradient-bottom: rgba(202, 165, 173, 1)
+
+$heading-color: rgba(202, 165, 173, 1)
+
 $event-bg: rgb(240, 216, 227)
 // $pale-panel-bg: rgba(236, 172, 214, 0.58)
 $pale-panel-bg: #f8f8f8
@@ -24,11 +30,34 @@ $background-pattern: "http://res.cloudinary.com/hal9zillion/image/upload/v143144
 
 body
   // background-color: $body-bg
-  background: linear-gradient(to bottom, rgba(202, 165, 173, 0.4), rgba(202, 165, 173, 1)), url($background-pattern)
+  background: linear-gradient(to bottom, $body-gradient-top, $body-gradient-bottom), url($background-pattern)
   font-family: Georgia
 
-.navbar.navbar-defaut
-  background-color: $pale-panel-bg
+// navigation.navbar.navbar-defaut
+body
+  .navbar.navbar-default
+    background-color: transparent
+    border:
+      style: none
+      color: transparent
+    ul.dropdown-menu
+      border-style: none
+      box-shadow: none
+    li.dropdown a, ul.dropdown-menu
+      background-color: transparent
+      padding: 0
+      // padding:
+      //   top: 0
+      //   bottom: 0
+      button
+        margin:
+          top: 0
+          bottom: 0
+    // .navbar-default .navbar-nav > .open > a.dropdown-toggle:hover
+    //   background-color: transparent
+
+
+//   background-color: $pale-panel-bg
 
 // TODO: This is terrible - fix
 #body > div:nth-child(2)

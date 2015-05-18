@@ -73,8 +73,6 @@ html
           .collapse.navbar-collapse
             ul.nav.navbar-nav.navbar-left
               +navLinks(navLinks)
-              //- each link in navLinks
-              //-   li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label
             ul.nav.navbar-nav.navbar-right
               if user
                 if user.canAccessKeystone
