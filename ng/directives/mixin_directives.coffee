@@ -27,3 +27,9 @@ ngApp.directive "linkMixin", ["$templateCache", ($templateCache) ->
     link: "="
   template: $templateCache.get("directives/linkMixin.html")
 ]
+
+ngApp.directive "detailList", ["$templateCache", ($templateCache) ->
+  scope:
+    details: "="
+  template: $templateCache.get("directives/detailList.html")
+]
