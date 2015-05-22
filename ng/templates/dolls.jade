@@ -13,17 +13,11 @@
     //- each cat in data.categories
     //-   a(href='/blog/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
     li.list-group-item
-      label.label-doll Anything
-      input(ng-model="dollFilter.$")
-    li.list-group-item
       label.label-doll Name
       input(ng-model="dollFilter.name")
     li.list-group-item
       label.label-doll Owner
       input(ng-model="dollFilter.owner.name.full")
-    //- li.list-group-item
-    //-   label.label-doll Maker
-    //-   input(ng-model="dollFilter.maker")
     li.list-group-item
       label.label-doll Maker
       select(ng-model="dollFilter.maker")
@@ -31,12 +25,6 @@
         option(ng-repeat="maker in makers" value ="{{maker}}" ) {{maker}}
 
   form.form-horizontal
-    .form-group
-      label.label-doll Anything
-      input(ng-model="dollFilter.$")
-    .input-group
-      span.input-group-addon Anything
-      input(ng-model="dollFilter.$")
     .input-group
       span.input-group-addon Name
       input(ng-model="dollFilter.name")
