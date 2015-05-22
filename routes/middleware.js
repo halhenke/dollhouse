@@ -81,3 +81,12 @@ exports.requireUser = function(req, res, next) {
   }
 
 };
+
+
+exports.logHeaders = function(req, res, next) {
+  console.log('Request Headers');
+  console.log(req.headers);
+  console.log('Response Headers');
+  console.log(res.headers);
+  next();
+};
