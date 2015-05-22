@@ -227,6 +227,17 @@
     }
   ]);
 
+  ngApp.directive("detailList", [
+    "$templateCache", function($templateCache) {
+      return {
+        scope: {
+          details: "="
+        },
+        template: $templateCache.get("directives/detailList.html")
+      };
+    }
+  ]);
+
 }).call(this);
 
 (function() {
