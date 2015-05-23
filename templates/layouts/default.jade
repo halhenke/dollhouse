@@ -50,10 +50,11 @@ html
     //- HEADER
     #header: .container
 
-      //- Customise your site's navigation by changing the navLinks Array in ./routes/middleware.js
+      //- Customise your sites navigation by changing the navLinks Array in ./routes/middleware.js
       //- ... or completely change this header to suit your design.
 
-      div(role="navigation").navbar.navbar-default
+      include ../partials/_navbar
+      //- div(role="navigation").navbar.navbar-default
         .container-fluid
           .navbar-header
             button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
@@ -65,8 +66,6 @@ html
           .collapse.navbar-collapse
             ul.nav.navbar-nav.navbar-left
               +navLinks(navLinks)
-              //- each link in navLinks
-              //-   li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label
             ul.nav.navbar-nav.navbar-right
               if user
                 if user.canAccessKeystone
