@@ -7,7 +7,7 @@ $body-bg: rgba(171, 110, 123, 0.62)
 $body-gradient-top: rgba(202, 165, 173, 0.4)
 $body-gradient-bottom: rgba(202, 165, 173, 1)
 
-// $heading-color: rgba(202, 165, 173, 1)
+$heading-color-jumbotron: rgba(202, 165, 173, 1)
 $heading-color: #F2F2F2
 
 $event-bg: rgb(240, 216, 227)
@@ -40,6 +40,13 @@ body
 
 // navigation.navbar.navbar-defaut
 body
+  .navbar-right
+    .dropdown-menu
+      right: inherit
+      button
+        margin:
+          top: 0
+          bottom: 0
   .navbar.navbar-default
     background-color: transparent
     border:
@@ -83,8 +90,12 @@ a
     family: "AngelicSerif"
   color: $heading-color
 
-h1, .jumbotron h1
+h1
   @include doll-header
+  .jumbotron &
+    @include doll-header
+    color: $heading-color-jumbotron
+
 
 
 a.navbar-brand
@@ -95,7 +106,7 @@ a.navbar-brand
 
 // Front Page/Index
 img.cover-girl
-  &:hover
+  // &:hover
     transform: rotate(0.5turn) translate(4rem) scale(0.5)
     transition-duration: 2s
 
@@ -158,7 +169,8 @@ dt
 .doll-filter-col
   li
     label.label-doll
-      background-color: $filter-label-bg
+      // background-color: $filter-label-bg
+      margin-right: 1rem
 
 // NEW DOLL FORM
 form.newDoll
