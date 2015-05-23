@@ -7,11 +7,11 @@
       .col-sm-4.col-md-4(ng-repeat="doll in doll_threes | filter:dollFilter")
         doll-mixin(doll="doll")
 .col-sm-4.col-md-3.doll-filter-col
+  //- TODO: need a front end test for login..
+  if user
+    a.btn.btn-primary(href="/dolls/new") Add a doll to the database...
   h2 Filter/Search Dolls
   ul.list-group(style='margin-top: 70px;')
-    //- a(href='/blog', class=!data.category ? 'active' : false).list-group-item All Categories
-    //- each cat in data.categories
-    //-   a(href='/blog/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
     li.list-group-item
       label.label-doll Name
       input(ng-model="dollFilter.name")
@@ -20,19 +20,6 @@
       input(ng-model="dollFilter.owner.name.full")
     li.list-group-item
       label.label-doll Maker
-      select(ng-model="dollFilter.maker")
-        option(value="")
-        option(ng-repeat="maker in makers" value ="{{maker}}" ) {{maker}}
-
-  form.form-horizontal
-    .input-group
-      span.input-group-addon Name
-      input(ng-model="dollFilter.name")
-    .input-group
-      span.input-group-addon Owner
-      input(ng-model="dollFilter.owner.name.full")
-    .input-group
-      span.input-group-addon Maker
       select(ng-model="dollFilter.maker")
         option(value="")
         option(ng-repeat="maker in makers" value ="{{maker}}" ) {{maker}}
