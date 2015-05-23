@@ -20,9 +20,12 @@
 
 var keystone = require('keystone'),
   middleware = require('./middleware'),
+  passport = require('passport'),
+  passportMiddleware = require('./passport/middleware');
   importRoutes = keystone.importer(__dirname);
 
 // Common Middleware
+keystone.pre('routes', middleware.passportUserCheck);
 keystone.pre('routes', middleware.initLocals);
 keystone.pre('render', middleware.flashMessages);
 keystone.pre('render', middleware.logHeaders);

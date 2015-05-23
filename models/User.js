@@ -1,5 +1,6 @@
 var keystone = require('keystone'),
-  Types = keystone.Field.Types;
+  Types = keystone.Field.Types,
+  passportLocalMongoose = require('passport-local-mongoose');
 
 /**
  * User Model
@@ -29,6 +30,16 @@ User.add({
     isAdmin: { type: Boolean, label: 'Can access Keystone', index: true }
 });
 
+
+
+/**
+ * Passport Functionality
+ */
+
+User.schema.plugin(passportLocalMongoose, {
+  userNameField: 'email',
+});
+
 /**
  * Virtuals
  */
@@ -51,6 +62,8 @@ User.schema.virtual('fullAddress').get(function() {
       // this.geo;
   }
 });
+
+// Add user info to the shared NodeBB/Keystone Database
 
 
 /**
