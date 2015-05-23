@@ -1,0 +1,25 @@
+extends ../../layouts/default
+
+block intro
+  .container
+    h1 Add a Doll
+    
+block content
+  .container
+    //- if enquirySubmitted
+    //-   h3 Thanks for submitting Your Doll!
+    //- else
+    .row: .col-sm-8.col-md-6
+      form.passport.login(method='post', enctype="multipart/form-data")
+        input(type='hidden', name='action', value='/users/login')
+        //- .form-group(class=validationErrors.email ? 'has-error' : null)
+        .form-group
+          label email
+          input(type='text', name='email').form-control
+          //- input(type='text', name='email', value=formData['name']).form-control
+        .form-group
+          label password
+          input(type='text', name='password').form-control
+          //- input(type='text', name='email', value=formData['name']).form-control
+        .form-actions
+          button(type='submit').btn.btn-primary Send
