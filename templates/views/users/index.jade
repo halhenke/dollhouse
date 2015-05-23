@@ -1,0 +1,70 @@
+extends ../layouts/default
+
+mixin user(user)
+  - thisIsMine = (user.owner.id === user.id)
+  .user(class={"my-user": thisIsMine})(data-ks-editable=editable(user, { list: 'user', id: user.id }))
+    .user-header
+      h2: a(href='/users/user/' + user.slug)= user.name
+      p.lead.text-muted
+        if user.owner
+          | Owned by
+          //- a(href="/users/#{user.owner.id}") #{user.owner.name.full}
+          a(href="/users/#{user.owner.id}") #{thisIsMine ? "You" : user.owner.name.full}
+    .user-body
+      if user.image.exists
+        //- img(src=user._.image.fit(160,160)).img.pull-right
+        img(src=user._.image.fit(100,100)).img.pull-right
+      p!= user.content.brief
+      if user.content.extended
+        p.read-more: a(href='/users/user/' + user.slug) Read more...
+
+block intro
+  .container: .row
+    .col-sm-4.col-md-4
+      h1= data.category ? data.category.name : 'Users'
+    .col-sm-3.col-sm-offset-5.col-md-3.col-md-offset-5
+      a.btn.btn-primary(href="/users/new") Add a user to the database...
+
+block content
+  .container: .row.jumbotron
+    .col-sm-8.col-md-9
+      if filters.category && !data.category
+        h3.text-muted Invalid Category.
+      else
+        if data.users.results.length
+          if data.users.totalPages > 1
+            h4.text-weight-normal Showing
+              strong #{data.users.first}
+              |  to
+              strong #{data.users.last}
+              |  of
+              strong #{data.users.total}
+              |  users.
+          else
+            h4.text-weight-normal Showing #{utils.plural(data.users.results.length, '* user')}.
+          .users
+            - user_threed = _.chunk(data.users.results, 3)
+            each user_threes in user_threed
+              .row
+                each user in user_threes
+                  .col-sm-4.col-md-4
+                    +user(user)
+
+          if data.users.totalPages > 1
+            ul.pagination
+              if data.users.previous
+                li: a(href='?page=' + data.users.previous): span.glyphicon.glyphicon-chevron-left
+              else
+                li.disabled: a(href='?page=' + 1): span.glyphicon.glyphicon-chevron-left
+              each p, i in data.users.pages
+                li(class=data.users.currentPage == p ? 'active' : null)
+                  a(href='?page=' + (p == '...' ? (i ? data.users.totalPages : 1) : p ))= p
+              if data.users.next
+                li: a(href='?page=' + data.users.next): span.glyphicon.glyphicon-chevron-right
+              else
+                li.disabled: a(href='?page=' + data.users.totalPages): span.entypo.glyphicon.glyphicon-chevron-right
+        else
+          if data.category
+            h3.text-muted There are no users in the category #{data.category.name}.
+          else
+            h3.text-muted There are no users yet.

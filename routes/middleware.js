@@ -9,6 +9,7 @@
  */
 
 var _ = require('lodash'),
+    keystone = require('keystone'),
     config = require('../config');
 
 
@@ -72,12 +73,54 @@ exports.flashMessages = function(req, res, next) {
  */
 
 exports.requireUser = function(req, res, next) {
-
   if (!req.user) {
     req.flash('error', 'Please sign in to access this page.');
     res.redirect('/keystone/signin');
   } else {
     next();
   }
+};
 
+
+/**
+ * Attempt at a custom user/session authentication function...
+ */
+
+exports.passportUserCheck = function (req, res, next) {
+  if (req.session && req.session.passport && req.session.passport.user) {
+      console.log("Session is storing User ID: " + req.session.passport.user);
+      keystone.list('User').model.findById(req.session.passport.user)
+        .exec(function (err, user) {
+          if (!err) {
+            console.log("Found our user - name is " + user.name.full);
+            req.user = user;
+          }
+          next();
+        });
+  }
+  else {
+    console.log("Nothing found!");
+    // console.dir(req.session.cookie);
+    next();
+  }
+};
+
+
+exports.logHeaders = function(req, res, next) {
+  console.log('Request Headers');
+  console.log(req.headers);
+  console.log('Response Headers');
+  console.log(res.headers);
+  console.log("User is " + (req.user ? "": "not ") + "logged in");
+  console.log("Req.user is ");
+  console.dir(req.user);
+  console.log("Cookies are ");
+  console.dir(req.cookies);
+  console.log("Signed Cookies are ");
+  console.dir(req.signedCookies);
+  console.log("Keystone Cookie says %s", req.signedCookies["keystone.sid"]);
+  console.log("Session is ");
+  console.dir(req.session);
+
+  next();
 };

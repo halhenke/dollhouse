@@ -12,7 +12,8 @@ block content
         header
           h1= data.event.title
           .event_details
-            .row: .col-sm-4.col-sm-offset-6.col-md-4.col-md-offset-6
+            //- .row: .col-sm-4.col-sm-offset-6.col-md-4.col-md-offset-6
+            .row: .col-sm-4
               h5 Posted 
                 if data.event.publishedDate
                   | on #{data.event._.publishedDate.format('MMMM Do, YYYY')} 
@@ -33,7 +34,6 @@ block content
               //- .col-sm-6.col-md-6.val= data.event.time
               .col-sm-6.col-md-6.val 
                 +eventDateFormat(data.event)
-                //- | #{doll._.publishedDate.format('MMMM Do, YYYY')}                 
             .row
               .col-sm-2.col-md-2.key.
                 Where

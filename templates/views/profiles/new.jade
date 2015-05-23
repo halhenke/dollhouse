@@ -1,0 +1,68 @@
+extends ../../layouts/default
+include ../../mixins/dollHelpers
+
+block intro
+  .container
+    h1 Add This Profile
+    
+block content
+  .container
+    if enquirySubmitted
+      h3 Thanks for submitting Your Profile!
+    else
+      .row: .col-sm-8.col-md-6
+        form.newProfile(method='post', enctype="multipart/form-data")
+          input(type='hidden', name='action', value='/profiles/new')
+          //- != Profile.form({ theme: 'bootstrap', fields: 'name, maker, state, image, contents' })
+          .form-group(class=validationErrors.userName ? 'has-error' : null)
+            label Name
+            //- input(type='text', name='userName', value=formData['userName']).form-control
+            input(type='text', name='userName', value=formData.userName).form-control
+          .form-group(class=validationErrors.user ? 'has-error' : null)
+            //- each user in users
+            //-   +fullName(user.name)            
+            label User
+            select(name='user').form-control
+              option(value='') (select one)
+              each user in users
+                //- option(value=user.id, selected=formData.user == user.id)= +fullName(user.name)
+                option(value=user.id, selected=formData.user == user.id) #{user.name.first} #{user.name.last}
+            //- input(type='text', name='name.full', value=formData['name.full']).form-control
+          //- .form-group(class=validationErrors.maker ? 'has-error' : null)
+          //-   label Maker
+          //-   select(name='maker').form-control
+          //-     option(value='') (select one)
+          //-     each type in profiles.makers
+          //-       option(value=type, selected=formData.maker == type)= type
+          .form-group
+            label Make This Public?
+            select(name='state').form-control
+              option(value='') (select one)
+              each type in [{value: 'private', label: "No"}, {value: 'public', label: "Yes"}]
+                option(value=type.value, selected=formData.state == type.value)= type.label
+          .form-group(class=validationErrors.avatar ? 'has-error' : null)
+            label Pic 
+            input(type='file', name='avatar_upload', value=formData.avatar).form-control
+            //- input(ref='fileField' type='file' name='image', value=formData.image  className='field-upload').form-control
+            //- input(type='hidden' name={this.props.paths.action} className='field-action' value={this.state.action})
+            //- input(ref='fileField' type='file' name={this.props.paths.upload} className='field-upload' onChange={this.fileChanged})
+            //- input(type='hidden' name={this.props.paths.action} className='field-action' value={this.state.action})
+
+          .form-group(class=validationErrors.about ? 'has-error' : null)
+            label Notes 
+            textarea(name='about.brief', placeholder='Tell us about your profile...' rows=4).form-control= formData.about_brief
+            //- textarea(name='content', placeholder='Tell us about your doll...' rows=4).form-control= formData.content
+          //- .form-group
+          //-   label Phone
+          //-   input(type='text', name='phone', value=formData.phone, placeholder='(optional)').form-control
+          //- .form-group(class=validationErrors.enquiryType ? 'has-error' : null)
+          //-   label What are you contacting us about?
+          //-   select(name='enquiryType').form-control
+          //-     option(value='') (select one)
+          //-     each type in enquiryTypes
+          //-       option(value=type.value, selected=formData.enquiryType == type.value)= type.label
+          //- .form-group(class=validationErrors.message ? 'has-error' : null)
+          //-   label Message
+          //-   textarea(name='message', placeholder='Leave us a message...' rows=4).form-control= formData.message
+          .form-actions
+            button(type='submit').btn.btn-primary Send
