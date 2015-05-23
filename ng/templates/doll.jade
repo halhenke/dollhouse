@@ -4,21 +4,50 @@
   .row: .col-offset-8.col-sm-2  
     a(ng-href="{{previousPage}}") 
       button.btn.btn-primary Back to {{ previousPage | backName }}
-  .row
-    .col-sm-8.col-md-9
+  .media
+    .media-right
+      img(ng-if="data.doll.image" src="{{data.doll.image.url}}").img.pull-right
+    .media-body
       - {{thisIsMine = (user && data.doll.owner.id === user.id)}}
       .doll(class={"my-doll": thisIsMine})
         //- Think this editable function is only server side
         //- (data-ks-editable=editable(user, { list: 'Doll', id: data.doll.id }))
-        .doll-header
-          h2 {{data.doll.name}}
-          p.lead.text-muted(ng-if="data.doll.owner")    
-            | Owned by
-            //- TODO: Fix this - owner.profile
-            a(ng-href="#/profiles/profile/{{data.doll.owner.slug}}") {{ " " + (thisIsMine ? "You" : data.doll.owner.name | fullName)}}
+      .media-heading.doll-header
+        h2 {{data.doll.name}}
+        p.lead.text-muted(ng-if="data.doll.owner")    
+          | Owned by
+          //- TODO: Fix this - owner.profile
+          a(ng-href="#/profiles/profile/{{data.doll.owner.slug}}") {{ " " + (thisIsMine ? "You" : data.doll.owner.name | fullName)}}
+          
         .doll-body
-          img(ng-if="data.doll.image" src="{{data.doll.image.url}}").img.pull-right
           //- img(src="{{data.doll.image.url}}" width="100px" height="100px").img.pull-right(ng-if="data.doll.image")
           //- p!= {{data.doll.content.brief}}
+          .row
+            .col-sm-4: h3 Maker
+            .col-sm-8
+              p.maker(ng-if="data.doll.maker") {{ data.doll.maker }}
+          .row
+            .col-sm-4: h3 Sculpt
+            .col-sm-8
+              p.sculpt(ng-if="data.doll.sculpt") {{ data.doll.sculpt }}
           .description(ng-if="data.doll.info.description" ng-bind-html="data.doll.info.description")
           .biography.read-more(ng-if="data.doll.info.biography" ng-bind-html="data.doll.info.biography")
+  //- .row
+  //-   .col-sm-8.col-md-9
+  //-     - {{thisIsMine = (user && data.doll.owner.id === user.id)}}
+  //-     .doll(class={"my-doll": thisIsMine})
+  //-       //- Think this editable function is only server side
+  //-       //- (data-ks-editable=editable(user, { list: 'Doll', id: data.doll.id }))
+  //-       .doll-header
+  //-         h2 {{data.doll.name}}
+  //-         p.lead.text-muted(ng-if="data.doll.owner")    
+  //-           | Owned by
+  //-           //- TODO: Fix this - owner.profile
+  //-           a(ng-href="#/profiles/profile/{{data.doll.owner.slug}}") {{ " " + (thisIsMine ? "You" : data.doll.owner.name | fullName)}}
+  //-         
+  //-       .doll-body
+  //-         img(ng-if="data.doll.image" src="{{data.doll.image.url}}").img.pull-right
+  //-         //- img(src="{{data.doll.image.url}}" width="100px" height="100px").img.pull-right(ng-if="data.doll.image")
+  //-         //- p!= {{data.doll.content.brief}}
+  //-         .description(ng-if="data.doll.info.description" ng-bind-html="data.doll.info.description")
+  //-         .biography.read-more(ng-if="data.doll.info.biography" ng-bind-html="data.doll.info.biography")

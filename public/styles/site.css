@@ -4875,10 +4875,18 @@ button.close {
   top: 0;
   position: absolute; }
 
+html, body {
+  min-height: 100%; }
+
 body {
-  background: linear-gradient(to bottom, rgba(202, 165, 173, 0.4), #caa5ad), url("http://res.cloudinary.com/hal9zillion/image/upload/v1431448088/damask_pattern_fcjc2o.jpg");
+  background: linear-gradient(to bottom, rgba(202, 165, 173, 0.4), #caa5ad), url("/images/site/damask_pattern_2_copy.jpg");
   font-family: Georgia; }
 
+body .navbar-right .dropdown-menu {
+  right: inherit; }
+  body .navbar-right .dropdown-menu button {
+    margin-top: 0;
+    margin-bottom: 0; }
 body .navbar.navbar-default {
   background-color: transparent;
   border-style: none;
@@ -4904,21 +4912,24 @@ a {
   background-color: #9819BB;
   border-color: #5A2D66; }
 
-h1, .jumbotron h1 {
+h1 {
   font-family: "AngelicSerif";
-  color: #caa5ad; }
+  color: #F2F2F2; }
+  .jumbotron h1 {
+    font-family: "AngelicSerif";
+    color: #F2F2F2;
+    color: #caa5ad; }
 
 a.navbar-brand {
   font-family: "EmilysCandy";
   font-size: 3rem;
   font-weight: bold; }
 
-img.cover-girl:hover {
-  transform: rotate(0.5turn) translate(4rem) scale(0.5);
-  transition-duration: 2s; }
-
 .list-group-item.active {
   background-color: rgba(154, 186, 213, 0.76); }
+
+.event img.img-events {
+  padding: 3rem; }
 
 .event_details {
   margin-top: 2rem;
@@ -4951,7 +4962,7 @@ dt {
     background-color: rgba(239, 195, 217, 0.57); }
 
 .doll-filter-col li label.label-doll {
-  background-color: rgba(195, 174, 245, 0.54); }
+  margin-right: 1rem; }
 
 form.newDoll label {
   font-size: 2rem;

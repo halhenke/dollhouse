@@ -1,5 +1,6 @@
 var keystone = require('keystone'),
-  Types = keystone.Field.Types;
+  Types = keystone.Field.Types,
+  passportLocalMongoose = require('passport-local-mongoose');
 
 /**
  * User Model
@@ -14,10 +15,29 @@ User.add({
   location: { type: Types.Location,
     note: "Sharing your location helps you locate others who may be near you",
     initial: true, collapse: true },
-  password: { type: Types.Password, initial: true, required: true }
-  },
+  password: { type: Types.Password, initial: true, required: true },
+  profile: {
+    userName: { type: Types.Text, required: true, initial: true, index: true },
+    emailShow: { type: Boolean, label: 'Show email address?' },
+    location_show: { type: Types.Boolean,  label: 'Show location?' },
+    avatar: { type: Types.CloudinaryImage },
+    about: {
+      brief: { type: Types.Html, wysiwyg: true, height: 150 },
+      extended: { type: Types.Html, wysiwyg: true, height: 400 }
+    }
+  }},
   'Permissions', {
     isAdmin: { type: Boolean, label: 'Can access Keystone', index: true }
+});
+
+
+
+/**
+ * Passport Functionality
+ */
+
+User.schema.plugin(passportLocalMongoose, {
+  userNameField: 'email',
 });
 
 /**
@@ -42,6 +62,8 @@ User.schema.virtual('fullAddress').get(function() {
       // this.geo;
   }
 });
+
+// Add user info to the shared NodeBB/Keystone Database
 
 
 /**
@@ -73,6 +95,7 @@ User.schema.pre('save', function (next) {
 
 User.relationship({ ref: 'Post', path: 'posts', refPath: 'author' });
 User.relationship({ ref: 'Doll', path: 'dolls', refPath: 'owner' });
+User.relationship({ ref: 'CommunityLink', path: 'links', refPath: 'owner' });
 
 
 /**

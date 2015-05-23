@@ -8,8 +8,12 @@
     "dotenv": "~0.4.0",
     "keystone": "~0.3.0",
     "lodash": "^3.3.1",
+    "mongoose": "^4.0.3",
     "node-sass": "~1.0.1",
     "node-sass-middleware": "^0.4.0",
+    "passport": "^0.2.2",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^1.0.0",
     "underscore": "~1.7.0"
   },
   "devDependencies": {

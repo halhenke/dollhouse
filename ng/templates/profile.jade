@@ -5,18 +5,18 @@
       button.btn.btn-primary Back to {{ previousPage | backName }}
   .row    
     .col-sm-8.col-md-9
-      - {{thisIsMine = user && (data.profile.user.id === user.id)}}
+      - {{thisIsMine = user && (data.profile.id === user.id)}}
       .profile(class={"my-profile": thisIsMine}) 
         //- (data-ks-editable=editable(user, { list: 'profile', id: profile.id }))
         .profile-header
-          h2: a(ng-href="/profiles/profile/{{data.profile.slug}}") {{thisIsMine ? "Me" : data.profile.userName}}
+          h2: a(ng-href="/profiles/profile/{{data.profile.slug}}") {{thisIsMine ? "Me" : data.profile.profile.userName}}
           //- p.lead.text-muted Owned by
         .profile-body
           //- img(ng-if="profile.avatar" src=profile._.avatar.fit(100,100)).img.pull-right 
-          img(ng-if="data.profile.avatar" src="{{data.profile.avatar.url}}").img.pull-right 
+          img(ng-if="data.profile.profile.avatar" src="{{data.profile.profile.avatar.url}}").img.pull-right 
           //- img(ng-if="data.profile.avatar" width="100px" height="100px" src="{{data.profile.avatar.url}}").img.pull-right 
-          .read-more(ng-if="data.profile.about.brief" ng-bind-html="data.profile.about.brief")
-          .read-more(ng-if="data.profile.about.extended" ng-bind-html="data.profile.about.extended")
+          .read-more(ng-if="data.profile.profile.about.brief" ng-bind-html="data.profile.profile.about.brief")
+          .read-more(ng-if="data.profile.profile.about.extended" ng-bind-html="data.profile.profile.about.extended")
           //- p User is {{data.profile.user}}
           //- p Dolls are {{data.dolls}}
           //- .row(ng-repeat="doll in {{data.profile.user.dolls}}")
@@ -27,20 +27,6 @@
         profile-mixin(profile="neighbour")        
   .row(ng-if="data.dolls"): .col-sm-2
     h2 My Dolls  
-    //- {{ aba = data.dolls[0] }}
-    //- h2 First Doll {{ aba.name }}
-    //- {{ doll_chunk = lo.chunk(data.dolls, 3) }}
-    //- .row(ng-repeat="doll_threes in ::doll_chunk")
-    //- .media(ng-repeat="doll in data.dolls")
-    //-   //- p Doll is {{doll.name}}
-    //-   //- .media
-    //-   a(ng-href="/dolls/doll/{{doll.id}}")
-    //-     .media-left
-    //-       img.media-object(src="{{doll.image.url}}")
-    //-     .media-body
-    //-       h4.media-heading {{doll.name}}
-  //- .row(ng-repeat="doll_threes in ::lo.chunk(data.dolls, 3)")
-  //- .row(ng-repeat="doll_threes in data.dolls | loChunk")
   .row(ng-repeat="doll_threes in data.dolls")
     .col-sm-4.col-md-4(ng-repeat="doll in doll_threes")
       //- doll-mixin(doll="doll")

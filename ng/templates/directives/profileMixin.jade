@@ -1,13 +1,13 @@
-- {{thisIsMine = user && (profile.user.id === user.id)}}
+- {{thisIsMine = user && (profile.id === user.id)}}
 .profile(class={"my-profile": thisIsMine}) 
   //- (data-ks-editable=editable(user, { list: 'profile', id: profile.id }))
   .profile-header
-    h2: a(ng-href="#/profiles/profile/{{profile.slug}}") {{thisIsMine ? "Me" : profile.userName}}
+    h2: a(ng-href="#/profiles/profile/{{profile.slug}}") {{thisIsMine ? "Me" : profile.profile.userName}}
     //- p.lead.text-muted Owned by
   .profile-body
     //- img(ng-if="profile.avatar" src=profile._.avatar.fit(100,100)).img.pull-right 
-    img(ng-if="profile.avatar" width="100px" height="100px" src="{{profile.avatar.url}}").img.pull-right 
+    img(ng-if="profile.profile.avatar" width="100px" height="100px" src="{{profile.profile.avatar.url}}").img.pull-right 
     //- img(src=profile._.image.fit(160,160)).img.pull-right
-    .read-more(ng-if="profile.about.brief" ng-bind-html="profile.about.brief")
+    .read-more(ng-if="profile.profile.about.brief" ng-bind-html="profile.profile.about.brief")
     //- .read-more(ng-if="data.profile.about.extended" ng-bind-html="data.profile.about.extended")
     //- p.read-more(ng-if="profile.about.extended"): a(ng-href="#/profiles/profile/{{profile.slug}}") Read more...

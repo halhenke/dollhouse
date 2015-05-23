@@ -1,20 +1,5 @@
 .col-sm-8.col-md-9.jumbotron
   h1 Profiles
-  //- .col-sm-8.col-md-9
-  //- if filters.category && !data.category
-  //-   h3.text-muted Invalid Category.
-  //- else
-  //- if profiles.length
-    //- if data.profiles.totalPages > 1
-  //- h4.text-weight-normal(ng-if="data.profiles.results.length && data.profiles.totalPages > 1") Showing 
-    //- strong {{data.profiles.first}}
-    //- |  to 
-    //- strong {{data.profiles.last}}
-    //- |  of 
-    //- strong {{data.profiles.total}}
-    //- |  profiles.      
-    //- else
-    //-   h4.text-weight-normal Showing #{utils.plural(data.profiles.results.length, '* profile')}.
   h4.text-weight-normal Showing 
   .profiles.angular
     //- PROFILES NOT GROUPED
@@ -33,55 +18,22 @@
     //- each cat in data.categories
     //-   a(href='/blog/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
     li.list-group-item
-      label.label-primary Anything
-      input(ng-model="profileFilter.$")
+      label.label-primary Screen Name
+      input(ng-model="profileFilter.profile.userName")
     li.list-group-item
-      label.label-primary Name
-      input(ng-model="profileFilter.userName")
-    li.list-group-item
-      label.label-primary User
-      input(ng-model="profileFilter.user.name")
+      label.label-primary Real Name
+      input(ng-model="profileFilter.name")
     li.list-group-item
       label.label-primary About
-      input(ng-model="profileFilter.about.brief")
-    li.list-group-item
-      label.label-primary About Two
-      select(ng-model="profileFilter.about.brief")
-        option(ng-repeat="model in ['Ipplehouse', 'Other Guys']" value ="{{model}}" ) {{model}}
-        //- option(ng-repeat="model in ['Ipplehouse', 'Other Guys']" value = {{model}} ) {{model}}
-  h2 React
-    #reactiveProfile
-  //- .filters      
-  //- form.navbar-form.navbar-right
+      input(ng-model="profileFilter.profile.about.brief")
+
   form.form-horizontal
-    .form-group
-      label.label-primary Anything
-      input(ng-model="profileFilter.$")
-    .row
-      .col-sm-1: label Anything
-      .col-sm-1: input(ng-model="profileFilter.$")
-    .row
-      .col-sm-1: label Name
-      .col-sm-1: input(ng-model="profileFilter.userName")
-    .row
-      .col-sm-1: label User
-      .col-sm-1: input(ng-model="profileFilter.user.name.first")
-    .row
-      .col-sm-1: label About
-      .col-sm-1: input(ng-model="profileFilter.about.brief")
-  form.form-horizontal
-    .form-group
-      label.label-primary Anything
-      input(ng-model="profileFilter.$")
     .input-group
-      span.input-group-addon Anything
-      input(ng-model="profileFilter.$")
+      span.input-group-addon Screen Name
+      input(ng-model="profileFilter.profile.userName")
     .input-group
-      span.input-group-addon Name
-      input(ng-model="profileFilter.userName")
-    .input-group
-      span.input-group-addon User
-      input(ng-model="profileFilter.user.name.first")
+      span.input-group-addon First Name
+      input(ng-model="profileFilter.name.first")
     .input-group
       span.input-group-addon About
-      input(ng-model="profileFilter.about.brief")
+      input(ng-model="profileFilter.profile.about.brief")

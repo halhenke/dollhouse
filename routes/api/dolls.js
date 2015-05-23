@@ -19,6 +19,7 @@ exports = module.exports = function(req, res) {
   // Load the dolls
   view.on('init', function(next) {
 
+    console.log('Doll - API Route - User is ' + locals.user);
     var q = keystone.list('Doll').model.find()
     // var q = keystone.list('Doll').paginate({
     //     page: req.query.page || 1,

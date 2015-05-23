@@ -27,6 +27,7 @@ paths =
     "package.json"
     ]
   jade: "./templates/**/*.jade"
+  sass: "./public/styles/**/*.(sass|scss)"
   ng:
     coffee: "./ng/**/*.coffee"
     js: "./ng/**/*.js"
@@ -104,6 +105,10 @@ gulp.task "webpack", ->
     .pipe(webpack(require(paths.webpack.config)))
     .pipe gulp.dest("public/js/")
 
+gulp.task "sass", ->
+  # _.delay livereload.reload, 3000
+  livereload.reload
+
 gulp.task "watch", ->
   # gulp.watch paths.src, ['lint']
   # gulp.watch [paths.src, paths.jscs.json], ['jscs']
@@ -111,6 +116,7 @@ gulp.task "watch", ->
   gulp.watch paths.jscs.cson, ['jscs-cson']
   gulp.watch paths.ng.coffee, ['angular']
   gulp.watch paths.ng.jade, ['ng-jade']
+  gulp.watch paths.sass, ['sass']
   # gulp.watch paths.react.in.jade, ['react-jade']
   # gulp.watch [paths.webpack.config, paths.webpack.entry, paths.react.in.js], ['webpack']
   gulp.watch [paths.webpack.config, paths.webpack.entry, paths.react.in.jade, paths.react.in.cjsx], ['webpack']

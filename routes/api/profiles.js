@@ -19,15 +19,8 @@ exports = module.exports = function(req, res) {
   // Load the profiles
   view.on('init', function(next) {
 
-    var q = keystone.list('Profile').model.find()
-    // var q = keystone.list('Profile').paginate({
-    //     page: req.query.page || 1,
-    //     perPage: 10,
-    //     maxPages: 10
-    //   })
-      .or([{'state': 'public'}, {'owner': (locals.user ? locals.user.id : null)}])
-      // .sort('-publishedDate')
-      .populate('user');
+    var q = keystone.list('User').model.find();
+      // .populate('user');
 
     q.exec(function(err, results) {
       locals.data.profiles = results;

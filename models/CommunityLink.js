@@ -15,7 +15,7 @@ CommunityLink.add({
   title: { type: Types.Text, initial: true },
   link: { type: Types.Url, required: true, initial: true },
   description: { type: Types.Text, initial: true },
-  owner: { type: Types.Relationship, ref: 'Profile', index: true },
+  owner: { type: Types.Relationship, ref: 'User', index: true },
   keyWords: { type: Types.Text, initial: true },
   image: { type: Types.CloudinaryImage },
   approved: { type: Types.Boolean, required: true, default: false, initial: true, index: true,

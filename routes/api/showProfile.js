@@ -19,11 +19,11 @@ exports = module.exports = function(req, res) {
 
     console.log("showProfile - API called...");
 
-    var q = keystone.list('Profile')
+    var q = keystone.list('User')
       .model.findOne({
         slug: locals.filters.profile
-      })
-      .populate("user");
+      });
+      // .populate("user");
 
     // q.exec(function(err, result) {
     q.exec()
@@ -32,7 +32,7 @@ exports = module.exports = function(req, res) {
         locals.data.profile = profile;
         return keystone.list('Doll').model
           .find()
-          .where({owner: profile.user })
+          .where({owner: profile })
           .exec();
       }, function (err) {
         console.log('We got err ' + err);
@@ -40,9 +40,8 @@ exports = module.exports = function(req, res) {
       // Handle Dolls
       .then(function (dolls) {
         console.log('Dolls found for ' + locals.data.profile.user.name + " are " + dolls);
-        // NOTE: this doesnt work
-        // result.dolls = dolls;
         if (dolls.length > 0) {
+          console.log('showProfile API call - We found some dolls ' + dolls.length);
           locals.data.dolls = dolls;
         }
         return keystone.list('CommunityLink').model
@@ -70,18 +69,6 @@ exports = module.exports = function(req, res) {
           })
           .exec();
 ;      }, function (err) {
-        console.log('We got err ' + err);
-      })
-      // Need to get Profiles from User Models
-      .then(function (neighbours) {
-        console.log('User Neighbours found for ' + locals.data.profile.user.name + " are " + neighbours);
-        // Handle nearby users
-        return keystone.list('Profile').model
-          .where({ user: { $in: neighbours }})
-          .exec(function () {
-            console.log('We got called here...');
-          });
-        }, function (err) {
         console.log('We got err ' + err);
       })
       .then(function (neighbours) {
