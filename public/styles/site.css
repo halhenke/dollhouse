@@ -4964,6 +4964,9 @@ dt {
 .doll-filter-col li label.label-doll {
   margin-right: 1rem; }
 
+.profile-filter-col li label.label-profile {
+  margin-right: 1rem; }
+
 form.newDoll label {
   font-size: 2rem;
   font-family: "Metamorphous"; }
