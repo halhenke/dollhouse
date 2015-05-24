@@ -168,11 +168,12 @@ dt
       .doll-header
         background-color: $my-dolls
 // FILTER
-.doll-filter-col
-  li
-    label.label-doll
-      // background-color: $filter-label-bg
-      margin-right: 1rem
+@each $resource in doll, profile
+  .#{$resource}-filter-col
+    li
+      label.label-#{$resource}
+        // background-color: $filter-label-bg
+        margin-right: 1rem
 
 // NEW DOLL FORM
 form.newDoll

@@ -2,38 +2,19 @@
   h1 Profiles
   h4.text-weight-normal Showing 
   .profiles.angular
-    //- PROFILES NOT GROUPED
-    //- .row(ng-repeat="profile in data.profiles | filter:profileFilter")
-    //- .row
-    //-   .col-sm-4.col-md-4(ng-repeat="profile in data.profiles | filter:profileFilter")
-    //-     profile-mixin(profile="profile")
-    //- //- PROFILES ALREADY GROUPED
+    //- PROFILES ALREADY CHUNKED
     .row(ng-repeat="profile_threes in data.profiles | filter:profileFilter")
       .col-sm-4.col-md-4(ng-repeat="profile in profile_threes")
         profile-mixin(profile="profile")
-.col-sm-4.col-md-3
+.col-sm-4.col-md-3.profile-filter-col
   h2 Filter/Search Profiles
   ul.list-group(style='margin-top: 70px;')
-    //- a(href='/blog', class=!data.category ? 'active' : false).list-group-item All Categories
-    //- each cat in data.categories
-    //-   a(href='/blog/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
     li.list-group-item
-      label.label-primary Screen Name
+      label.label-profile Screen Name
       input(ng-model="profileFilter.profile.userName")
     li.list-group-item
-      label.label-primary Real Name
+      label.label-profile Real Name
       input(ng-model="profileFilter.name")
     li.list-group-item
-      label.label-primary About
-      input(ng-model="profileFilter.profile.about.brief")
-
-  form.form-horizontal
-    .input-group
-      span.input-group-addon Screen Name
-      input(ng-model="profileFilter.profile.userName")
-    .input-group
-      span.input-group-addon First Name
-      input(ng-model="profileFilter.name.first")
-    .input-group
-      span.input-group-addon About
+      label.label-profile About
       input(ng-model="profileFilter.profile.about.brief")
