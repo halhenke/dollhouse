@@ -1,6 +1,7 @@
 module.exports = {
-  // forumRoute: "http://192.168.1.7:4567",
-  forumRoute: "/forums",
+  // Link to Dreamhost forums
+  forumRoute: "/forum",
+  // forumRoute: "/forums",
   dolls: {
     makers: [
       "Angell Studio",
