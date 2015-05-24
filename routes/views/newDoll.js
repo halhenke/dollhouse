@@ -35,7 +35,6 @@ exports = module.exports = function(req, res) {
           }
           next();
         });
-
     });
 
   // console.log("New Doll got called..." + req.method);

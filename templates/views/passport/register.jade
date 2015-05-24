@@ -2,7 +2,7 @@ extends ../../layouts/default
 
 block intro
   .container
-    h1 Add a Doll
+    h1 Register as a New Member
     
 block content
   .container
@@ -12,14 +12,16 @@ block content
     .row: .col-sm-8.col-md-6
       form.passport.login(method='post', enctype="multipart/form-data")
         input(type='hidden', name='action', value='/users/login')
-        //- .form-group(class=validationErrors.email ? 'has-error' : null)
-        .form-group
+        .form-group(class=validationErrors.email ? 'has-error' : null)
           label email
-          input(type='text', name='email').form-control
-          //- input(type='text', name='email', value=formData['name']).form-control
-        .form-group
+          input(type='text', name='email', value=formData['email']).form-control
+        .form-group(class=validationErrors.password ? 'has-error' : null)
           label password
           input(type='text', name='password').form-control
-          //- input(type='text', name='email', value=formData['name']).form-control
+        .form-group
+          label First Name
+          input(type='text', name='name.first', value=formData['name.first']).form-control
+          label Last Name
+          input(type='text', name='name.last', value=formData['name.last']).form-control
         .form-actions
           button(type='submit').btn.btn-primary Send
