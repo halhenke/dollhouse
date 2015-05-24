@@ -4879,7 +4879,7 @@ html, body {
   min-height: 100%; }
 
 body {
-  background: linear-gradient(to bottom, rgba(202, 165, 173, 0.4), #caa5ad), url("/images/site/damask_pattern_2_copy.jpg");
+  background: linear-gradient(to bottom, rgba(202, 165, 173, 0.4), #caa5ad), url("http://res.cloudinary.com/doll-social-club/image/upload/v1432427402/damask_pattern_single_tile_etd1nl.jpg");
   font-family: Georgia; }
 
 body .navbar-right .dropdown-menu {
