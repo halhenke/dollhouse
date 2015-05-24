@@ -7,7 +7,10 @@ var keystone = require('keystone'),
  * ==========
  */
 
-var User = new keystone.List('User');
+var User = new keystone.List('User', {
+  track: true,
+  autokey: { path: 'slug', from: 'name', unique: true },
+});
 
 User.add({
   name: { type: Types.Name, required: true, index: true },
