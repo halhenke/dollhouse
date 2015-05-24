@@ -12,6 +12,9 @@ block content
     .row: .col-sm-8.col-md-6
       form.passport.login(method='post', enctype="multipart/form-data")
         input(type='hidden', name='action', value='/users/login')
+        .form-group(class=validationErrors['profile.userName'] ? 'has-error' : null)
+          label Screen Name
+          input(type='text', name='profile.userName', value=formData['profile.userName']).form-control
         .form-group(class=validationErrors.email ? 'has-error' : null)
           label email
           input(type='text', name='email', value=formData['email']).form-control

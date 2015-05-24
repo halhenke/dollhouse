@@ -18,6 +18,25 @@ module.exports = function (req, res) {
   locals.userRegistered = false;
 
   view.on('post', function(next) {
+    // var newUser = new User.model({
+    //   email: locals.formData.email,
+    //   name: {
+    //     first: locals.formData.name.first,
+    //     last: locals.formData.name.last
+    //   },
+    //   password: locals.formData.password
+    // });
+    // console.log("BRANCH 2.0.1");
+    // newUser.save()
+    //   .then(function () {
+    //     console.log("BRANCH 2.0.2");
+    //     next();
+    //   },function (err) {
+    //     console.log("BRANCH 2.0.3");
+    //     locals.validationErrors = err.errors;
+    //     next();
+    //   });
+
       // console.log('User Image body: ');
       // console.dir(req.body);
       // console.log('User Image params: ');
@@ -36,25 +55,63 @@ module.exports = function (req, res) {
           }
           else {
             console.log("BRANCH 2");
-            var newUser = new User.model();
-            newUser
-              .getUpdateHandler(req, res)
-              .process(req.body, {
-                flashErrors: true,
-                fields: 'email, password, name.first, name.last',
-                errorMessage: 'Hmmmm: Your registration was not succesful...'
-              }, function(err) {
-                if (err) {
-                  console.log("BRANCH 3");
-                  locals.validationErrors = err.errors;
-                } else {
-                  console.log("BRANCH 4");
-                  locals.userRegistered = true;
-                }
-                next();
-              });
-
+            console.dir(locals.formData);
+            console.dir(req.body);
+            // var newUser = new User.model();
+            var newUser = new User.model({
+              email: locals.formData.email,
+              name: {
+                first: locals.formData['name.first'],
+                last: locals.formData['name.last']
+              },
+              profile: {
+                userName: locals.formData['profile.userName']
+              },
+              password: locals.formData.password
+            });
+            console.log("BRANCH 2.1");
+            newUser.save(function (err) {
+              if (err) {
+                req.flash('error', 'There was a problem submitting your registration');
+                console.log("BRANCH 2.2");
+                locals.validationErrors = err.errors;
+              }
+              else {
+                console.log("BRANCH 2.3");
+                locals.userRegistered = true;
+              }
+              next();
+            });
           }
+
+
+            // })
+              // .then(function () {
+              //   console.log("BRANCH 2.2");
+              //   next();
+              // },function (err) {
+              //   console.log("BRANCH 2.3");
+              //   locals.validationErrors = err.errors;
+              //   next();
+              // });
+
+            // newUser
+            //   .getUpdateHandler(req, res)
+            //   .process(req.body, {
+            //     flashErrors: true,
+            //     fields: 'email, password, name.first, name.last',
+            //     errorMessage: 'Hmmmm: Your registration was not succesful...'
+            //   }, function(err) {
+            //     if (err) {
+            //       console.log("BRANCH 3");
+            //       locals.validationErrors = err.errors;
+            //     } else {
+            //       console.log("BRANCH 4");
+            //       locals.userRegistered = true;
+            //     }
+            //     next();
+            //   });
+            // }
         }, function (err) {
           console.log("BRANCH 5");
           locals.validationErrors = err.errors;
