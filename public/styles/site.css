@@ -4882,6 +4882,9 @@ body {
   background: linear-gradient(to bottom, rgba(202, 165, 173, 0.4), #caa5ad), url("http://res.cloudinary.com/doll-social-club/image/upload/v1432427402/damask_pattern_single_tile_etd1nl.jpg");
   font-family: Georgia; }
 
+body .navbar-brand {
+  padding: 0;
+  height: 100%; }
 body .navbar-right .dropdown-menu {
   right: inherit; }
   body .navbar-right .dropdown-menu button {
@@ -4891,9 +4894,26 @@ body .navbar.navbar-default {
   background-color: transparent;
   border-style: none;
   border-color: transparent; }
+  body .navbar.navbar-default button {
+    margin: 0 0.2rem;
+    background-color: #ece2e3;
+    width: 8rem;
+    border-radius: 1rem;
+    font-family: AngelicSerif;
+    font-size: 1.8rem; }
   body .navbar.navbar-default ul.dropdown-menu {
     border-style: none;
     box-shadow: none; }
+    @media screen and (orientation: portrait) {
+      body .navbar.navbar-default ul.dropdown-menu li {
+        margin-left: 2rem; }
+        body .navbar.navbar-default ul.dropdown-menu li::before {
+          content: "\025B6"; }
+        body .navbar.navbar-default ul.dropdown-menu li button {
+          background-color: rgba(207, 202, 202, 0.72); }
+ }
+  body .navbar.navbar-default li.dropdown a.dropdown-toggle:hover {
+    background-color: transparent; }
   body .navbar.navbar-default li.dropdown a, body .navbar.navbar-default ul.dropdown-menu {
     background-color: transparent;
     padding: 0; }
