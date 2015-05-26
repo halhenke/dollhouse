@@ -9,6 +9,7 @@ $body-gradient-bottom: rgba(202, 165, 173, 1)
 
 $heading-color-jumbotron: rgba(202, 165, 173, 1)
 $heading-color: #F2F2F2
+$nav-button-bg: rgb(236, 226, 227)
 
 $event-bg: rgb(240, 216, 227)
 // $pale-panel-bg: rgba(236, 172, 214, 0.58)
@@ -42,6 +43,9 @@ body
 
 // navigation.navbar.navbar-defaut
 body
+  .navbar-brand
+    padding: 0
+    height: 100%
   .navbar-right
     .dropdown-menu
       right: inherit
@@ -50,6 +54,14 @@ body
           top: 0
           bottom: 0
   .navbar.navbar-default
+    button
+      margin: 0 0.2rem
+      background-color: $nav-button-bg
+      width: 8rem
+      border-radius: 1rem
+      font:
+        family: AngelicSerif
+        size: 1.8rem
     background-color: transparent
     border:
       style: none
