@@ -69,6 +69,19 @@ body
     ul.dropdown-menu
       border-style: none
       box-shadow: none
+      // NOTE: Only want the following block to appear
+      // for a phone in portrait orientation:
+      @media screen and (orientation: portrait)
+        li
+          margin-left: 2rem
+          &::before
+            // content: "-"
+            content: "\025B6"
+          button
+            background-color: rgba(207, 202, 202, 0.72)
+    // .navbar-default li.dropdown a.dropdown-toggle:hover
+    li.dropdown a.dropdown-toggle:hover
+      background-color: transparent
     li.dropdown a, ul.dropdown-menu
       background-color: transparent
       padding: 0
