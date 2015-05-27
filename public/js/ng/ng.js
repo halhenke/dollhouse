@@ -176,6 +176,17 @@
     '$scope', "lo", '$routeParams', 'Profile', function($scope, lo, $routeParams, Profile) {
       console.log("ProfileShowController loaded...");
       $scope.lo = lo;
+      $scope.getAvatar = function(url) {
+        if (url) {
+          return {
+            'background-image': "url(" + url + ")"
+          };
+        } else {
+          return {
+            'background-image': "url(http://res.cloudinary.com/keystone-demo/image/upload/v1425761612/qkeekodoglor4wje5hug.jpg)"
+          };
+        }
+      };
       return Profile.get({
         profile: $routeParams.profileSlug
       }).$promise.then(function(data) {

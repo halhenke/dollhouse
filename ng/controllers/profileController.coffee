@@ -16,6 +16,16 @@ ngApp.controller "ProfileShowController", ['$scope', "lo", '$routeParams', 'Prof
     console.log "ProfileShowController loaded..."
     $scope.lo = lo
 
+    # TODO: - extract this identical method from both here &
+    # DollsController
+    #  - a directive?
+    #  - a filter?
+    $scope.getAvatar = (url) ->
+      if url
+        { 'background-image': "url(#{url})" }
+      else
+        { 'background-image': "url(http://res.cloudinary.com/keystone-demo/image/upload/v1425761612/qkeekodoglor4wje5hug.jpg)" }
+
     Profile.get(profile: $routeParams.profileSlug).$promise.then (data) ->
       console.log "profileData is "
       console.dir data

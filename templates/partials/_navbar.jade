@@ -11,21 +11,3 @@ div(role="navigation").navbar.navbar-default
     .collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-left
         +navLinks(navLinks)
-      ul.nav.navbar-nav.navbar-right
-        if user
-          a.dropdown-toggle(href="#" data-toggle="dropdown")
-            button.btn.btn-default Welcome #{user.name.first}
-          ul.dropdown-menu                
-            if user.canAccessKeystone
-              li: button.btn.btn-default.navbar-btn
-                a(href='/keystone') Open Admin
-            //- li: a(href='/keystone/signout') Sign Out
-            li: button.btn.btn-default.navbar-btn
-              a(href='/users/logout') Sign Out
-        else
-          //- li: a(href='/keystone/signin') Sign In
-          //- li: a(href='/users/new') Register
-          li: button.btn.btn-default
-            a(href='/users/login') Sign In
-          li: button.btn.btn-default
-            a(href='/users/register') Register

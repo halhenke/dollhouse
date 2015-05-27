@@ -24,16 +24,15 @@ mixin simpleAddressFormat(location)
 mixin navLinks(links)
   each link in links
     if link.dropdowns
-      //- .dropdown
-        li.dropdown-toggle(data-toggle="dropdown")= link.label
       li.dropdown
         //- a.dropdown-toggle(href="#" data-toggle="dropdown")= link.label
         a.dropdown-toggle(href="#" data-toggle="dropdown")
-          button.btn.btn-default.navbar-btn= link.label
+          button.btn.btn-doll.navbar-btn= link.label
         ul.dropdown-menu
           each sublink in link.dropdowns
             li(class=(section == sublink.key ? 'active' : null))
-              button.btn.btn-default.navbar-btn: a(href=sublink.href)= sublink.label
+              button.btn.btn-doll.navbar-btn: a(href=sublink.href)= sublink.label
     else
       li(class=(section == link.key ? 'active' : null))
-        button.btn.btn-default.navbar-button: a(href=link.href)= link.label
+        //- button.btn.btn-doll.navbar-btn: a(href=link.href)= link.label
+        a(href=link.href): button.btn.btn-doll.navbar-btn= link.label
