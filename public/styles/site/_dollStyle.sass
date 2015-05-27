@@ -9,6 +9,7 @@ $body-gradient-bottom: rgba(202, 165, 173, 1)
 
 $heading-color-jumbotron: rgba(202, 165, 173, 1)
 $heading-color: #F2F2F2
+$nav-button-bg: rgb(236, 226, 227)
 
 $event-bg: rgb(240, 216, 227)
 // $pale-panel-bg: rgba(236, 172, 214, 0.58)
@@ -39,9 +40,19 @@ body
   // background-color: $body-bg
   background: linear-gradient(to bottom, $body-gradient-top, $body-gradient-bottom), url($background-pattern)
   font-family: Georgia
+  .jumbotron
+    border-radius: 2rem
 
 // navigation.navbar.navbar-defaut
 body
+  a.navbar-brand
+    font:
+      family: "EmilysCandy"
+      size: 3rem
+      weight: bold
+  .navbar-brand
+    padding: 0
+    height: 100%
   .navbar-right
     .dropdown-menu
       right: inherit
@@ -50,6 +61,17 @@ body
           top: 0
           bottom: 0
   .navbar.navbar-default
+    .navbar-nav
+      li a
+        color: $link-primary-color
+    button
+      margin: 0 0.2rem
+      background-color: $nav-button-bg
+      width: 8rem
+      border-radius: 1rem
+      font:
+        family: AngelicSerif
+        size: 1.8rem
     background-color: transparent
     border:
       style: none
@@ -57,18 +79,26 @@ body
     ul.dropdown-menu
       border-style: none
       box-shadow: none
+      // NOTE: Only want the following block to appear
+      // for a phone in portrait orientation:
+      @media screen and (orientation: portrait)
+        li
+          margin-left: 2rem
+          &::before
+            // content: "-"
+            content: "\025B6"
+          button
+            background-color: rgba(207, 202, 202, 0.72)
+    // .navbar-default li.dropdown a.dropdown-toggle:hover
+    li.dropdown a.dropdown-toggle:hover
+      background-color: transparent
     li.dropdown a, ul.dropdown-menu
       background-color: transparent
-      padding: 0
-      // padding:
-      //   top: 0
-      //   bottom: 0
+      // padding: 0
       button
         margin:
           top: 0
           bottom: 0
-    // .navbar-default .navbar-nav > .open > a.dropdown-toggle:hover
-    //   background-color: transparent
 
 
 //   background-color: $pale-panel-bg
@@ -98,13 +128,6 @@ h1
     @include doll-header
     color: $heading-color-jumbotron
 
-
-
-a.navbar-brand
-  font:
-    family: "EmilysCandy"
-    size: 3rem
-    weight: bold
 
 // Front Page/Index
 img.cover-girl
@@ -142,6 +165,29 @@ img.cover-girl
     size: 2rem
     variant: small-caps
 
+@mixin doll-mixin-style
+  background-size: cover
+  height: 18rem
+  padding-top: 8rem
+  // padding: 8rem 0.5rem 0.5rem 0
+  a
+    color: white
+  .doll-header
+    padding: 0 0.5rem
+    // background-color: $pale-panel-bg
+  &.my-doll
+    .doll-header
+      background-color: $my-dolls
+
+@mixin doll-grid-style
+  .dolls
+    .row
+      padding: 0.5rem 0
+    [class^='col-sm']
+      padding: 0 0.5rem
+    .doll
+      @include doll-mixin-style
+
 dt
   float: left
   &:after
@@ -149,26 +195,15 @@ dt
 
 // DOLLS
 // COLLECTION
-.dolls
-  .row
-    padding: 0.5rem 0
-  [class^='col-sm']
-    padding: 0 0.5rem
-  .doll
-    background-size: cover
-    height: 18rem
-    padding-top: 8rem
-    // padding: 8rem 0.5rem 0.5rem 0
-    a
-      color: white
-    .doll-header
-      padding: 0 0.5rem
-      // background-color: $pale-panel-bg
-    &.my-doll
-      .doll-header
-        background-color: $my-dolls
+@include doll-grid-style
+
+.show-profile
+  @include doll-grid-style
+  // .doll
+    @include doll-mixin-style
+
 // FILTER
-@each $resource in doll, profile
+@each $resource in doll, profile, link
   .#{$resource}-filter-col
     li
       label.label-#{$resource}

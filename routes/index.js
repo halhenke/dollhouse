@@ -28,7 +28,11 @@ var keystone = require('keystone'),
 keystone.pre('routes', middleware.passportUserCheck);
 keystone.pre('routes', middleware.initLocals);
 keystone.pre('render', middleware.flashMessages);
-keystone.pre('render', middleware.logHeaders);
+
+// Log a bunch of stuff if we are in development mode
+if (keystone.get('env') == 'production') {
+  keystone.pre('render', middleware.logHeaders);
+}
 
 // Import Route Controllers
 var routes = {
@@ -52,7 +56,7 @@ exports = module.exports = function(app) {
   app.get('/gallery', routes.views.gallery);
   app.get('/events', routes.views.events);
   app.get('/events/event/:event', routes.views.event);
-  app.get('/community', routes.views.dolls);
+  app.get('/community', routes.views.community);
   app.get('/api/links', routes.api.links);
   app.get('/api/dolls', routes.api.dolls);
   app.get('/api/dolls/show/:doll', routes.api.showDoll);

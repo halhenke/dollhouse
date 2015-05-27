@@ -2,8 +2,9 @@ ngApp = angular.module("dollhouse")
 
 ngApp.directive "dollMixin", ["$templateCache", ($templateCache) ->
   scope: true
-    # doll: "="
-    # getAvatar: "&getAvatar"
+  # scope:
+  #   doll: "="
+  #   getAvatar: "&getAvatar"
     # getAvatar: (url) ->
     #   return "happyDays"
       # $log("getAvatar called with #{url}")

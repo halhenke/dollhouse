@@ -27,9 +27,21 @@ keystone.init({
   'session store': "mongo",
   'auth': true,
   'user model': 'User',
-  'cookie secret': 'vAC=8h_#vl!SpFi&m1)_qFR@"nw9vRDT+/Q+&3-rc4+:D,bg_|"0I8wiRF-8tI|='
+  'cookie secret': process.env.COOKIE_SECRET,
+
+  // Production Optimizations
+  'compress': true,
+  'static options': {
+    maxage: 3600000
+  }
 
 });
+
+// if (keystone.get('env') == 'production') {
+//   keystone.set('static options', {
+//     maxage: 3600000
+//   });
+// }
 
 // Load your project's Models
 

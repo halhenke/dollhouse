@@ -8,10 +8,13 @@
   //- (data-ks-editable=editable(user, { list: 'Doll', id: doll.id }))
   .doll-header
     h2: a(ng-href="#/dolls/doll/{{doll.slug}}") {{doll.name}}
-    p.lead.text-muted(ng-if="doll.owner")    
-      | Owned by
-      //- NOTE: Need to fetch the profile slug...sucks
-      a(ng-href="#/profiles/profile/{{doll.owner.slug}}") {{ " " + (thisIsMine ? "You" : doll.owner.name | fullName)}}
+    //- TODO: Make this bit only show when called from Dolls page
+    //- - doll.owner is not populated when called from Profile
+    //- p.lead.text-muted(ng-if="doll.owner")    
+    //-   | Owned by {{ fake }}
+    //-   //- NOTE: Need to fetch the profile slug...sucks
+    //-   a(ng-href="#/profiles/profile/{{doll.owner.slug}}") {{ " " + (thisIsMine ? "You" : doll.owner.name | fullName)}}
+      
   //- .doll-body
     //- img(src="{{doll.image.url}}" width="100px" height="100px").img.pull-right(ng-if="doll.image")
     p {{doll.content.brief}}
