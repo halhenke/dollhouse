@@ -167,6 +167,29 @@ img.cover-girl
     size: 2rem
     variant: small-caps
 
+@mixin doll-mixin-style
+  background-size: cover
+  height: 18rem
+  padding-top: 8rem
+  // padding: 8rem 0.5rem 0.5rem 0
+  a
+    color: white
+  .doll-header
+    padding: 0 0.5rem
+    // background-color: $pale-panel-bg
+  &.my-doll
+    .doll-header
+      background-color: $my-dolls
+
+@mixin doll-grid-style
+  .dolls
+    .row
+      padding: 0.5rem 0
+    [class^='col-sm']
+      padding: 0 0.5rem
+    .doll
+      @include doll-mixin-style
+
 dt
   float: left
   &:after
@@ -174,24 +197,13 @@ dt
 
 // DOLLS
 // COLLECTION
-.dolls
-  .row
-    padding: 0.5rem 0
-  [class^='col-sm']
-    padding: 0 0.5rem
-  .doll
-    background-size: cover
-    height: 18rem
-    padding-top: 8rem
-    // padding: 8rem 0.5rem 0.5rem 0
-    a
-      color: white
-    .doll-header
-      padding: 0 0.5rem
-      // background-color: $pale-panel-bg
-    &.my-doll
-      .doll-header
-        background-color: $my-dolls
+@include doll-grid-style
+
+.show-profile
+  @include doll-grid-style
+  // .doll
+    @include doll-mixin-style
+
 // FILTER
 @each $resource in doll, profile
   .#{$resource}-filter-col
