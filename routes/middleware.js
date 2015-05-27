@@ -108,6 +108,10 @@ exports.passportUserCheck = function (req, res, next) {
 
 exports.logHeaders = function(req, res, next) {
   console.log('Request Headers');
+  console.log('Keystone is running in ' + keystone.get('env') + ' mode');
+  console.log('Keystone is running on host: ' + keystone.get('host')
+    + ' port: ' + keystone.get('host'));
+  // console.log('Cookie Secret is ' + process.env.COOKIE_SECRET);
   console.log(req.headers);
   console.log('Response Headers');
   console.log(res.headers);
