@@ -58,15 +58,20 @@ exports = module.exports = function(req, res) {
           locals.data.links = links;
         }
         return keystone.list('User').model
-          .find({
-            // Make sure we dont return the same fucking profile!
-            // _id: { $ne:  }
-            "location.geo":
-              { $near: { $geometry:
-                  { type: "Point", coordinates: locals.data.profile.location.geo },
-                    $maxDistance: 20 } }
-          // }, "_id")
-          })
+          .find(
+            {
+              $and: [
+                {
+                  // Make sure we dont return the same fucking profile!
+                  // _id: { $ne:  }
+                  "location.geo":
+                    { $near: { $geometry:
+                        { type: "Point", coordinates: locals.data.profile.location.geo },
+                          $maxDistance: 20 } }
+                },
+                {
+                  _id: { $ne: locals.data.profile._id }
+                }]})
           .exec();
 ;      }, function (err) {
         console.log('We got err ' + err);
