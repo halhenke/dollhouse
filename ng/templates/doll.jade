@@ -1,12 +1,12 @@
 //- h1 Here is a Doll
 //- .col-sm-8.col-md-9.jumbotron
-.show-doll
+.show-doll.jumbotron
   .row: .col-offset-8.col-sm-2  
     a(ng-href="{{previousPage}}") 
       button.btn.btn-primary Back to {{ previousPage | backName }}
   .media
-    .media-right
-      img(ng-if="data.doll.image" src="{{data.doll.image.url}}").img.pull-right
+    .media-left
+      img(ng-if="data.doll.image" src="{{data.doll.image.url}}").img
     .media-body
       - {{thisIsMine = (user && data.doll.owner.id === user.id)}}
       .doll(class={"my-doll": thisIsMine})
