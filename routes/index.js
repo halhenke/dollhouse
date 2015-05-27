@@ -28,7 +28,11 @@ var keystone = require('keystone'),
 keystone.pre('routes', middleware.passportUserCheck);
 keystone.pre('routes', middleware.initLocals);
 keystone.pre('render', middleware.flashMessages);
-keystone.pre('render', middleware.logHeaders);
+
+// Log a bunch of stuff if we are in development mode
+if (keystone.get('env') == 'production') {
+  keystone.pre('render', middleware.logHeaders);
+}
 
 // Import Route Controllers
 var routes = {
