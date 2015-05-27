@@ -26,19 +26,19 @@ exports.initLocals = function(req, res, next) {
   var locals = res.locals;
 
   locals.navLinks = [
-    { label: 'Home',		key: 'home',		href: '/' },
-    { label: 'Updates',		key: 'blog',		href: '/blog' },
-    { label: 'Events',		key: 'events',		href: '/events' },
-    { label: 'Gallery',		key: 'gallery',		href: '/gallery' },
-    { label: 'Community', dropdowns: [
-      { label: 'Doll Database',   key: 'dolls',   href: '/community/#/dolls' },
-      { label: 'Our Members',   key: 'users',   href: '/community/#/profiles' },
-      { label: 'Our Links',   key: 'links',   href: '/community/#/links' },
-      { label: 'Our Events',   key: 'calendar',   href: '/community/#/calendar' },
+    { label: 'home',		key: 'home',		href: '/' },
+    { label: 'updates',		key: 'blog',		href: '/blog' },
+    { label: 'events',		key: 'events',		href: '/events' },
+    { label: 'gallery',		key: 'gallery',		href: '/gallery' },
+    { label: 'community', dropdowns: [
+      { label: 'doll database',   key: 'dolls',   href: '/community/#/dolls' },
+      { label: 'our members',   key: 'users',   href: '/community/#/profiles' },
+      { label: 'our links',   key: 'links',   href: '/community/#/links' },
+      { label: 'our events',   key: 'calendar',   href: '/community/#/calendar' },
     ] },
-    { label: 'Forum',		key: 'forum',		href: config.forumRoute },
-    { label: 'About Us',		key: 'about',		href: '/about' },
-    { label: 'Contact',		key: 'contact',		href: '/contact' }
+    { label: 'forum',		key: 'forum',		href: config.forumRoute },
+    // { label: 'about us',		key: 'about',		href: '/about' },
+    { label: 'contact',		key: 'contact',		href: '/contact' }
   ];
 
   locals.user = req.user;
