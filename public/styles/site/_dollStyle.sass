@@ -27,7 +27,8 @@ $my-dolls: rgba(239, 195, 217, 0.57)
 $background-pattern: "http://res.cloudinary.com/doll-social-club/image/upload/v1432427402/damask_pattern_single_tile_etd1nl.jpg"
 
 // MEDIA QUERIES
-$iphone-max-width: "max-device-width: 500px"
+$iphone-max-width: "(max-device-width: 500px)"
+$bootstrap-min-width: "(min-width: 768px)"
 
 // MIXINS
 @mixin login-buttons
@@ -83,6 +84,10 @@ body
     .navbar-nav
       li a
         color: $link-primary-color
+        // @media not screen and #{$iphone-max-width} and (orientation: portrait)
+        // Override bootstrap media query
+        @media #{$bootstrap-min-width}
+          padding: 15px 0.5rem
     button
       margin: 0 0.2rem
       background-color: $nav-button-bg
@@ -91,7 +96,7 @@ body
       font:
         family: AngelicSerif
         size: 1.8rem
-    // @media not screen and ($iphone-max-width) and (orientation: portrait)
+    // @media not screen and #{$iphone-max-width} and (orientation: portrait)
     .login
       button
         @include login-buttons
@@ -104,7 +109,7 @@ body
       box-shadow: none
       // NOTE: Only want the following block to appear
       // for a phone in portrait orientation:
-      @media screen and ($iphone-max-width) and (orientation: portrait)
+      @media screen and #{$iphone-max-width} and (orientation: portrait)
         li
           margin-left: 2rem
           &::before
