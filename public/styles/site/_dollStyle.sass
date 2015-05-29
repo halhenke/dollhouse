@@ -26,6 +26,16 @@ $my-dolls: rgba(239, 195, 217, 0.57)
 // $background-pattern: "/images/site/damask_pattern_single_tile.jpg"
 $background-pattern: "http://res.cloudinary.com/doll-social-club/image/upload/v1432427402/damask_pattern_single_tile_etd1nl.jpg"
 
+// MEDIA QUERIES
+$iphone-max-width: "max-device-width: 500px"
+
+// MIXINS
+@mixin login-buttons
+  background-color: transparent
+  color: white
+  font:
+    size: 3rem
+
 // To force column heights to be the same
 // see http://stackoverflow.com/a/18227564/935470
 .same-height
@@ -53,7 +63,13 @@ body
   .navbar-brand
     padding: 0
     height: 100%
+  .navbar-button-box
+    .row
+      float: right
   .navbar-right
+    // Overide Bootstrap
+    &:last-child
+      margin-right: 0 !important
     .dropdown-menu
       right: inherit
       button
@@ -67,11 +83,15 @@ body
     button
       margin: 0 0.2rem
       background-color: $nav-button-bg
-      width: 8rem
+      width: 9.5rem
       border-radius: 1rem
       font:
         family: AngelicSerif
         size: 1.8rem
+    // @media not screen and ($iphone-max-width) and (orientation: portrait)
+    .login
+      button
+        @include login-buttons
     background-color: transparent
     border:
       style: none
@@ -81,7 +101,7 @@ body
       box-shadow: none
       // NOTE: Only want the following block to appear
       // for a phone in portrait orientation:
-      @media screen and (orientation: portrait)
+      @media screen and ($iphone-max-width) and (orientation: portrait)
         li
           margin-left: 2rem
           &::before
@@ -99,6 +119,13 @@ body
         margin:
           top: 0
           bottom: 0
+    // Override Bootstrap background
+    // NOTE: This seems to generate a lot of styles
+    // - might be more efficient to use !important
+    @each $list-state in active, open
+      .navbar-nav > .#{$list-state} > a
+        &, &:hover, &:focus
+          background-color: transparent
 
 
 //   background-color: $pale-panel-bg
