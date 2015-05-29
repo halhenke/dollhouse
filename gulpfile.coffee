@@ -123,7 +123,8 @@ gulp.task "bower-css", ->
 gulp.task "webpack", ->
   return gulp.src(paths.webpack.entry)
     .pipe(webpack(require(paths.webpack.config)))
-    .pipe gulp.dest("public/js/")
+    # .pipe gulp.dest("public/js/")
+    .pipe gulp.dest("./")
 
 gulp.task "sass", ->
   # _.delay livereload.reload, 3000
