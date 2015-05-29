@@ -6,6 +6,13 @@ ngApp.controller "DollsController", ['$scope', 'lo', '$log', 'Dolls', 'DollFacts
 
     $scope.makers = DollFacts.makers
 
+    # Experiment with popover for filters
+    $scope.dynamicPopover =
+      content: 'Hello, World!'
+      templateUrl: 'directives/detailList.html'
+      title: 'Title'
+
+
     $scope.getAvatar = (url) ->
       if url
         { 'background-image': "url(#{url})" }
@@ -15,7 +22,7 @@ ngApp.controller "DollsController", ['$scope', 'lo', '$log', 'Dolls', 'DollFacts
     Dolls.get().$promise.then (data) ->
       console.log "dollyData is "
       console.dir data
-      data.dolls = lo.chunk(data.dolls, 3)
+      data.dolls = lo.chunk(data.dolls, 4)
       $scope.data = data
     ]
 

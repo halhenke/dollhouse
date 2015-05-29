@@ -86,6 +86,11 @@
       $log.log("DollsController loaded...");
       $scope.log = $log;
       $scope.makers = DollFacts.makers;
+      $scope.dynamicPopover = {
+        content: 'Hello, World!',
+        templateUrl: 'directives/detailList.html',
+        title: 'Title'
+      };
       $scope.getAvatar = function(url) {
         if (url) {
           return {
@@ -100,7 +105,7 @@
       return Dolls.get().$promise.then(function(data) {
         console.log("dollyData is ");
         console.dir(data);
-        data.dolls = lo.chunk(data.dolls, 3);
+        data.dolls = lo.chunk(data.dolls, 4);
         return $scope.data = data;
       });
     }

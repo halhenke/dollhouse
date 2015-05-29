@@ -11,7 +11,8 @@ exports = module.exports = function(req, res) {
   locals.data = {
   };
 
-  res.set('Cache-Control', "public, max-age=3600");
+  // res.set('Cache-Control', "public, max-age=3600");
+  
   // Render the view
   view.render('community');
 };
