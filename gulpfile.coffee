@@ -49,11 +49,15 @@ paths =
     out:
       compiled: "./react/components/js/"
       build: "./public/js/react/"
-  bower: [
-    # "bower/angular/angular.min.js"
-    "bower/angular/angular.js"
-    "bower/angular-route/angular-route.js"
-  ]
+  bower:
+    css: [
+      "./bower/fullcalendar/dist/fullcalendar.min.css"
+    ]
+    js: [
+      # "bower/angular/angular.min.js"
+      "bower/angular/angular.js"
+      "bower/angular-route/angular-route.js"
+    ]
   webpack:
     entry: [
       "./webpack.entry.ng.js"
@@ -102,12 +106,19 @@ gulp.task "ng-jade", ->
     .pipe(ngTemplates("templates.js", standalone: true))
     .pipe(gulp.dest("public/templates"))
 
-gulp.task "bower", ->
-  return gulp.src(paths.bower)
+gulp.task "bower-js", ->
+  return gulp.src(paths.bower.js)
     .pipe(sourcemaps.init())
     .pipe(concat("bower.js"))
     .pipe(sourcemaps.write("/maps"))
     .pipe(gulp.dest("public/js/"))
+
+gulp.task "bower-css", ->
+  return gulp.src(paths.bower.css)
+    .pipe(sourcemaps.init())
+    .pipe(concat("bower.css"))
+    .pipe(sourcemaps.write("/maps"))
+    .pipe(gulp.dest("public/styles/"))
 
 gulp.task "webpack", ->
   return gulp.src(paths.webpack.entry)
@@ -131,10 +142,11 @@ gulp.task "watch", ->
   gulp.watch [paths.webpack.config, paths.webpack.entry, paths.react.in.jade, paths.react.in.cjsx], ['webpack']
   gulp.watch paths.jade, (event) ->
     livereload.reload()
-  gulp.watch paths.bower, ['bower']
+  gulp.watch paths.bower.js, ['bower-js']
+  gulp.watch paths.bower.css, ['bower-css']
 
 # gulp.task "nodemon", ['angular', 'ng-jade', 'react-jade', 'bower', 'webpack', 'watch'], ->
-gulp.task "nodemon", ['angular', 'ng-jade', 'bower', 'webpack', 'jscs-cson', 'watch'], ->
+gulp.task "nodemon", ['angular', 'ng-jade', 'bower-js', 'bower-css', 'webpack', 'jscs-cson', 'watch'], ->
   livereload.listen()
   nodemon(nodemonOpts)
     .on "restart", ->
