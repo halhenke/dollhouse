@@ -14,12 +14,18 @@ coffee = require "gulp-coffee"
 concat = require "gulp-concat"
 jade = require "gulp-jade"
 ngTemplates = require "gulp-angular-templatecache"
-
+del = require "del"
 
 #
 # * Create variables for our project paths so we can change in one place
 #
 paths =
+  # Dont delete
+  # SASS/SCSS stuff in public/site/*.s*ss
+  # - it is source
+  # public/images
+  # public/fonts
+  clean: ["public/**/*.css", "public/**/*.js", "public/**/*.map"]
   src: [
     "./models/**/*.js"
     "./routes/**/*.js"
@@ -63,6 +69,9 @@ nodemonOpts =
   script: "keystone.js"
   ignore: [ "specs/*", "node_modules/**/*", "bower/**/*" ]
   ext: "js coffee sass scss"
+
+gulp.task "clean", (cb) ->
+  del(paths.clean, cb)
 
 # gulp lint
 gulp.task "lint", ->
