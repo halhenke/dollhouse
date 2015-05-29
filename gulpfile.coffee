@@ -14,12 +14,18 @@ coffee = require "gulp-coffee"
 concat = require "gulp-concat"
 jade = require "gulp-jade"
 ngTemplates = require "gulp-angular-templatecache"
-
+del = require "del"
 
 #
 # * Create variables for our project paths so we can change in one place
 #
 paths =
+  # Dont delete
+  # SASS/SCSS stuff in public/site/*.s*ss
+  # - it is source
+  # public/images
+  # public/fonts
+  clean: ["public/**/*.css", "public/**/*.js", "public/**/*.map"]
   src: [
     "./models/**/*.js"
     "./routes/**/*.js"
@@ -43,11 +49,15 @@ paths =
     out:
       compiled: "./react/components/js/"
       build: "./public/js/react/"
-  bower: [
-    # "bower/angular/angular.min.js"
-    "bower/angular/angular.js"
-    "bower/angular-route/angular-route.js"
-  ]
+  bower:
+    css: [
+      "./bower/fullcalendar/dist/fullcalendar.min.css"
+    ]
+    js: [
+      # "bower/angular/angular.min.js"
+      "bower/angular/angular.js"
+      "bower/angular-route/angular-route.js"
+    ]
   webpack:
     entry: [
       "./webpack.entry.ng.js"
@@ -63,6 +73,9 @@ nodemonOpts =
   script: "keystone.js"
   ignore: [ "specs/*", "node_modules/**/*", "bower/**/*" ]
   ext: "js coffee sass scss"
+
+gulp.task "clean", (cb) ->
+  del(paths.clean, cb)
 
 # gulp lint
 gulp.task "lint", ->
@@ -93,17 +106,25 @@ gulp.task "ng-jade", ->
     .pipe(ngTemplates("templates.js", standalone: true))
     .pipe(gulp.dest("public/templates"))
 
-gulp.task "bower", ->
-  return gulp.src(paths.bower)
+gulp.task "bower-js", ->
+  return gulp.src(paths.bower.js)
     .pipe(sourcemaps.init())
     .pipe(concat("bower.js"))
     .pipe(sourcemaps.write("/maps"))
     .pipe(gulp.dest("public/js/"))
 
+gulp.task "bower-css", ->
+  return gulp.src(paths.bower.css)
+    .pipe(sourcemaps.init())
+    .pipe(concat("bower.css"))
+    .pipe(sourcemaps.write("/maps"))
+    .pipe(gulp.dest("public/styles/"))
+
 gulp.task "webpack", ->
   return gulp.src(paths.webpack.entry)
     .pipe(webpack(require(paths.webpack.config)))
-    .pipe gulp.dest("public/js/")
+    # .pipe gulp.dest("public/js/")
+    .pipe gulp.dest("./")
 
 gulp.task "sass", ->
   # _.delay livereload.reload, 3000
@@ -122,10 +143,11 @@ gulp.task "watch", ->
   gulp.watch [paths.webpack.config, paths.webpack.entry, paths.react.in.jade, paths.react.in.cjsx], ['webpack']
   gulp.watch paths.jade, (event) ->
     livereload.reload()
-  gulp.watch paths.bower, ['bower']
+  gulp.watch paths.bower.js, ['bower-js']
+  gulp.watch paths.bower.css, ['bower-css']
 
 # gulp.task "nodemon", ['angular', 'ng-jade', 'react-jade', 'bower', 'webpack', 'watch'], ->
-gulp.task "nodemon", ['angular', 'ng-jade', 'bower', 'webpack', 'jscs-cson', 'watch'], ->
+gulp.task "nodemon", ['angular', 'ng-jade', 'bower-js', 'bower-css', 'webpack', 'jscs-cson', 'watch'], ->
   livereload.listen()
   nodemon(nodemonOpts)
     .on "restart", ->

@@ -4888,9 +4888,15 @@ body a.navbar-brand {
   font-family: "EmilysCandy";
   font-size: 3rem;
   font-weight: bold; }
+  body a.navbar-brand img {
+    width: 200px; }
 body .navbar-brand {
   padding: 0;
   height: 100%; }
+body .navbar-button-box .row {
+  float: right; }
+body .navbar-right:last-child {
+  margin-right: 0 !important; }
 body .navbar-right .dropdown-menu {
   right: inherit; }
   body .navbar-right .dropdown-menu button {
@@ -4902,17 +4908,25 @@ body .navbar.navbar-default {
   border-color: transparent; }
   body .navbar.navbar-default .navbar-nav li a {
     color: #9E5873; }
+    @media (min-width: 768px) {
+      body .navbar.navbar-default .navbar-nav li a {
+        padding: 15px 0.5rem; } }
   body .navbar.navbar-default button {
     margin: 0 0.2rem;
     background-color: #ece2e3;
-    width: 8rem;
+    width: 9.5rem;
     border-radius: 1rem;
     font-family: AngelicSerif;
     font-size: 1.8rem; }
+  body .navbar.navbar-default .login button {
+    background-color: transparent;
+    color: white;
+    font-size: 2.5rem;
+    font-family: Georgia; }
   body .navbar.navbar-default ul.dropdown-menu {
     border-style: none;
     box-shadow: none; }
-    @media screen and (orientation: portrait) {
+    @media screen and (max-device-width: 500px) and (orientation: portrait) {
       body .navbar.navbar-default ul.dropdown-menu li {
         margin-left: 2rem; }
         body .navbar.navbar-default ul.dropdown-menu li::before {
@@ -4927,6 +4941,10 @@ body .navbar.navbar-default {
     body .navbar.navbar-default li.dropdown a button, body .navbar.navbar-default ul.dropdown-menu button {
       margin-top: 0;
       margin-bottom: 0; }
+  body .navbar.navbar-default .navbar-nav > .active > a, body .navbar.navbar-default .navbar-nav > .active > a:hover, body .navbar.navbar-default .navbar-nav > .active > a:focus {
+    background-color: transparent; }
+  body .navbar.navbar-default .navbar-nav > .open > a, body .navbar.navbar-default .navbar-nav > .open > a:hover, body .navbar.navbar-default .navbar-nav > .open > a:focus {
+    background-color: transparent; }
 
 #body > div:nth-child(2) {
   background-color: #f0d8e3;
