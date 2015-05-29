@@ -1,11 +1,47 @@
-.col-sm-8.col-md-9.jumbotron
-  h1 Here are some dolls
-  .dolls.angular
+.col-sm-12.jumbotron
+  .row.doll-filter-row
+    .col-sm-6
+      h1 Here are some dolls
+    .col-sm-6.filter-col
+      //- button.btn.btn-default(popover-template='dynamicPopover.templateUrl', popover-title='{{dynamicPopover.title}}') Popover With Template
+      //- button.btn.btn-default(popover-trigger="mouseenter" popover-template='{{dynamicPopover.content}}', popover-title='{{dynamicPopover.title}}') Popover With Template
+      button.btn.btn-default(popover-trigger="mouseenter" popover-template='myPopoverTemplate.html', popover-title='{{dynamicPopover.title}}') Popover With Template
+      script(type='text/ng-template', id='myPopoverTemplate.html').
+        <div>{{dynamicPopover.content}}</div>
+        <div class="form-group">
+        <label>Popup Title:</label>
+        <input type="text" ng-model="dynamicPopover.title" class="form-control">
+        </div>
+      //- script(type="text/ng-template" id="myPopoverTemplate.html")
+        <div>{{dynamicPopover.content}}</div>
+        <div class="form-group">
+          <label>Popup Title:</label>
+          <input type="text" ng-model="dynamicPopover.title" class="form-control">
+        </div>
+      .input-group
+        .input-group-btn
+          button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-expanded='false')
+            | Action 
+            span.caret
+          ul.dropdown-menu(role='menu')
+            li.list-group-item
+              label.label-doll Name
+              input(ng-model="dollFilter.name")
+            li.list-group-item
+              label.label-doll Owner
+              input(ng-model="dollFilter.owner.name.full")
+            li.list-group-item
+              label.label-doll Maker
+              select(ng-model="dollFilter.maker")
+                option(value="")
+                option(ng-repeat="maker in makers" value ="{{maker}}" ) {{maker}}
+        input.form-control(type='text', aria-label='...')
+  .row.dolls.angular
     //- DOLLS ALREADY CHUNKED
     .row(ng-repeat="doll_threes in data.dolls")
-      .col-sm-4.col-md-4(ng-repeat="doll in doll_threes | filter:dollFilter")
+      .col-sm-3(ng-repeat="doll in doll_threes | filter:dollFilter")
         doll-mixin(doll="doll")
-.col-sm-4.col-md-3.doll-filter-col
+//- .col-sm-4.doll-filter-col
   //- TODO: need a front end test for login..
   if user
     a.btn.btn-primary(href="/dolls/new") Add a doll to the database...
