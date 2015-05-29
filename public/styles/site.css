@@ -4888,6 +4888,8 @@ body a.navbar-brand {
   font-family: "EmilysCandy";
   font-size: 3rem;
   font-weight: bold; }
+  body a.navbar-brand img {
+    width: 200px; }
 body .navbar-brand {
   padding: 0;
   height: 100%; }
@@ -4906,6 +4908,9 @@ body .navbar.navbar-default {
   border-color: transparent; }
   body .navbar.navbar-default .navbar-nav li a {
     color: #9E5873; }
+    @media (min-width: 768px) {
+      body .navbar.navbar-default .navbar-nav li a {
+        padding: 15px 0.5rem; } }
   body .navbar.navbar-default button {
     margin: 0 0.2rem;
     background-color: #ece2e3;
@@ -4921,7 +4926,7 @@ body .navbar.navbar-default {
   body .navbar.navbar-default ul.dropdown-menu {
     border-style: none;
     box-shadow: none; }
-    @media screen and ("max-device-width: 500px") and (orientation: portrait) {
+    @media screen and (max-device-width: 500px) and (orientation: portrait) {
       body .navbar.navbar-default ul.dropdown-menu li {
         margin-left: 2rem; }
         body .navbar.navbar-default ul.dropdown-menu li::before {
