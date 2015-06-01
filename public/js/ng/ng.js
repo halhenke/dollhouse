@@ -19,7 +19,7 @@
       templateUrl: 'dolls.html',
       controller: 'DollsController'
     }).when("/dolls/doll/:dollSlug", {
-      templateUrl: 'doll.html',
+      templateUrl: 'new_doll.html',
       controller: 'DollShowController'
     }).when("/profiles", {
       templateUrl: 'profiles.html',
@@ -112,16 +112,83 @@
   ]);
 
   ngApp.controller("DollShowController", [
-    '$scope', '$routeParams', 'Doll', function($scope, $routeParams, Doll) {
+    '$scope', '$routeParams', '$modal', '$templateCache', 'Doll', function($scope, $routeParams, $modal, $templateCache, Doll) {
       return Doll.get({
         doll: $routeParams.dollSlug
       }).$promise.then(function(data) {
         console.log("dollData is ");
         console.dir(data);
-        return $scope.data = data;
+        $scope.getAvatar = function(url) {
+          if (url) {
+            return {
+              'background-image': "url(" + url + ")"
+            };
+          } else {
+            return {
+              'background-image': "url(http://res.cloudinary.com/keystone-demo/image/upload/v1425761612/qkeekodoglor4wje5hug.jpg)"
+            };
+          }
+        };
+        $scope.items = ['item1', 'item2', 'item3'];
+        $scope.animationsEnabled = true;
+        $scope.open = function(size, doll) {
+          var modalInstance;
+          console.log("dollModal is ");
+          console.dir(data);
+          modalInstance = $modal.open({
+            animation: $scope.animationsEnabled,
+            template: $templateCache.get("widgets/modal.html"),
+            backdrop: true,
+            controller: 'ModalInstanceCtrl',
+            size: size,
+            resolve: {
+              items: function() {
+                return $scope.items;
+              },
+              doll: function() {
+                return doll;
+              }
+            }
+          });
+          modalInstance.result.then((function(selectedItem) {
+            $scope.selected = selectedItem;
+          }), function() {});
+        };
+        $scope.toggleAnimation = function() {
+          $scope.animationsEnabled = !$scope.animationsEnabled;
+        };
+        $scope.data = data;
+        return $scope.details = [
+          {
+            key: "Name",
+            val: data.doll.name
+          }, {
+            key: "Brand",
+            val: data.doll.maker
+          }, {
+            key: "Sculpt",
+            val: data.doll.sculpt
+          }
+        ];
       });
     }
   ]);
+
+  ngApp.controller('ModalInstanceCtrl', function($scope, $modalInstance, items, doll) {
+    $scope.items = items;
+    $scope.doll = doll;
+    $scope.selected = {
+      item: $scope.items[0]
+    };
+    $scope.ok = function() {
+      $modalInstance.close($scope.selected.item);
+    };
+    $scope.cancel = function() {
+      $modalInstance.dismiss('cancel');
+    };
+    console.log("in ModalInstanceCtrl & the scope is ");
+    console.dir($scope);
+  });
 
 }).call(this);
 
@@ -250,6 +317,17 @@
           details: "="
         },
         template: $templateCache.get("directives/detailList.html")
+      };
+    }
+  ]);
+
+  ngApp.directive("badges", [
+    "$templateCache", function($templateCache) {
+      return {
+        scope: {
+          badge: "="
+        },
+        template: $templateCache.get("directives/badges.html")
       };
     }
   ]);
