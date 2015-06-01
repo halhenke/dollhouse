@@ -1,0 +1,18 @@
+//- .modal-header
+//-   h3.modal-title I&apos;m a modal!
+//- 
+.doll-gallery-modal
+  .modal-body
+    //- img(ng-if="{{doll.url}}" src="{{doll.url}}").img
+    img(src="{{doll.url}}").img
+  //- p {{ doll }}
+  //- ul
+  //-   li(ng-repeat='item in items')
+  //-     a(ng-click='selected.item = item') {{ item }}
+  //- |             Selected: 
+  //- b {{ selected.item }}
+|         
+//- .modal-footer
+//-   button.btn.btn-primary(ng-click='ok()') OK
+//-   |             
+//-   button.btn.btn-warning(ng-click='cancel()') Cancel

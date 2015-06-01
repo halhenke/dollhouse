@@ -36,3 +36,11 @@ mixin navLinks(links)
       li(class=(section == link.key ? 'active' : null))
         //- button.btn.btn-doll.navbar-btn: a(href=link.href)= link.label
         a(href=link.href): button.btn.btn-doll.navbar-btn= link.label
+
+mixin detailList(details)
+  dl.detail-list
+    each detail in details
+      dt= detail.key
+      dd= detail.val
+    
+  
