@@ -34,3 +34,9 @@ ngApp.directive "detailList", ["$templateCache", ($templateCache) ->
     details: "="
   template: $templateCache.get("directives/detailList.html")
 ]
+
+ngApp.directive "badges", ["$templateCache", ($templateCache) ->
+  scope:
+    badge: "="
+  template: $templateCache.get("directives/badges.html")
+]

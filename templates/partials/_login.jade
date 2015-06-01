@@ -1,11 +1,11 @@
 ul.nav.navbar-nav.navbar-right
   if user
-    a.dropdown-toggle(href="#" data-toggle="dropdown")
+    a.dropdown-toggle(href="#" data-toggle="dropdown").welcome
       button.btn.btn-doll Welcome #{user.name.first}
     ul.dropdown-menu                
       if user.canAccessKeystone
         li: a(href='/keystone')
-        button.btn.btn-doll.navbar-btn Open Admin
+          button.btn.btn-doll.navbar-btn Open Admin
       li: a(href='/users/logout')
         button.btn.btn-doll.navbar-btn Sign Out
   else

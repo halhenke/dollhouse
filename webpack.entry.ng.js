@@ -8,7 +8,8 @@ module.exports = {
 // Doesnt need to be exported
 // - must come after angular require though
 require("angular-sanitize");
-require("script!./node_modules/angular-ui-bootstrap/ui-bootstrap.js");
+// require("script!./node_modules/angular-ui-bootstrap/ui-bootstrap.js");
+require("script!./node_modules/angular-ui-bootstrap/ui-bootstrap-tpls.js");
 require("script!./bower/moment/min/moment.min.js");
 require("script!./bower/angular-ui-calendar/src/calendar.js");
 require("script!./bower/fullcalendar/dist/fullcalendar.min.js");

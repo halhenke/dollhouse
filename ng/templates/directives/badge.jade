@@ -1,0 +1,6 @@
+.badges.jumbotron(ng-if="badges")
+  h3 badges:
+  .badge-list
+    .badge-box(ng-repeat="badge in badges")
+      a(href="badge.link")
+        img(ng-if="badge.image" src="badge.image.url")

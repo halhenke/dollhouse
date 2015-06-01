@@ -4895,8 +4895,14 @@ body .navbar-brand {
   height: 100%; }
 body .navbar-button-box .row {
   float: right; }
+body .navbar-right button.btn:active {
+  box-shadow: none; }
+body .navbar-right button.btn:focus {
+  outline: none; }
 body .navbar-right:last-child {
   margin-right: 0 !important; }
+body .navbar-right a.welcome button {
+  width: 100%; }
 body .navbar-right .dropdown-menu {
   right: inherit; }
   body .navbar-right .dropdown-menu button {
@@ -4993,7 +4999,8 @@ dt {
 .dolls .doll {
   background-size: cover;
   height: 18rem;
-  padding-top: 8rem; }
+  padding-top: 8rem;
+  box-shadow: 0.5rem 0.5rem 0.3rem 0.2rem grey; }
   .dolls .doll a {
     color: white; }
   .dolls .doll .doll-header {
@@ -5001,20 +5008,59 @@ dt {
   .dolls .doll.my-doll .doll-header {
     background-color: rgba(239, 195, 217, 0.57); }
 
-.show-profile .dolls .row {
-  padding: 0.5rem 0; }
-.show-profile .dolls [class^='col-sm'] {
-  padding: 0 0.5rem; }
-.show-profile .dolls .doll {
-  background-size: cover;
-  height: 18rem;
-  padding-top: 8rem; }
-  .show-profile .dolls .doll a {
-    color: white; }
-  .show-profile .dolls .doll .doll-header {
+.show-doll {
+  background-color: #d7babc;
+  padding: 1rem; }
+  .show-doll .doll-details {
+    padding-bottom: 4rem; }
+    .show-doll .doll-details .doll-heading {
+      font-family: AngelicSerif;
+      color: #9b6d78; }
+      .show-doll .doll-details .doll-heading .doll-name {
+        float: left; }
+      .show-doll .doll-details .doll-heading .join-date {
+        float: right;
+        font-size: 3rem; }
+    .show-doll .doll-details .doll-img {
+      border-radius: 1.3rem;
+      box-shadow: 1rem 1rem 1rem 0.1rem #6b394c; }
+    .show-doll .doll-details .bio {
+      padding: 2rem;
+      margin-bottom: 0;
+      background-color: #ece2e3;
+      color: #9b6d78;
+      background-color: #ece2e3; }
+      .show-doll .doll-details .bio h3 {
+        margin: 0 -1rem 1rem; }
+  .show-doll .gallery .doll-pic {
+    height: 12rem;
+    background-size: cover;
+    box-shadow: 0 0 1rem 0.1rem #474747; }
+
+.doll-gallery-modal {
+  background-color: #d7babc; }
+  .doll-gallery-modal .modal-body {
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+
+.show-profile {
+  color: #9b6d78; }
+  .show-profile .dolls .row {
+    padding: 0.5rem 0; }
+  .show-profile .dolls [class^='col-sm'] {
     padding: 0 0.5rem; }
-  .show-profile .dolls .doll.my-doll .doll-header {
-    background-color: rgba(239, 195, 217, 0.57); }
+  .show-profile .dolls .doll {
+    background-size: cover;
+    height: 18rem;
+    padding-top: 8rem;
+    box-shadow: 0.5rem 0.5rem 0.3rem 0.2rem grey; }
+    .show-profile .dolls .doll a {
+      color: white; }
+    .show-profile .dolls .doll .doll-header {
+      padding: 0 0.5rem; }
+    .show-profile .dolls .doll.my-doll .doll-header {
+      background-color: rgba(239, 195, 217, 0.57); }
 
 .doll-filter-col li label.label-doll {
   margin-right: 1rem; }
@@ -5046,3 +5092,15 @@ form.newDoll label {
     max-width: 100%; }
   .show-profile .profile p.description, .show-profile .profile p.biography {
     margin: 4rem 4rem; }
+
+.show-calendar .calendar-row {
+  padding-top: 2rem; }
+
+.ngList {
+  background-color: #d7babc; }
+  .ngList .detail-key {
+    color: #9E5873;
+    font-size: 3rem; }
+  .ngList .detail-val {
+    color: #F2F2F2;
+    font-size: 3rem; }

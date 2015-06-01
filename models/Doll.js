@@ -8,6 +8,7 @@ var keystone = require('keystone'),
  */
 
 var Doll = new keystone.List('Doll', {
+  track: true,
   autokey: { path: 'slug', from: 'name owner', unique: true }
 });
 
@@ -21,6 +22,7 @@ Doll.add({
     description: { type: Types.Html, wysiwyg: true, height: 150 },
     biography: { type: Types.Html, wysiwyg: true, height: 400 }
   },
+  gallery: { type: Types.CloudinaryImages }
 });
 
 Doll.defaultColumns = 'name, owner|20%, maker|20%';
