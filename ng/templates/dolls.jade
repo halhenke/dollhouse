@@ -5,37 +5,56 @@
     .col-sm-6.filter-col
       //- button.btn.btn-default(popover-template='dynamicPopover.templateUrl', popover-title='{{dynamicPopover.title}}') Popover With Template
       //- button.btn.btn-default(popover-trigger="mouseenter" popover-template='{{dynamicPopover.content}}', popover-title='{{dynamicPopover.title}}') Popover With Template
-      button.btn.btn-default(popover-trigger="mouseenter" popover-template='myPopoverTemplate.html', popover-title='{{dynamicPopover.title}}') Popover With Template
-      script(type='text/ng-template', id='myPopoverTemplate.html').
-        <div>{{dynamicPopover.content}}</div>
-        <div class="form-group">
-        <label>Popup Title:</label>
-        <input type="text" ng-model="dynamicPopover.title" class="form-control">
-        </div>
-      //- script(type="text/ng-template" id="myPopoverTemplate.html")
-        <div>{{dynamicPopover.content}}</div>
-        <div class="form-group">
-          <label>Popup Title:</label>
-          <input type="text" ng-model="dynamicPopover.title" class="form-control">
-        </div>
-      .input-group
-        .input-group-btn
-          button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-expanded='false')
-            | Action 
+      .row
+        button.btn.btn-weird(popover-template="dynamicPopover.templateUrl", popover-title='{{dynamicPopover.title}}') Popover With Template
+
+      .row
+        button.btn.btn-default(popover-template="widgets/filter_popup.html", popover-trigger='mouseenter') Mouseenter
+      .row
+        button.btn.btn-default(popover='I appeared on mouse enter!', popover-trigger='mouseenter') Mouseenter
+      .row
+        button.btn.btn-default(popover-trigger="mouseenter" popover-template='myPopoverTemplate.html', popover-title='{{dynamicPopover.title}}') Popover With Template
+      .row
+        .btn-group(dropdown='' auto-close="outsideClick")
+          button.btn.btn-primary.dropdown-toggle(type='button', dropdown-toggle='', ng-disabled='disabled')
+            | Button dropdown 
             span.caret
+          |       
           ul.dropdown-menu(role='menu')
-            li.list-group-item
+            li
+              a(href='#/dolls') Action
+            |         
+            li
+              a(href='#/dolls') Another action
+            |         
+            li
+              a(href='#/dolls') Something else here
+            |         
+            li.divider
+            |         
+            li
               label.label-doll Name
               input(ng-model="dollFilter.name")
-            li.list-group-item
-              label.label-doll Owner
-              input(ng-model="dollFilter.owner.name.full")
-            li.list-group-item
-              label.label-doll Maker
-              select(ng-model="dollFilter.maker")
-                option(value="")
-                option(ng-repeat="maker in makers" value ="{{maker}}" ) {{maker}}
-        input.form-control(type='text', aria-label='...')
+      .row
+        .input-group
+          .input-group-btn.dropdown(dropdown='' auto-close="outsideClick")
+            //- button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown' aria-expanded='false')
+            button.btn.btn-default.dropdown-toggle(type='button', dropdown-toggle='' aria-expanded='false')
+              | Filter Dolls... 
+              span.caret
+            ul.dropdown-menu(role='menu')
+              li.list-group-item
+                label.label-doll Name
+                input(ng-model="dollFilter.name")
+              li.list-group-item
+                label.label-doll Owner
+                input(ng-model="dollFilter.owner.name.full")
+              li.list-group-item
+                label.label-doll Maker
+                select(ng-model="dollFilter.maker")
+                  option(value="")
+                  option(ng-repeat="maker in makers" value ="{{maker}}" ) {{maker}}
+            //- input.form-control(type='text', aria-label='...')
   .row.dolls.angular
     //- DOLLS ALREADY CHUNKED
     .row(ng-repeat="doll_threes in data.dolls")
