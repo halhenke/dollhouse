@@ -21,7 +21,7 @@ ngApp.config ($routeProvider) ->
         templateUrl: 'dolls.html'
         controller: 'DollsController'
       .when "/dolls/doll/:dollSlug",
-        templateUrl: 'new_doll.html'
+        templateUrl: 'doll.html'
         controller: 'DollShowController'
       .when "/profiles",
         templateUrl: 'profiles.html'
