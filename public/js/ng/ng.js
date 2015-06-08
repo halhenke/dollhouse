@@ -233,11 +233,41 @@
 
   ngApp.controller("ProfilesController", [
     '$scope', '$log', 'Profiles', function($scope, $log, Profiles) {
+      var profileDetails;
       $log.log("ProfileController loaded...");
       $scope.log = $log;
+      profileDetails = function(profile) {
+        var ref;
+        profile.details = [];
+        if (profile.name != null) {
+          console.log("Name is found: " + profile.name.first);
+          profile.details.push({
+            key: "name",
+            val: profile.name.first
+          });
+        }
+        if ((ref = profile.location) != null ? ref.suburb : void 0) {
+          console.log("Location is found: " + profile.location);
+          profile.details.push({
+            key: "location",
+            val: profile.location.suburb
+          });
+        }
+        if (profile.groups != null) {
+          return profile.details.push({
+            key: "Groups",
+            val: profile.groups
+          });
+        }
+      };
       return Profiles.get().$promise.then(function(data) {
+        var i, len, profile, ref;
         console.log("profileData is ");
-        data.profiles = lo.chunk(data.profiles, 3);
+        ref = data.profiles;
+        for (i = 0, len = ref.length; i < len; i++) {
+          profile = ref[i];
+          profileDetails(profile);
+        }
         console.dir(data);
         return $scope.data = data;
       });
@@ -292,7 +322,8 @@
     "$templateCache", function($templateCache) {
       return {
         scope: {
-          profile: "="
+          profile: "=",
+          data: "="
         },
         template: $templateCache.get("directives/profileMixin.html")
       };

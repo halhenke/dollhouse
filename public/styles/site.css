@@ -5739,6 +5739,49 @@ dt {
     justify-content: center;
     align-items: center; }
 
+.profiles.purple-jumbotron {
+  background-color: #d7babc;
+  padding: 1rem;
+  padding: 2rem; }
+  .profiles.purple-jumbotron .angular .row.jumbotron {
+    padding: 2rem;
+    margin-bottom: 0;
+    background-color: #ece2e3;
+    color: #9b6d78;
+    background-color: #ece2e3;
+    height: 20rem;
+    overflow: hidden;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 2rem;
+    padding: 2rem; }
+    .profiles.purple-jumbotron .angular .row.jumbotron h3 {
+      margin: 0 -1rem 1rem; }
+    .profiles.purple-jumbotron .angular .row.jumbotron .right {
+      padding: 0 3rem; }
+      .profiles.purple-jumbotron .angular .row.jumbotron .right .profile-heading .join-date {
+        color: #cc8e9d; }
+
+profile-mixin .profile .profile-heading {
+  font-family: AngelicSerif;
+  color: #9b6d78; }
+  profile-mixin .profile .profile-heading .profile-name {
+    float: left; }
+  profile-mixin .profile .profile-heading .join-date {
+    float: right;
+    font-size: 3rem; }
+
+profile-mixin .profile .profile-img {
+  border-radius: 1.3rem;
+  box-shadow: 1rem 1rem 1rem 0.1rem #6b394c;
+  max-width: 100%;
+  max-height: 16rem; }
+
+profile-mixin .profile .right .ngList {
+  background-color: transparent; }
+  profile-mixin .profile .right .ngList, profile-mixin .profile .right .ngList .detail-val {
+    color: #9E5873; }
+
 .show-profile {
   color: #9b6d78; }
   .show-profile .dolls .row {
@@ -5793,7 +5836,8 @@ form.newDoll label {
   padding-top: 2rem; }
 
 .ngList {
-  background-color: #d7babc; }
+  background-color: #d7babc;
+  box-shadow: none; }
   .ngList .detail-key {
     color: #9E5873;
     font-size: 3rem; }
