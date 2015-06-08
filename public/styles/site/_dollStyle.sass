@@ -265,33 +265,34 @@ dt
 @include doll-grid-style
 
 // DOLL - SHOW DOLL
-.show-doll
-  background-color: $doll-jumbotron-bg
-  padding: 1rem
-  .doll-details
-    padding-bottom: 4rem
-    .doll-heading
-      font-family: AngelicSerif
-      color: $font-purple
-      .doll-name
-        float: left
-      .join-date
-        float: right
-        font:
-          size: 3rem
-    .doll-img
-      border-radius: 1.3rem
-      box-shadow: 1rem 1rem 1rem 0.1rem $doll-img-shadow
-      width: 100%
-    .bio
-      @include badge
-      background-color: $doll-bio-bg
-  .gallery
-    .doll-pic
-      height: 16rem
-      background-size: cover
-      box-shadow: 0 0 1rem 0.1rem $doll-img-shadow
-      border-radius: 1.3rem
+@each $resource in doll, profile
+  .show-#{$resource}
+    background-color: $doll-jumbotron-bg
+    padding: 1rem
+    .#{$resource}-details
+      padding-bottom: 4rem
+      .#{$resource}-heading
+        font-family: AngelicSerif
+        color: $font-purple
+        .#{$resource}-name
+          float: left
+        .join-date
+          float: right
+          font:
+            size: 3rem
+      .#{$resource}-img
+        border-radius: 1.3rem
+        box-shadow: 1rem 1rem 1rem 0.1rem $doll-img-shadow
+        width: 100%
+      .bio
+        @include badge
+        background-color: $doll-bio-bg
+    .gallery
+      .#{$resource}-pic
+        height: 16rem
+        background-size: cover
+        box-shadow: 0 0 1rem 0.1rem $doll-img-shadow
+        border-radius: 1.3rem
 // MODAL POPUP
 .doll-gallery-modal
   background-color: $doll-jumbotron-bg

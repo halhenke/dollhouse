@@ -1,42 +1,95 @@
-//- h1 {{data.profile.userName}}
 .show-profile.jumbotron
-  .row: .col-offset-8.col-sm-2  
+  //- TODO: Extract this
+  .row: .col-sm-offset-11.col-sm-1
     a(ng-href="{{previousPage}}") 
       button.btn.btn-primary Back to {{ previousPage | backName }}
-  .row    
-    .col-sm-8.col-md-9
-      - {{thisIsMine = user && (data.profile.id === user.id)}}
-      .profile(class={"my-profile": thisIsMine}) 
-        //- (data-ks-editable=editable(user, { list: 'profile', id: profile.id }))
-        .profile-header
-          h2: a(ng-href="/profiles/profile/{{data.profile.slug}}") {{thisIsMine ? "Me" : data.profile.profile.userName}}
-          //- p.lead.text-muted Owned by
-        .profile-body
-          //- img(ng-if="profile.avatar" src=profile._.avatar.fit(100,100)).img.pull-right 
-          img(ng-if="data.profile.profile.avatar" src="{{data.profile.profile.avatar.url}}").img.pull-right 
-          //- img(ng-if="data.profile.avatar" width="100px" height="100px" src="{{data.profile.avatar.url}}").img.pull-right 
-          .read-more(ng-if="data.profile.profile.about.brief" ng-bind-html="data.profile.profile.about.brief")
-          .read-more(ng-if="data.profile.profile.about.extended" ng-bind-html="data.profile.profile.about.extended")
-    .col-sm-4.col-md-3
-      .row(ng-if="data.neighbours.length"): .col-sm-12
-        h2 Here are some doll members in your area
-      .row(ng-repeat="neighbour in data.neighbours"): .col-sm-12
-        profile-mixin(profile="neighbour")        
-  .row(ng-if="data.dolls"): .col-sm-2
-    h2 My Dolls Rule
-  .dolls
-    .row(ng-repeat="doll_threes in data.dolls")
-      .col-sm-4.col-md-4(ng-repeat="doll in doll_threes")
-        doll-mixin(doll="doll")
-        //- .media
-        //-   .thumbnail
-        //-     a(ng-href="#/dolls/doll/{{doll.slug}}")
-        //-       .media-left
-        //-         img.media-object(src="{{doll.image.url}}")
-        //-       .media-body
-        //-         h4.media-heading {{doll.name}}
-  .row(ng-if="data.links"): .col-sm-4
-    h2 My Community Links 
-  .links
-    .row(ng-repeat="link in data.links")
-      link-mixin(link="link" user="user")
+  .row
+    .row
+    .row.profile-details
+      .row.profile-heading  
+        .profile-name
+          h2 {{ data.profile.profile.userName }}
+        .join-date
+          {{ data.profile.createdAt | date : format : "fullDate" }}
+      .row
+        .col-sm-4
+          img(ng-if="data.profile.profile.avatar" src="{{data.profile.profile.avatar.url}}").profile-img
+        .col-sm-8
+          detail-list(details="details")
+          //- - {{thisIsMine = (user && data.profile.owner.id === user.id)}}
+          .bio.jumbotron(ng-if="data.profile.profile.about && data.profile.profile.about.brief")
+            h3 about me:
+            p(ng-bind-html="data.profile.profile.about.brief")
+          .profile(class={"my-profile": thisIsMine})
+            //- Think this editable function is only server side
+            //- (data-ks-editable=editable(user, { list: 'Doll', id: data.profile.id }))
+          badge(badges="[]")
+        
+    .row.extended-bio
+    .row.associated-stuff
+      .row.dolls
+        .row(ng-repeat="doll_threes in data.dolls")
+          .col-sm-3.col-md-4(ng-repeat="doll in doll_threes")
+            doll-mixin(doll="doll")
+      .row.links
+    .row.gallery
+      .row
+        .col-sm-2(ng-repeat="profile in data.profile.gallery")
+          .profile-pic(ng-click="open('lg', profile)" ng-style="getAvatar(profile.url)")          
+            //- img(ng-if="data.profile.image" src="{{profile.image.url}}").img
+      //- .row(ng-repeat="profile_threes in data.profile.gallery")
+        .col-sm-3(ng-repeat="profile in profile_threes")
+          //- a(ng-href="")
+          button(ng-click="open('lg', profile)")
+            //- img(ng-if="data.profile.image" src="{{doll.image.url}}").img
+
+
+
+
+
+
+
+//- OLD PROFILE
+
+//- //- h1 {{data.profile.userName}}
+//- .show-profile.jumbotron
+//-   .row: .col-offset-8.col-sm-2  
+//-     a(ng-href="{{previousPage}}") 
+//-       button.btn.btn-primary Back to {{ previousPage | backName }}
+//-   .row    
+//-     .col-sm-8.col-md-9
+//-       - {{thisIsMine = user && (data.profile.id === user.id)}}
+//-       .profile(class={"my-profile": thisIsMine}) 
+//-         //- (data-ks-editable=editable(user, { list: 'profile', id: profile.id }))
+//-         .profile-header
+//-           h2: a(ng-href="/profiles/profile/{{data.profile.slug}}") {{thisIsMine ? "Me" : data.profile.profile.userName}}
+//-           //- p.lead.text-muted Owned by
+//-         .profile-body
+//-           //- img(ng-if="profile.avatar" src=profile._.avatar.fit(100,100)).img.pull-right 
+//-           img(ng-if="data.profile.profile.avatar" src="{{data.profile.profile.avatar.url}}").img.pull-right 
+//-           //- img(ng-if="data.profile.avatar" width="100px" height="100px" src="{{data.profile.avatar.url}}").img.pull-right 
+//-           .read-more(ng-if="data.profile.profile.about.brief" ng-bind-html="data.profile.profile.about.brief")
+//-           .read-more(ng-if="data.profile.profile.about.extended" ng-bind-html="data.profile.profile.about.extended")
+//-     .col-sm-4.col-md-3
+//-       .row(ng-if="data.neighbours.length"): .col-sm-12
+//-         h2 Here are some doll members in your area
+//-       .row(ng-repeat="neighbour in data.neighbours"): .col-sm-12
+//-         profile-mixin(profile="neighbour")        
+//-   .row(ng-if="data.dolls"): .col-sm-2
+//-     h2 My Dolls Rule
+//-   .dolls
+//-     .row(ng-repeat="doll_threes in data.dolls")
+//-       .col-sm-4.col-md-4(ng-repeat="doll in doll_threes")
+//-         doll-mixin(doll="doll")
+//-         //- .media
+//-         //-   .thumbnail
+//-         //-     a(ng-href="#/dolls/doll/{{doll.slug}}")
+//-         //-       .media-left
+//-         //-         img.media-object(src="{{doll.image.url}}")
+//-         //-       .media-body
+//-         //-         h4.media-heading {{doll.name}}
+//-   .row(ng-if="data.links"): .col-sm-4
+//-     h2 My Community Links 
+//-   .links
+//-     .row(ng-repeat="link in data.links")
+//-       link-mixin(link="link" user="user")
