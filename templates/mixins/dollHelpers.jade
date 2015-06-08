@@ -31,7 +31,7 @@ mixin navLinks(links)
         ul.dropdown-menu
           each sublink in link.dropdowns
             li(class=(section == sublink.key ? 'active' : null))
-              button.btn.btn-doll.navbar-btn: a(href=sublink.href)= sublink.label
+              button.btn.btn-drop.navbar-btn: a(href=sublink.href)= sublink.label
     else
       li(class=(section == link.key ? 'active' : null))
         //- button.btn.btn-doll.navbar-btn: a(href=link.href)= link.label

@@ -1,0 +1,13 @@
+.input-group
+  ul
+    li.list-group-item
+      label.label-doll Name
+      input(ng-model="dollFilter.name")
+    li.list-group-item
+      label.label-doll Owner
+      input(ng-model="dollFilter.owner.name.full")
+    li.list-group-item
+      label.label-doll Maker
+      select(ng-model="dollFilter.maker")
+        option(value="")
+        option(ng-repeat="maker in makers" value ="{{maker}}" ) {{maker}}

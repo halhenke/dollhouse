@@ -50,6 +50,12 @@ $bootstrap-min-width: "(min-width: 768px)"
   justify-content: center
   align-items: center
 
+@mixin button-margin
+  button
+    margin:
+      top: 0
+      bottom: 0
+
 
 // To force column heights to be the same
 // see http://stackoverflow.com/a/18227564/935470
@@ -98,10 +104,7 @@ body
         width: 100%
     .dropdown-menu
       right: inherit
-      button
-        margin:
-          top: 0
-          bottom: 0
+      @include button-margin
   .navbar.navbar-default
     .navbar-nav
       li a
@@ -118,6 +121,12 @@ body
       font:
         family: AngelicSerif
         size: 1.8rem
+      &.btn-drop
+        width: 12rem
+        background-color: transparent
+        // background-color: rgba(242, 242, 242, 0.55)
+        a
+          color: white
     // @media not screen and #{$iphone-max-width} and (orientation: portrait)
     .login
       button
@@ -129,8 +138,11 @@ body
     ul.dropdown-menu
       border-style: none
       box-shadow: none
+      border-radius: 1.3rem
+      background-color: rgba(102, 54, 54, 0.75)
       // NOTE: Only want the following block to appear
       // for a phone in portrait orientation:
+      @include button-margin
       @media screen and #{$iphone-max-width} and (orientation: portrait)
         li
           margin-left: 2rem
@@ -142,13 +154,10 @@ body
     // .navbar-default li.dropdown a.dropdown-toggle:hover
     li.dropdown a.dropdown-toggle:hover
       background-color: transparent
-    li.dropdown a, ul.dropdown-menu
+    li.dropdown a
       background-color: transparent
       // padding: 0
-      button
-        margin:
-          top: 0
-          bottom: 0
+      @include button-margin
     // Override Bootstrap background
     // NOTE: This seems to generate a lot of styles
     // - might be more efficient to use !important
@@ -227,6 +236,7 @@ img.cover-girl
   height: 18rem
   padding-top: 8rem
   box-shadow: 0.5rem 0.5rem 0.3rem 0.2rem grey
+  border-radius: 1.3rem
   // padding: 8rem 0.5rem 0.5rem 0
   a
     color: white
@@ -259,42 +269,120 @@ dt
   &:after
     content: ": "
 
+// ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 // DOLLS
 // COLLECTION
 @include doll-grid-style
 
-// DOLL - SHOW DOLL
-.show-doll
+@mixin purple-jumbotron
   background-color: $doll-jumbotron-bg
   padding: 1rem
-  .doll-details
-    padding-bottom: 4rem
-    .doll-heading
-      font-family: AngelicSerif
-      color: $font-purple
-      .doll-name
-        float: left
-      .join-date
-        float: right
-        font:
-          size: 3rem
-    .doll-img
-      border-radius: 1.3rem
-      box-shadow: 1rem 1rem 1rem 0.1rem $doll-img-shadow
-      width: 100%
-    .bio
-      @include badge
-      background-color: $doll-bio-bg
-  .gallery
-    .doll-pic
-      height: 12rem
-      background-size: cover
-      box-shadow: 0 0 1rem 0.1rem $dark-grey-shadow
+
+@mixin resource-heading($resource)
+  .#{$resource}-heading
+    font-family: AngelicSerif
+    color: $font-purple
+    .#{$resource}-name
+      float: left
+    .join-date
+      float: right
+      font:
+        size: 3rem
+@mixin resource-image($resource)
+  .#{$resource}-img
+    border-radius: 1.3rem
+    box-shadow: 1rem 1rem 1rem 0.1rem $doll-img-shadow
+    width: 100%
+
+@mixin profile-image
+  border-radius: 1.3rem
+  box-shadow: 1rem 1rem 1rem 0.1rem $doll-img-shadow
+  max-width: 100%
+  max-height: 16rem
+
+
+
+// DOLL - SHOW DOLL
+@each $resource in doll, profile
+  .show-#{$resource}
+    @include purple-jumbotron
+    .#{$resource}-details
+      padding-bottom: 4rem
+      @include resource-heading($resource)
+      @include resource-image($resource)
+      // .#{$resource}-heading
+      //   font-family: AngelicSerif
+      //   color: $font-purple
+      //   .#{$resource}-name
+      //     float: left
+      //   .join-date
+      //     float: right
+      //     font:
+      //       size: 3rem
+
+      // .#{$resource}-img
+      //   border-radius: 1.3rem
+      //   box-shadow: 1rem 1rem 1rem 0.1rem $doll-img-shadow
+      //   width: 100%
+      .bio
+        @include badge
+        background-color: $doll-bio-bg
+    .gallery
+      .#{$resource}-pic
+        height: 16rem
+        background-size: cover
+        box-shadow: 0 0 1rem 0.1rem $doll-img-shadow
+        border-radius: 1.3rem
+
 // MODAL POPUP
 .doll-gallery-modal
   background-color: $doll-jumbotron-bg
   .modal-body
     @include flex-center
+
+// ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+
+// PROFILES
+.profiles.purple-jumbotron
+  @include purple-jumbotron
+  padding: 2rem
+  .angular
+    .row.jumbotron
+      @include badge
+      background-color: $doll-bio-bg
+      height: 20rem
+      overflow: hidden
+      margin:
+        left: 0
+        right: 0
+        top: 2rem
+      padding: 2rem
+      .right
+        padding: 0 3rem
+        .profile-heading
+          .join-date
+            color: rgb(204, 142, 157)
+
+// PROFILE MIXIN
+profile-mixin
+  .profile
+    @include resource-heading(profile)
+    .profile-img
+      @include profile-image
+    .left
+    .right
+      .ngList
+        background-color: transparent
+        &, .detail-val
+          color: $link-primary-color
+        // .detail-key
+        //   color: $link-primary-color
+        //   font:
+        //     size: 3rem
+        // .detail-val
+        //   color: $heading-color
+        //   font:
+        //     size: 3rem
 
 
 // PROFILE
@@ -312,6 +400,7 @@ dt
         // background-color: $filter-label-bg
         margin-right: 1rem
 
+// ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 // NEW DOLL FORM
 form.newDoll
   label
@@ -335,14 +424,17 @@ form.newDoll
       p.description, p.biography
         margin: 4rem  4rem
 
+// ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 // CALENDAR
 .show-calendar
   .calendar-row
     padding-top: 2rem
 
+// ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 // NG STUFF
 .ngList
   background-color: $doll-jumbotron-bg
+  box-shadow: none
   .detail-key
     color: $link-primary-color
     font:
@@ -351,3 +443,4 @@ form.newDoll
     color: $heading-color
     font:
       size: 3rem
+// ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----

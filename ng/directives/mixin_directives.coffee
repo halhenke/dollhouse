@@ -19,6 +19,7 @@ ngApp.directive "dollMixin", ["$templateCache", ($templateCache) ->
 ngApp.directive "profileMixin", ["$templateCache", ($templateCache) ->
   scope:
     profile: "="
+    data: "="
   template: $templateCache.get("directives/profileMixin.html")
   # templateURL: "directives/dollMixin.html"
 ]
