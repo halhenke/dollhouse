@@ -29,7 +29,7 @@
     .row.associated-stuff
       .row.dolls
         .row(ng-repeat="doll_threes in data.dolls")
-          .col-sm-3.col-md-4(ng-repeat="doll in doll_threes")
+          .col-sm-3(ng-repeat="doll in doll_threes")
             doll-mixin(doll="doll")
       .row.links
     .row.gallery

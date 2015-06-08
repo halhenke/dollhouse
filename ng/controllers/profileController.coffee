@@ -30,6 +30,6 @@ ngApp.controller "ProfileShowController", ['$scope', "lo", '$routeParams', 'Prof
       console.log "profileData is "
       console.dir data
       if data.dolls
-        data.dolls = lo.chunk(data.dolls, 3)
+        data.dolls = lo.chunk(data.dolls, 4)
       $scope.data = data
     ]
