@@ -50,6 +50,12 @@ $bootstrap-min-width: "(min-width: 768px)"
   justify-content: center
   align-items: center
 
+@mixin button-margin
+  button
+    margin:
+      top: 0
+      bottom: 0
+
 
 // To force column heights to be the same
 // see http://stackoverflow.com/a/18227564/935470
@@ -98,10 +104,7 @@ body
         width: 100%
     .dropdown-menu
       right: inherit
-      button
-        margin:
-          top: 0
-          bottom: 0
+      @include button-margin
   .navbar.navbar-default
     .navbar-nav
       li a
@@ -118,6 +121,12 @@ body
       font:
         family: AngelicSerif
         size: 1.8rem
+      &.btn-drop
+        width: 12rem
+        background-color: transparent
+        // background-color: rgba(242, 242, 242, 0.55)
+        a
+          color: white
     // @media not screen and #{$iphone-max-width} and (orientation: portrait)
     .login
       button
@@ -129,8 +138,11 @@ body
     ul.dropdown-menu
       border-style: none
       box-shadow: none
+      border-radius: 1.3rem
+      background-color: rgba(102, 54, 54, 0.75)
       // NOTE: Only want the following block to appear
       // for a phone in portrait orientation:
+      @include button-margin
       @media screen and #{$iphone-max-width} and (orientation: portrait)
         li
           margin-left: 2rem
@@ -142,13 +154,10 @@ body
     // .navbar-default li.dropdown a.dropdown-toggle:hover
     li.dropdown a.dropdown-toggle:hover
       background-color: transparent
-    li.dropdown a, ul.dropdown-menu
+    li.dropdown a
       background-color: transparent
       // padding: 0
-      button
-        margin:
-          top: 0
-          bottom: 0
+      @include button-margin
     // Override Bootstrap background
     // NOTE: This seems to generate a lot of styles
     // - might be more efficient to use !important
