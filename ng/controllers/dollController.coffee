@@ -9,7 +9,7 @@ ngApp.controller "DollsController", ['$scope', 'lo', '$log', 'Dolls', 'DollFacts
     # Experiment with popover for filters
     $scope.dynamicPopover =
       content: 'Hello, World!'
-      templateUrl: 'directives/detailList.html'
+      templateUrl: 'widgets/filter_popup.html'
       title: 'Title'
 
 
