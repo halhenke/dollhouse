@@ -1,0 +1,5 @@
+.row.profile-heading  
+  .profile-name
+    h2 {{ data.profile.profile.userName }}
+  .join-date.
+    Member since {{ data.profile.createdAt | date : format : "fullDate" }}

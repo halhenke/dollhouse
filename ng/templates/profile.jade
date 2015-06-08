@@ -6,11 +6,7 @@
   .row
     .row
     .row.profile-details
-      .row.profile-heading  
-        .profile-name
-          h2 {{ data.profile.profile.userName }}
-        .join-date.
-          Member since {{ data.profile.createdAt | date : format : "fullDate" }}
+      include ../partials/_profile_header
       .row
         .col-sm-4
           img(ng-if="data.profile.profile.avatar" src="{{data.profile.profile.avatar.url}}").profile-img
