@@ -19,7 +19,7 @@
       templateUrl: 'dolls.html',
       controller: 'DollsController'
     }).when("/dolls/doll/:dollSlug", {
-      templateUrl: 'new_doll.html',
+      templateUrl: 'doll.html',
       controller: 'DollShowController'
     }).when("/profiles", {
       templateUrl: 'profiles.html',
@@ -88,7 +88,7 @@
       $scope.makers = DollFacts.makers;
       $scope.dynamicPopover = {
         content: 'Hello, World!',
-        templateUrl: 'directives/detailList.html',
+        templateUrl: 'widgets/filter_popup.html',
         title: 'Title'
       };
       $scope.getAvatar = function(url) {
@@ -265,7 +265,7 @@
         console.log("profileData is ");
         console.dir(data);
         if (data.dolls) {
-          data.dolls = lo.chunk(data.dolls, 3);
+          data.dolls = lo.chunk(data.dolls, 4);
         }
         return $scope.data = data;
       });
