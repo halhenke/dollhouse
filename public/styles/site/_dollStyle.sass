@@ -269,30 +269,61 @@ dt
   &:after
     content: ": "
 
+// ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 // DOLLS
 // COLLECTION
 @include doll-grid-style
 
+@mixin purple-jumbotron
+  background-color: $doll-jumbotron-bg
+  padding: 1rem
+
+@mixin resource-heading($resource)
+  .#{$resource}-heading
+    font-family: AngelicSerif
+    color: $font-purple
+    .#{$resource}-name
+      float: left
+    .join-date
+      float: right
+      font:
+        size: 3rem
+@mixin resource-image($resource)
+  .#{$resource}-img
+    border-radius: 1.3rem
+    box-shadow: 1rem 1rem 1rem 0.1rem $doll-img-shadow
+    width: 100%
+
+@mixin profile-image
+  border-radius: 1.3rem
+  box-shadow: 1rem 1rem 1rem 0.1rem $doll-img-shadow
+  max-width: 100%
+  max-height: 16rem
+
+
+
 // DOLL - SHOW DOLL
 @each $resource in doll, profile
   .show-#{$resource}
-    background-color: $doll-jumbotron-bg
-    padding: 1rem
+    @include purple-jumbotron
     .#{$resource}-details
       padding-bottom: 4rem
-      .#{$resource}-heading
-        font-family: AngelicSerif
-        color: $font-purple
-        .#{$resource}-name
-          float: left
-        .join-date
-          float: right
-          font:
-            size: 3rem
-      .#{$resource}-img
-        border-radius: 1.3rem
-        box-shadow: 1rem 1rem 1rem 0.1rem $doll-img-shadow
-        width: 100%
+      @include resource-heading($resource)
+      @include resource-image($resource)
+      // .#{$resource}-heading
+      //   font-family: AngelicSerif
+      //   color: $font-purple
+      //   .#{$resource}-name
+      //     float: left
+      //   .join-date
+      //     float: right
+      //     font:
+      //       size: 3rem
+
+      // .#{$resource}-img
+      //   border-radius: 1.3rem
+      //   box-shadow: 1rem 1rem 1rem 0.1rem $doll-img-shadow
+      //   width: 100%
       .bio
         @include badge
         background-color: $doll-bio-bg
@@ -302,11 +333,56 @@ dt
         background-size: cover
         box-shadow: 0 0 1rem 0.1rem $doll-img-shadow
         border-radius: 1.3rem
+
 // MODAL POPUP
 .doll-gallery-modal
   background-color: $doll-jumbotron-bg
   .modal-body
     @include flex-center
+
+// ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+
+// PROFILES
+.profiles.purple-jumbotron
+  @include purple-jumbotron
+  padding: 2rem
+  .angular
+    .row.jumbotron
+      @include badge
+      background-color: $doll-bio-bg
+      height: 20rem
+      overflow: hidden
+      margin:
+        left: 0
+        right: 0
+        top: 2rem
+      padding: 2rem
+      .right
+        padding: 0 3rem
+        .profile-heading
+          .join-date
+            color: rgb(204, 142, 157)
+
+// PROFILE MIXIN
+profile-mixin
+  .profile
+    @include resource-heading(profile)
+    .profile-img
+      @include profile-image
+    .left
+    .right
+      .ngList
+        background-color: transparent
+        &, .detail-val
+          color: $link-primary-color
+        // .detail-key
+        //   color: $link-primary-color
+        //   font:
+        //     size: 3rem
+        // .detail-val
+        //   color: $heading-color
+        //   font:
+        //     size: 3rem
 
 
 // PROFILE
@@ -324,6 +400,7 @@ dt
         // background-color: $filter-label-bg
         margin-right: 1rem
 
+// ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 // NEW DOLL FORM
 form.newDoll
   label
@@ -347,14 +424,17 @@ form.newDoll
       p.description, p.biography
         margin: 4rem  4rem
 
+// ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 // CALENDAR
 .show-calendar
   .calendar-row
     padding-top: 2rem
 
+// ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 // NG STUFF
 .ngList
   background-color: $doll-jumbotron-bg
+  box-shadow: none
   .detail-key
     color: $link-primary-color
     font:
@@ -363,3 +443,4 @@ form.newDoll
     color: $heading-color
     font:
       size: 3rem
+// ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
