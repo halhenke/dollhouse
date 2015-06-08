@@ -25,7 +25,18 @@ paths =
   # - it is source
   # public/images
   # public/fonts
-  clean: ["public/**/*.css", "public/**/*.js", "public/**/*.map"]
+  # - Also dont delete original jQuery or Bootstrap for now...
+  # clean: ["public/**/*.css", "public/**/*.js", "public/**/*.map"]
+  clean: [
+    # "public/**/*.css"
+    "public/js/ng/**/*"
+    "public/js/react/**/*"
+    "public/js/maps/**/*"
+    "public/js/*.js"
+    "public/styles/*.css"
+    "public/styles/maps/**/*"
+    # "public/**/*.map"
+    ]
   src: [
     "./models/**/*.js"
     "./routes/**/*.js"
