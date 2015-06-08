@@ -85,7 +85,6 @@ exports = module.exports = function(app) {
                                      failureRedirect: '/users/login',
                                      failureFlash: true })
   );
-  // app.get('/users/register', routes.passport.register);
   app.all('/users/register', routes.passport.register);
   app.get('/users/logout', function(req, res){
     req.logout();

@@ -1,11 +1,11 @@
-.col-sm-8.col-md-9.jumbotron
-  h1 Profiles
-  .profiles.angular
-    //- PROFILES ALREADY CHUNKED
-    .row(ng-repeat="profile_threes in data.profiles | filter:profileFilter")
-      .col-sm-4.col-md-4(ng-repeat="profile in profile_threes")
-        profile-mixin(profile="profile")
-.col-sm-4.col-md-3.profile-filter-col
+.col-sm-12.profiles.purple-jumbotron
+  h1 Member Profiles
+  .angular
+    .row(ng-repeat="profile in data.profiles | filter:profileFilter").jumbotron
+      //- profile-mixin(profile="profile")
+      profile-mixin(data="{profile: profile}")
+        
+//- .col-sm-4.col-md-3.profile-filter-col
   h2 Filter/Search Profiles
   ul.list-group(style='margin-top: 70px;')
     li.list-group-item

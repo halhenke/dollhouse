@@ -4,9 +4,29 @@ ngApp.controller "ProfilesController", ['$scope', '$log', 'Profiles', ($scope, $
     $log.log "ProfileController loaded..."
     $scope.log = $log
 
+    profileDetails = (profile) ->
+      profile.details = []
+      if profile.name?
+        console.log "Name is found: #{profile.name.first}"
+        profile.details.push
+          key: "name"
+          val: profile.name.first
+      if profile.location?.suburb
+        console.log "Location is found: #{profile.location}"
+        profile.details.push
+          key: "location"
+          val: profile.location.suburb
+      if profile.groups?
+        profile.details.push
+          key: "Groups"
+          val: profile.groups
+
+
     Profiles.get().$promise.then (data) ->
       console.log "profileData is "
-      data.profiles = lo.chunk(data.profiles, 3)
+      for profile in data.profiles
+        profileDetails profile
+
       console.dir data
       $scope.data = data
     ]
@@ -30,6 +50,6 @@ ngApp.controller "ProfileShowController", ['$scope', "lo", '$routeParams', 'Prof
       console.log "profileData is "
       console.dir data
       if data.dolls
-        data.dolls = lo.chunk(data.dolls, 3)
+        data.dolls = lo.chunk(data.dolls, 4)
       $scope.data = data
     ]
