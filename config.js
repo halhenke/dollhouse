@@ -1,6 +1,6 @@
 module.exports = {
   // Link to Dreamhost forums
-  forumRoute: "/forum",
+  forumRoute: "/forums",
   // forumRoute: "/forums",
   dolls: {
     makers: [
