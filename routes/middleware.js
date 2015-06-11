@@ -81,6 +81,24 @@ exports.requireUser = function(req, res, next) {
   }
 };
 
+function slugUser (user, req, next) {
+  console.log("slugUser called...user is ");
+  console.log("user - email is " + user.email);
+  console.log("user - slug is " + user.slug);
+  if (user.slug == user.email) {
+    user.save(function (err, user) {
+      console.log("slugUser: user saved...");
+      req.user = user;
+      next();
+    });
+  }
+  else {
+    console.log("slugUser: no action...");
+    req.user = user;
+    next();
+  }
+}
+
 
 /**
  * Attempt at a custom user/session authentication function...
@@ -91,11 +109,13 @@ exports.passportUserCheck = function (req, res, next) {
       console.log("Session is storing User ID: " + req.session.passport.user);
       keystone.list('User').model.findById(req.session.passport.user)
         .exec(function (err, user) {
-          if (!err) {
+          if (!err && user) {
             console.log("Found our user - name is " + user.name.full);
-            req.user = user;
+            slugUser(user, req, next);
+            // req.user = user;
           }
-          next();
+          else
+            next();
         });
   }
   else {
