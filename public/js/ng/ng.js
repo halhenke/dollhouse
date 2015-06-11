@@ -227,12 +227,14 @@
 }).call(this);
 
 (function() {
-  var ngApp;
+  var hasslehoffs, ngApp;
 
   ngApp = angular.module("dollhouse");
 
+  hasslehoffs = ["http://res.cloudinary.com/doll-social-club/image/upload/v1433910519/missing/hasselhoff.jpg", "http://res.cloudinary.com/doll-social-club/image/upload/v1433910455/missing/David_Hasselhoff.jpg", "http://res.cloudinary.com/doll-social-club/image/upload/v1433910462/missing/1342557375_davidhasselhoff.jpg"];
+
   ngApp.controller("ProfilesController", [
-    '$scope', '$log', 'Profiles', function($scope, $log, Profiles) {
+    '$scope', 'lo', '$log', 'Profiles', function($scope, lo, $log, Profiles) {
       var profileDetails;
       $log.log("ProfileController loaded...");
       $scope.log = $log;
@@ -261,12 +263,19 @@
         }
       };
       return Profiles.get().$promise.then(function(data) {
-        var i, len, profile, ref;
+        var base, i, len, profile, ref;
         console.log("profileData is ");
         ref = data.profiles;
         for (i = 0, len = ref.length; i < len; i++) {
           profile = ref[i];
           profileDetails(profile);
+          if (profile.profile) {
+            if ((base = profile.profile).avatar == null) {
+              base.avatar = {
+                url: lo.sample(hasslehoffs)
+              };
+            }
+          }
         }
         console.dir(data);
         return $scope.data = data;
@@ -292,6 +301,12 @@
       return Profile.get({
         profile: $routeParams.profileSlug
       }).$promise.then(function(data) {
+        var base;
+        if ((base = data.profile.profile).avatar == null) {
+          base.avatar = {
+            url: lo.sample(hasslehoffs)
+          };
+        }
         console.log("profileData is ");
         console.dir(data);
         if (data.dolls) {
