@@ -17,7 +17,7 @@ CommunityLink.add({
   description: { type: Types.Text, initial: true },
   owner: { type: Types.Relationship, ref: 'User', index: true },
   keyWords: { type: Types.Text, initial: true },
-  image: { type: Types.CloudinaryImage },
+  image: { type: Types.CloudinaryImage, folder: 'links' },
   approved: { type: Types.Boolean, required: true, default: false, initial: true, index: true,
     note: "An admin must approve a user submitted link for it to be displayed..."}
 });

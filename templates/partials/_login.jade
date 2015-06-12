@@ -1,4 +1,4 @@
-ul.nav.navbar-nav.navbar-right
+ul.nav.navbar-nav.navbar-right.dropdown
   if user
     a.dropdown-toggle(href="#" data-toggle="dropdown").welcome
       button.btn.btn-doll Welcome #{user.name.first}
@@ -11,5 +11,5 @@ ul.nav.navbar-nav.navbar-right
   else
     li: a(href='/users/login') 
       button.btn.btn-doll.navbar-btn Sign In
-    li: a(href='/forum/register') 
+    li: a(href='/forums/register') 
       button.btn.btn-doll.navbar-btn Register

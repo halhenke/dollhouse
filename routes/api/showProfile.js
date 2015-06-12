@@ -80,6 +80,9 @@ exports = module.exports = function(req, res) {
         console.log('Profile Neighbours found for ' + locals.data.profile.name + " are " + neighbours);
         locals.data.neighbours = neighbours;
         next();
+      }, function (err) {
+        console.log("Neighbours promise erred with " + err);
+        next();
       });
   });
 
