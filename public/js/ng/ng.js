@@ -50,193 +50,6 @@
 
   ngApp = angular.module("dollhouse");
 
-  ngApp.directive("dollMixin", [
-    "$templateCache", function($templateCache) {
-      return {
-        scope: true,
-        template: $templateCache.get("directives/dollMixin.html")
-      };
-    }
-  ]);
-
-  ngApp.directive("profileMixin", [
-    "$templateCache", function($templateCache) {
-      return {
-        scope: {
-          profile: "=",
-          data: "="
-        },
-        template: $templateCache.get("directives/profileMixin.html")
-      };
-    }
-  ]);
-
-  ngApp.directive("linkMixin", [
-    "$templateCache", function($templateCache) {
-      return {
-        scope: {
-          link: "="
-        },
-        template: $templateCache.get("directives/linkMixin.html")
-      };
-    }
-  ]);
-
-  ngApp.directive("detailList", [
-    "$templateCache", function($templateCache) {
-      return {
-        scope: {
-          details: "="
-        },
-        template: $templateCache.get("directives/detailList.html")
-      };
-    }
-  ]);
-
-  ngApp.directive("badges", [
-    "$templateCache", function($templateCache) {
-      return {
-        scope: {
-          badge: "="
-        },
-        template: $templateCache.get("directives/badges.html")
-      };
-    }
-  ]);
-
-}).call(this);
-
-(function() {
-  angular.module("dollhouse").filter("fullName", function() {
-    return function(name) {
-      return name.first + " " + name.last;
-    };
-  }).filter("loChunk", function() {
-    return function(list) {
-      return lo.chunk(list, 3);
-    };
-  }).filter("backName", function() {
-    return function(url) {
-      if (url.match(/dolls\/doll/)) {
-        return "Doll";
-      } else if (url.match(/dolls/)) {
-        return "Dolls";
-      } else if (url.match(/profiles\/profile/)) {
-        return "Profile";
-      } else if (url.match(/profiles/)) {
-        return "Profiles";
-      } else if (url.match(/links/)) {
-        return "Community Links";
-      } else {
-        return "Previous Page";
-      }
-    };
-  });
-
-}).call(this);
-
-(function() {
-  var dollMakers, ngApp;
-
-  ngApp = angular.module("dollhouse");
-
-  ngApp.factory("Dolls", [
-    "$resource", function($resource) {
-      return $resource("/api/dolls");
-    }
-  ]).factory("Doll", [
-    "$resource", function($resource) {
-      return $resource("/api/dolls/show/:doll");
-    }
-  ]).factory("DollFacts", [
-    function() {
-      return {
-        makers: dollMakers
-      };
-    }
-  ]);
-
-  dollMakers = ['Angell Studio', 'Crobidoll', 'Dearmine', 'Doll Chateau', 'Dollmore', 'Dollshe', 'Dollzone', 'Dreaming Doll', 'Elf Doll', 'Fairyland', 'Impldoll', 'Iplehouse', 'Leekeworld', 'Luts', 'Migidoll', 'Obitsu', 'Peakswoods', 'Resinsoul', 'Ringdoll', 'Soom', 'Supia', 'Volks', 'Other'];
-
-}).call(this);
-
-(function() {
-  var ngApp;
-
-  ngApp = angular.module("dollhouse");
-
-  ngApp.factory("Events", function() {
-    return {
-      get: function() {
-        return {
-          events: [
-            {
-              title: 'One Event',
-              start: '2015-05-07'
-            }, {
-              title: 'A Doll Uprising',
-              start: '2015-05-17'
-            }
-          ],
-          color: 'yellow',
-          textColor: 'black'
-        };
-      }
-    };
-  });
-
-}).call(this);
-
-(function() {
-  var ngApp;
-
-  ngApp = angular.module("dollhouse");
-
-  ngApp.factory("Links", [
-    "$resource", function($resource) {
-      return $resource("/api/links");
-    }
-  ]);
-
-}).call(this);
-
-(function() {
-  var ngApp;
-
-  ngApp = angular.module("dollhouse");
-
-  ngApp.factory("lo", [
-    "$window", function($window) {
-      var lo;
-      lo = $window.lo;
-      return lo;
-    }
-  ]);
-
-}).call(this);
-
-(function() {
-  var ngApp;
-
-  ngApp = angular.module("dollhouse");
-
-  ngApp.factory("Profiles", [
-    "$resource", function($resource) {
-      return $resource("/api/profiles");
-    }
-  ]).factory("Profile", [
-    "$resource", function($resource) {
-      return $resource("/api/profiles/show/:profile");
-    }
-  ]);
-
-}).call(this);
-
-(function() {
-  var ngApp;
-
-  ngApp = angular.module("dollhouse");
-
   ngApp.controller("CalendarController", [
     '$scope', '$log', 'Events', function($scope, $log, Events) {
       $log.log("CalendarController loaded...");
@@ -501,6 +314,193 @@
         }
         return $scope.data = data;
       });
+    }
+  ]);
+
+}).call(this);
+
+(function() {
+  angular.module("dollhouse").filter("fullName", function() {
+    return function(name) {
+      return name.first + " " + name.last;
+    };
+  }).filter("loChunk", function() {
+    return function(list) {
+      return lo.chunk(list, 3);
+    };
+  }).filter("backName", function() {
+    return function(url) {
+      if (url.match(/dolls\/doll/)) {
+        return "Doll";
+      } else if (url.match(/dolls/)) {
+        return "Dolls";
+      } else if (url.match(/profiles\/profile/)) {
+        return "Profile";
+      } else if (url.match(/profiles/)) {
+        return "Profiles";
+      } else if (url.match(/links/)) {
+        return "Community Links";
+      } else {
+        return "Previous Page";
+      }
+    };
+  });
+
+}).call(this);
+
+(function() {
+  var ngApp;
+
+  ngApp = angular.module("dollhouse");
+
+  ngApp.directive("dollMixin", [
+    "$templateCache", function($templateCache) {
+      return {
+        scope: true,
+        template: $templateCache.get("directives/dollMixin.html")
+      };
+    }
+  ]);
+
+  ngApp.directive("profileMixin", [
+    "$templateCache", function($templateCache) {
+      return {
+        scope: {
+          profile: "=",
+          data: "="
+        },
+        template: $templateCache.get("directives/profileMixin.html")
+      };
+    }
+  ]);
+
+  ngApp.directive("linkMixin", [
+    "$templateCache", function($templateCache) {
+      return {
+        scope: {
+          link: "="
+        },
+        template: $templateCache.get("directives/linkMixin.html")
+      };
+    }
+  ]);
+
+  ngApp.directive("detailList", [
+    "$templateCache", function($templateCache) {
+      return {
+        scope: {
+          details: "="
+        },
+        template: $templateCache.get("directives/detailList.html")
+      };
+    }
+  ]);
+
+  ngApp.directive("badges", [
+    "$templateCache", function($templateCache) {
+      return {
+        scope: {
+          badge: "="
+        },
+        template: $templateCache.get("directives/badges.html")
+      };
+    }
+  ]);
+
+}).call(this);
+
+(function() {
+  var dollMakers, ngApp;
+
+  ngApp = angular.module("dollhouse");
+
+  ngApp.factory("Dolls", [
+    "$resource", function($resource) {
+      return $resource("/api/dolls");
+    }
+  ]).factory("Doll", [
+    "$resource", function($resource) {
+      return $resource("/api/dolls/show/:doll");
+    }
+  ]).factory("DollFacts", [
+    function() {
+      return {
+        makers: dollMakers
+      };
+    }
+  ]);
+
+  dollMakers = ['Angell Studio', 'Crobidoll', 'Dearmine', 'Doll Chateau', 'Dollmore', 'Dollshe', 'Dollzone', 'Dreaming Doll', 'Elf Doll', 'Fairyland', 'Impldoll', 'Iplehouse', 'Leekeworld', 'Luts', 'Migidoll', 'Obitsu', 'Peakswoods', 'Resinsoul', 'Ringdoll', 'Soom', 'Supia', 'Volks', 'Other'];
+
+}).call(this);
+
+(function() {
+  var ngApp;
+
+  ngApp = angular.module("dollhouse");
+
+  ngApp.factory("Events", function() {
+    return {
+      get: function() {
+        return {
+          events: [
+            {
+              title: 'One Event',
+              start: '2015-05-07'
+            }, {
+              title: 'A Doll Uprising',
+              start: '2015-05-17'
+            }
+          ],
+          color: 'yellow',
+          textColor: 'black'
+        };
+      }
+    };
+  });
+
+}).call(this);
+
+(function() {
+  var ngApp;
+
+  ngApp = angular.module("dollhouse");
+
+  ngApp.factory("Links", [
+    "$resource", function($resource) {
+      return $resource("/api/links");
+    }
+  ]);
+
+}).call(this);
+
+(function() {
+  var ngApp;
+
+  ngApp = angular.module("dollhouse");
+
+  ngApp.factory("lo", [
+    "$window", function($window) {
+      var lo;
+      lo = $window.lo;
+      return lo;
+    }
+  ]);
+
+}).call(this);
+
+(function() {
+  var ngApp;
+
+  ngApp = angular.module("dollhouse");
+
+  ngApp.factory("Profiles", [
+    "$resource", function($resource) {
+      return $resource("/api/profiles");
+    }
+  ]).factory("Profile", [
+    "$resource", function($resource) {
+      return $resource("/api/profiles/show/:profile");
     }
   ]);
 
