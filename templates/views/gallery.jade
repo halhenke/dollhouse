@@ -1,25 +1,49 @@
 extends ../layouts/default
 
 block intro
-	.container
-		h1 Gallery
-	
+  .container
+    h1 Gallery
+  
 block content
-	.container
-		if galleries.length
-			each gallery in galleries
-				h2= gallery.name
-					if gallery.publishedDate
-						.pull-right.text-muted= gallery._.publishedDate.format('Do MMM YYYY')
-				
-				.row.gallery-images
-					if gallery.heroImage.exists
-						.col-sm-4.col-md-4.gallery-image: img(src=gallery._.heroImage.limit(680,680)).img-rounded
-						.col-sm-8.col-md-8: .row
-							each image in gallery.images
-								.col-xs-4.col-sm-4.col-md-3.gallery-image: img(src=image.limit(300,300)).img-rounded
-					else
-						each image in gallery.images
-							.col-xs-6.col-sm-4.col-md-3.gallery-image: img(src=image.limit(300,300)).img-rounded
-		else
-			h3.text-muted There are no image galleries yet.
+  .container
+    if galleries.length
+      each gallery in galleries
+        h2= gallery.name
+          if gallery.publishedDate
+            .pull-right.text-muted= gallery._.publishedDate.format('Do MMM YYYY')
+        
+        .row.gallery-images
+          if gallery.heroImage.exists
+            .col-sm-4.gallery-image
+              a(data-toggle="modal" data-target=(".modal-img-" + gallery.key + "-hero"))
+                img(src=gallery._.heroImage.limit(680,680)).img-rounded
+              .modal.fade.bs-example-modal-sm(class=("modal-img-" + gallery.key + "-hero") tabindex='-1', role='dialog', aria-labelledby='mySmallModalLabel', aria-hidden='true')
+                .modal-dialog.modal-lg
+                  .modal-content
+                    img(src=gallery._.heroImage.fit(900,800)).img-rounded
+            .col-sm-8: .row
+              each image, index in gallery.images
+                //- .col-xs-4.col-sm-4.gallery-image: img(src=image.limit(300,300)).img-rounded
+                a(data-toggle="modal" data-target=(".modal-img-" + gallery.key + "-" + index))
+                  img(src=image.limit(300,300)).img-rounded
+                .modal.fade.bs-example-modal-sm(class=("modal-img-" + gallery.key + "-" + index) tabindex='-1', role='dialog', aria-labelledby='mySmallModalLabel', aria-hidden='true')
+                  .modal-dialog.modal-sm
+                    .modal-content
+                      img(src=image.fit(600,600)).img-rounded
+
+                
+          else
+            each image, index in gallery.images
+              p Say something?
+              //- .col-xs-4.col-sm-4.gallery-image: img(src=image.limit(300,300)).img-rounded
+              a(data-toggle="modal" data-target=(".modal-img-" + gallery.key + "-" + index))
+                img(src=image.limit(300,300)).img-rounded
+              .modal.fade.bs-example-modal-sm(class=("modal-img-" + gallery.key + "-" + index) tabindex='-1', role='dialog', aria-labelledby='mySmallModalLabel', aria-hidden='true')
+                .modal-dialog.modal-sm
+                  .modal-content
+                    img(src=image.fit(600,600)).img-rounded
+
+            //- each image in gallery.images
+              .col-xs-6.col-sm-4.gallery-image: img(src=image.limit(300,300)).img-rounded
+    else
+      h3.text-muted There are no image galleries yet.

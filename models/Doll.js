@@ -17,7 +17,7 @@ Doll.add({
   owner: { type: Types.Relationship, ref: 'User', index: true },
   maker: { type: Types.Select, options: config.dolls.makers.join(', '), index: true },
   sculpt: { type: Types.Text, index: true },
-  image: { type: Types.CloudinaryImage },
+  image: { type: Types.CloudinaryImage, folder: 'dolls' },
   info: {
     description: { type: Types.Html, wysiwyg: true, height: 150 },
     biography: { type: Types.Html, wysiwyg: true, height: 400 }

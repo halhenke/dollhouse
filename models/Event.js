@@ -21,12 +21,14 @@ Event.add({
   // state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
   author: { type: Types.Relationship, ref: 'User', index: true },
   publishedDate: { type: Types.Date, index: true, dependsOn: { state: 'published' } },
-  image: { type: Types.CloudinaryImage },
+  image: { type: Types.CloudinaryImage, folder: 'events'},
+  images: { type: Types.CloudinaryImages, folder: 'events'},
+  gallery: { type: Types.Relationship, ref: 'Gallery', index: true },
   content: {
     brief: { type: Types.Html, wysiwyg: true, height: 150 },
     extended: { type: Types.Html, wysiwyg: true, height: 400 }
   },
-  // categories: { type: Types.Relationship, ref: 'PostCategory', many: true }
+  // categories: { type: Types.Relationship, ref: 'EventType', many: true }
 });
 
 Event.schema.virtual('content.full').get(function() {

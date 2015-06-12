@@ -23,7 +23,8 @@ User.add({
     userName: { type: Types.Text, required: true, initial: true, index: true },
     emailShow: { type: Boolean, label: 'Show email address?' },
     location_show: { type: Types.Boolean,  label: 'Show location?' },
-    avatar: { type: Types.CloudinaryImage },
+    avatar: { type: Types.CloudinaryImage, folder: 'users' },
+    badges: { type: Types.Relationship, ref: 'Badge', many: true },
     about: {
       brief: { type: Types.Html, wysiwyg: true, height: 150 },
       extended: { type: Types.Html, wysiwyg: true, height: 400 }
