@@ -14,7 +14,7 @@ var Badge = new keystone.List('Badge', {
 
 Badge.add({
   name: { type: Types.Name, required: true, index: true },
-  avatar: { type: Types.CloudinaryImage },
+  avatar: { type: Types.CloudinaryImage, folder: 'badges' },
   });
 
 
