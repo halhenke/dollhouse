@@ -1,19 +1,33 @@
 .col-sm-12.profiles.purple-jumbotron
-  h1 Member Profiles
-  .angular
+  .row.profile-filter-row
+    .col-sm-6
+      h1 Member Profiles
+    .col-sm-6.filter-col
+      //- TODO: need a front end test for login..
+      //- if user
+        a.btn.btn-primary(href="/dolls/new") Add a doll to the database...
+      .row
+        .input-group
+          .input-group-btn.dropdown(dropdown='' auto-close="outsideClick")
+            button.btn.btn-default.dropdown-toggle(type='button', dropdown-toggle='' aria-expanded='false')
+              | Filter Profiles... 
+              span.caret
+            ul.dropdown-menu(role='menu')
+              li.list-group-item
+                label.label-profile Screen Name
+                input(ng-model="profileFilter.profile.userName")
+              //- li.list-group-item
+              //-   label.label-profile Real Name
+              //-   input(ng-model="profileFilter.name")
+              li.list-group-item
+                label.label-profile Location
+                input(ng-model="profileFilter.location")
+              //- li.list-group-item
+                label.label-profile About
+                input(ng-model="profileFilter.profile.about.brief")
+
+  .row.angular
     .row(ng-repeat="profile in data.profiles | filter:profileFilter").jumbotron
       //- profile-mixin(profile="profile")
       profile-mixin(data="{profile: profile}")
         
-//- .col-sm-4.col-md-3.profile-filter-col
-  h2 Filter/Search Profiles
-  ul.list-group(style='margin-top: 70px;')
-    li.list-group-item
-      label.label-profile Screen Name
-      input(ng-model="profileFilter.profile.userName")
-    li.list-group-item
-      label.label-profile Real Name
-      input(ng-model="profileFilter.name")
-    li.list-group-item
-      label.label-profile About
-      input(ng-model="profileFilter.profile.about.brief")
