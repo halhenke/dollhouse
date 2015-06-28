@@ -5521,7 +5521,7 @@ html, body {
   min-height: 100%; }
 
 body {
-  background: linear-gradient(to bottom, rgba(202, 165, 173, 0.4), #caa5ad), url("http://res.cloudinary.com/doll-social-club/image/upload/v1432427402/damask_pattern_single_tile_etd1nl.jpg");
+  background: linear-gradient(to bottom, rgba(202, 165, 173, 0.4), #caa5ad), url("http://res.cloudinary.com/doll-social-club/image/upload/v1432427402/background_tile.jpg");
   font-family: Georgia; }
   body .jumbotron {
     border-radius: 2rem; }
@@ -5567,10 +5567,23 @@ body .navbar.navbar-default {
     @media (min-width: 768px) {
       body .navbar.navbar-default .navbar-nav li a {
         padding: 15px 0.5rem; } }
+  body .navbar.navbar-default a.btn.navbar-btn {
+    margin: 0 0.2rem;
+    background-color: #ece2e3;
+    width: 10.5rem;
+    border-radius: 1rem;
+    font-family: AngelicSerif;
+    font-size: 1.8rem;
+    color: white; }
+    body .navbar.navbar-default a.btn.navbar-btn.btn-drop {
+      width: 12rem;
+      background-color: transparent; }
+      body .navbar.navbar-default a.btn.navbar-btn.btn-drop a {
+        color: white; }
   body .navbar.navbar-default button {
     margin: 0 0.2rem;
     background-color: #ece2e3;
-    width: 9.5rem;
+    width: 10.5rem;
     border-radius: 1rem;
     font-family: AngelicSerif;
     font-size: 1.8rem; }
@@ -5586,7 +5599,10 @@ body .navbar.navbar-default {
     font-family: Georgia; }
   body .navbar.navbar-default .login ul.dropdown-menu {
     top: 0;
-    left: 100%; }
+    left: 100%;
+    min-width: 0; }
+    body .navbar.navbar-default .login ul.dropdown-menu button {
+      font-size: 1.5rem; }
   body .navbar.navbar-default ul.dropdown-menu {
     border-style: none;
     box-shadow: none;
@@ -5653,6 +5669,10 @@ dt {
   float: left; }
   dt:after {
     content: ": "; }
+
+div[ng-app] button.ng-back-btn {
+  background-color: #EECDC6;
+  color: #9b6d78; }
 
 .dolls .row {
   padding: 0.5rem 0; }

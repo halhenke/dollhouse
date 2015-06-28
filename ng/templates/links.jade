@@ -1,24 +1,29 @@
-.col-sm-8.col-md-9.jumbotron
-  h1 Community Links
-  .links.angular
+.col-sm-12.jumbotron
+  .row.link-filter-row
+    .col-sm-6
+      h1 Community Links
+    .col-sm-6.filter-col
+      //- TODO: need a front end test for login..
+      //- if user
+        a.btn.btn-primary(href="/dolls/new") Add a link to the database...
+      .row
+        .input-group
+          .input-group-btn.dropdown(dropdown='' auto-close="outsideClick")
+            //- button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown' aria-expanded='false')
+            button.btn.btn-default.dropdown-toggle(type='button', dropdown-toggle='' aria-expanded='false')
+              | Filter/Search Links
+              span.caret
+            ul.dropdown-menu(role='menu')
+              li.list-group-item
+                label.label-link Title
+                input(ng-model="profileFilter.title")
+              li.list-group-item
+                label.label-link User
+                input(ng-model="profileFilter.user.name")
+              li.list-group-item
+                label.label-link Keywords
+                input(ng-model="profileFilter.keyWords")
+  .row.links.angular
     //- PROFILES NOT GROUPED
     .row(ng-repeat="link in data.links | filter:linkFilter")
       link-mixin(link="link")
-
-.col-sm-4.col-md-3.link-filter-col
-  h2 Filter/Search Links
-  ul.list-group(style='margin-top: 70px;')
-    li.list-group-item
-      label.label-link Name
-      input(ng-model="profileFilter.userName")
-    li.list-group-item
-      label.label-link User
-      input(ng-model="profileFilter.user.name")
-    li.list-group-item
-      label.label-link About
-      input(ng-model="profileFilter.about.brief")
-    li.list-group-item
-      label.label-link About Two
-      select(ng-model="profileFilter.about.brief")
-        option(ng-repeat="model in ['Ipplehouse', 'Other Guys']" value ="{{model}}" ) {{model}}
-        //- option(ng-repeat="model in ['Ipplehouse', 'Other Guys']" value = {{model}} ) {{model}}

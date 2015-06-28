@@ -17,6 +17,7 @@ $event-text-color: rgb(107, 104, 92)
 $link-primary-color: #9E5873
 $button-primary-color: #9819BB
 $button-primary-border: #5A2D66
+$ng-button-bg: #EECDC6
 
 $doll-jumbotron-bg: rgb(215, 186, 188)
 $doll-bio-bg: rgb(236, 226, 227)
@@ -31,19 +32,40 @@ $my-dolls: rgba(239, 195, 217, 0.57)
 // $background-pattern: "http://res.cloudinary.com/hal9zillion/image/upload/v1431448088/damask_pattern_fcjc2o.jpg"
 // $background-pattern: "/images/site/damask_pattern_2_copy.jpg"
 // $background-pattern: "/images/site/damask_pattern_single_tile.jpg"
-$background-pattern: "http://res.cloudinary.com/doll-social-club/image/upload/v1432427402/damask_pattern_single_tile_etd1nl.jpg"
+$background-pattern: "http://res.cloudinary.com/doll-social-club/image/upload/v1432427402/background_tile.jpg"
 
 // MEDIA QUERIES
 $iphone-max-width: "(max-device-width: 500px)"
 $bootstrap-min-width: "(min-width: 768px)"
 
 // MIXINS
+
+@mixin ng-back-button
+  background-color: $ng-button-bg
+  color: $font-purple
+
 @mixin login-buttons
   background-color: transparent
   color: white
   font:
     size: 2.5rem
     family: Georgia
+
+@mixin nav-link-buttons
+  margin: 0 0.2rem
+  background-color: $nav-button-bg
+  width: 10.5rem
+  border-radius: 1rem
+  font:
+    family: AngelicSerif
+    size: 1.8rem
+  &.btn-drop
+    width: 12rem
+    background-color: transparent
+    // background-color: rgba(242, 242, 242, 0.55)
+    a
+      color: white
+
 
 @mixin flex-center
   display: flex
@@ -113,20 +135,40 @@ body
         // Override bootstrap media query
         @media #{$bootstrap-min-width}
           padding: 15px 0.5rem
+    // a.btn.btn-drop.navbar-btn
+    a.btn.navbar-btn
+      @include nav-link-buttons
+      color: white
+      // align-items: flex-start
+      // border-radius: 12px
+      // clear: none
+      // color: rgb(51, 51, 51)
+      // display: inline-block
+      // font: normal normal normal normal 18px/34.2856788635254px AngelicSerif
+      // height: 40px
+      // margin: 0px 2.39999985694885px
+      // outline: rgb(51, 51, 51) none 0px
+      // padding: 6px 12px
+      // // perspective-origin	80px 26.3333339691162px
+      // // 72px 20px
+      // // transform-origin	80px 26.3333339691162px
+      // // 72px 20px
+      // width: 144px
+      // // Prefixed properties
+      // // -webkit-column-rule-color	rgb(158, 88, 115)
+      // // rgb(51, 51, 51)
+      // // -webkit-perspective-origin	80px 26.3333339691162px
+      // // 72px 20px
+      // // -webkit-text-emphasis-color	rgb(158, 88, 115)
+      // // rgb(51, 51, 51)
+      // // -webkit-text-fill-color	rgb(158, 88, 115)
+      // // rgb(51, 51, 51)
+      // // -webkit-text-stroke-color	rgb(158, 88, 115)
+      // // rgb(51, 51, 51)
+      // // -webkit-transform-origin	80px 26.3333339691162px
+      // // 72px 20px
     button
-      margin: 0 0.2rem
-      background-color: $nav-button-bg
-      width: 9.5rem
-      border-radius: 1rem
-      font:
-        family: AngelicSerif
-        size: 1.8rem
-      &.btn-drop
-        width: 12rem
-        background-color: transparent
-        // background-color: rgba(242, 242, 242, 0.55)
-        a
-          color: white
+      @include nav-link-buttons
     // @media not screen and #{$iphone-max-width} and (orientation: portrait)
     .login
       button
@@ -135,6 +177,9 @@ body
       ul.dropdown-menu
         top: 0
         left: 100%
+        min-width: 0
+        button
+          font-size: 1.5rem
     background-color: transparent
     border:
       style: none
@@ -237,6 +282,7 @@ img.cover-girl
 
 @mixin doll-mixin-style
   background-size: cover
+  // height: percentage(($columns / $grid-columns))
   height: 18rem
   padding-top: 8rem
   box-shadow: 0.5rem 0.5rem 0.3rem 0.2rem grey
@@ -272,6 +318,11 @@ dt
   float: left
   &:after
     content: ": "
+
+
+div[ng-app]
+  button.ng-back-btn
+    @include ng-back-button
 
 // ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 // DOLLS
