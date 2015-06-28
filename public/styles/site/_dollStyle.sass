@@ -38,6 +38,11 @@ $iphone-max-width: "(max-device-width: 500px)"
 $bootstrap-min-width: "(min-width: 768px)"
 
 // MIXINS
+
+@mixin ng-back-button
+  background-color: $ng-button-bg
+  color: $font-purple
+
 @mixin login-buttons
   background-color: transparent
   color: white
@@ -113,20 +118,40 @@ body
         // Override bootstrap media query
         @media #{$bootstrap-min-width}
           padding: 15px 0.5rem
+    // a.btn.btn-drop.navbar-btn
+    a.btn.navbar-btn
+      @include nav-link-buttons
+      color: white
+      // align-items: flex-start
+      // border-radius: 12px
+      // clear: none
+      // color: rgb(51, 51, 51)
+      // display: inline-block
+      // font: normal normal normal normal 18px/34.2856788635254px AngelicSerif
+      // height: 40px
+      // margin: 0px 2.39999985694885px
+      // outline: rgb(51, 51, 51) none 0px
+      // padding: 6px 12px
+      // // perspective-origin	80px 26.3333339691162px
+      // // 72px 20px
+      // // transform-origin	80px 26.3333339691162px
+      // // 72px 20px
+      // width: 144px
+      // // Prefixed properties
+      // // -webkit-column-rule-color	rgb(158, 88, 115)
+      // // rgb(51, 51, 51)
+      // // -webkit-perspective-origin	80px 26.3333339691162px
+      // // 72px 20px
+      // // -webkit-text-emphasis-color	rgb(158, 88, 115)
+      // // rgb(51, 51, 51)
+      // // -webkit-text-fill-color	rgb(158, 88, 115)
+      // // rgb(51, 51, 51)
+      // // -webkit-text-stroke-color	rgb(158, 88, 115)
+      // // rgb(51, 51, 51)
+      // // -webkit-transform-origin	80px 26.3333339691162px
+      // // 72px 20px
     button
-      margin: 0 0.2rem
-      background-color: $nav-button-bg
-      width: 10.5rem
-      border-radius: 1rem
-      font:
-        family: AngelicSerif
-        size: 1.8rem
-      &.btn-drop
-        width: 12rem
-        background-color: transparent
-        // background-color: rgba(242, 242, 242, 0.55)
-        a
-          color: white
+      @include nav-link-buttons
     // @media not screen and #{$iphone-max-width} and (orientation: portrait)
     .login
       button
@@ -275,6 +300,11 @@ dt
   float: left
   &:after
     content: ": "
+
+
+div[ng-app]
+  button.ng-back-btn
+    @include ng-back-button
 
 // ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 // DOLLS

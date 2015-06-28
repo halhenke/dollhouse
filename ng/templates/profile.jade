@@ -1,8 +1,10 @@
 .show-profile.jumbotron
   //- TODO: Extract this
   .row: .col-sm-offset-11.col-sm-1
-    a(ng-href="{{previousPage}}") 
+    a(ng-if="data.user && (data.profile.slug == data.user.slug)" ng-href="{{previousPage}}") 
       button.btn.btn-primary Back to {{ previousPage | backName }}
+    a(ng-href="{{previousPage}}") 
+      button.btn.btn-primary.ng-back-btn Back to {{ previousPage | backName }}
   .row
     .row
     .row.profile-details
