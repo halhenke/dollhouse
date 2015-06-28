@@ -320,35 +320,6 @@
 }).call(this);
 
 (function() {
-  angular.module("dollhouse").filter("fullName", function() {
-    return function(name) {
-      return name.first + " " + name.last;
-    };
-  }).filter("loChunk", function() {
-    return function(list) {
-      return lo.chunk(list, 3);
-    };
-  }).filter("backName", function() {
-    return function(url) {
-      if (url.match(/dolls\/doll/)) {
-        return "Doll";
-      } else if (url.match(/dolls/)) {
-        return "Dolls";
-      } else if (url.match(/profiles\/profile/)) {
-        return "Profile";
-      } else if (url.match(/profiles/)) {
-        return "Profiles";
-      } else if (url.match(/links/)) {
-        return "Community Links";
-      } else {
-        return "Previous Page";
-      }
-    };
-  });
-
-}).call(this);
-
-(function() {
   var ngApp;
 
   ngApp = angular.module("dollhouse");
@@ -406,6 +377,35 @@
       };
     }
   ]);
+
+}).call(this);
+
+(function() {
+  angular.module("dollhouse").filter("fullName", function() {
+    return function(name) {
+      return name.first + " " + name.last;
+    };
+  }).filter("loChunk", function() {
+    return function(list) {
+      return lo.chunk(list, 3);
+    };
+  }).filter("backName", function() {
+    return function(url) {
+      if (url.match(/dolls\/doll/)) {
+        return "Doll";
+      } else if (url.match(/dolls/)) {
+        return "Dolls";
+      } else if (url.match(/profiles\/profile/)) {
+        return "Profile";
+      } else if (url.match(/profiles/)) {
+        return "Profiles";
+      } else if (url.match(/links/)) {
+        return "Community Links";
+      } else {
+        return "Previous Page";
+      }
+    };
+  });
 
 }).call(this);
 
