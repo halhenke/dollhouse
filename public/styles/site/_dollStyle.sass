@@ -51,6 +51,22 @@ $bootstrap-min-width: "(min-width: 768px)"
     size: 2.5rem
     family: Georgia
 
+@mixin nav-link-buttons
+  margin: 0 0.2rem
+  background-color: $nav-button-bg
+  width: 10.5rem
+  border-radius: 1rem
+  font:
+    family: AngelicSerif
+    size: 1.8rem
+  &.btn-drop
+    width: 12rem
+    background-color: transparent
+    // background-color: rgba(242, 242, 242, 0.55)
+    a
+      color: white
+
+
 @mixin flex-center
   display: flex
   justify-content: center
@@ -266,6 +282,7 @@ img.cover-girl
 
 @mixin doll-mixin-style
   background-size: cover
+  // height: percentage(($columns / $grid-columns))
   height: 18rem
   padding-top: 8rem
   box-shadow: 0.5rem 0.5rem 0.3rem 0.2rem grey
