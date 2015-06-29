@@ -1,5 +1,6 @@
 var keystone = require('keystone'),
-    Profile = keystone.list('User');
+    config = require('../../config'),
+    Doll = keystone.list('Doll');
 
 exports = module.exports = function(req, res) {
 
@@ -7,42 +8,43 @@ exports = module.exports = function(req, res) {
     locals = res.locals;
 
   // Set locals
-  locals.section = 'profiles';
+  locals.section = 'dolls';
   locals.filters = {
-    profile: req.params.profile
+    doll: req.params.doll
   };
   locals.formData = req.body || {};
   locals.validationErrors = {};
+  locals.dolls = config.dolls;
   locals.profileUpdated = false;
   locals.data = {
   };
 
-  // Load the current profile
+  // Load the current doll
   view.on('init', function(next) {
 
-    var q = Profile
+    var q = Doll
       .model.findOne({
         // any other conditions that need to be met
-        slug: locals.filters.profile
+        slug: locals.filters.doll
       });
       // Use this if you need to populate any related Fields
       // }).populate('...');
 
     q.exec(function(err, result) {
-      locals.data.profile = result;
+      locals.data.doll = result;
       next(err);
     });
 
   });
 
   view.on('post', function(next) {
-      // var newProfile = new Profile.model({ owner: req.user });
-      locals.data.profile
+      // var newProfile = new Doll.model({ owner: req.user });
+      locals.data.doll
         .getUpdateHandler(req, res)
         .process(req.body, {
           flashErrors: true,
           fields: "",
-          errorMessage: 'Hmmmm: There was a problem updating your profile...'
+          errorMessage: 'Hmmmm: There was a problem updating your doll...'
         }, function(err) {
           if (err) {
             locals.validationErrors = err.errors;
@@ -56,10 +58,10 @@ exports = module.exports = function(req, res) {
 
   view.render(function (err, req, res) {
     if (req.method === 'POST' && res.locals.profileUpdated) {
-      res.redirect('profiles');
+      res.redirect('dolls');
     }
     else
-      res.render('profiles/edit');
+      res.render('dolls/new');
   });
 
 };

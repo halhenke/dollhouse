@@ -29,6 +29,14 @@ keystone.init({
   'user model': 'User',
   'cookie secret': process.env.COOKIE_SECRET,
 
+  // SESSION RELATED STUFF
+  'session options': {
+    // 'key': 'keystone.sid'
+    // 'key': 'express.sid'
+  },
+
+
+
   // Production Optimizations
   'compress': true,
   'static options': {

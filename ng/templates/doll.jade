@@ -1,4 +1,8 @@
 .show-doll.jumbotron
+  .row: .col-sm-offset-11.col-sm-1
+    a(ng-href="/dolls/doll/{{data.doll.slug}}/edit") 
+      button.btn.btn-primary.ng-back-btn Edit this doll
+    
   //- TODO: Extract this
   .row: .col-sm-offset-11.col-sm-1
     a(ng-href="{{previousPage}}") 
