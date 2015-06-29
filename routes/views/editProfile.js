@@ -1,5 +1,5 @@
 var keystone = require('keystone'),
-    Profile = keystone.list('Profile');
+    Profile = keystone.list('User');
 
 exports = module.exports = function(req, res) {
 
@@ -20,7 +20,7 @@ exports = module.exports = function(req, res) {
   // Load the current profile
   view.on('init', function(next) {
 
-    var q = keystone.list('profile')
+    var q = Profile
       .model.findOne({
         // any other conditions that need to be met
         slug: locals.filters.profile
@@ -59,7 +59,7 @@ exports = module.exports = function(req, res) {
       res.redirect('profiles');
     }
     else
-      res.render('profiles/new');
+      res.render('profiles/edit');
   });
 
 };
