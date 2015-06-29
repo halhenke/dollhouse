@@ -31,7 +31,8 @@ User.add({
     }
   }},
   'Permissions', {
-    isAdmin: { type: Boolean, label: 'Can access Keystone', index: true }
+    isAdmin: { type: Boolean, label: 'Can access Keystone', index: true },
+    isSuperUser: { type: Boolean, label: 'Is Supper User', index: true }
 });
 
 
