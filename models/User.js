@@ -31,7 +31,8 @@ User.add({
     }
   }},
   'Permissions', {
-    isAdmin: { type: Boolean, label: 'Can access Keystone', index: true }
+    isAdmin: { type: Boolean, label: 'Can access Keystone', index: true },
+    isSuperUser: { type: Boolean, label: 'Is Super User', index: true }
 });
 
 
@@ -53,19 +54,24 @@ User.schema.virtual('canAccessKeystone').get(function() {
   return this.isAdmin;
 });
 
-User.schema.virtual('fullAddress').get(function() {
-  if (this.location) {
-    return this.location.name + " " +
-      this.number + " " +
-      this.street1 + " " +
-      this.street2 + " " +
-      this.suburb + " " +
-      this.state + " " +
-      this.postcode + " " +
-      this.country;
-      // this.geo;
-  }
+// Provide access to Everything
+User.schema.virtual('canAccessAnything').get(function() {
+  return this.isSuperUser;
 });
+
+// User.schema.virtual('fullAddress').get(function() {
+//   if (this.location) {
+//     return this.location.name + " " +
+//       this.number + " " +
+//       this.street1 + " " +
+//       this.street2 + " " +
+//       this.suburb + " " +
+//       this.state + " " +
+//       this.postcode + " " +
+//       this.country;
+//       // this.geo;
+//   }
+// });
 
 // Add user info to the shared NodeBB/Keystone Database
 
@@ -90,7 +96,7 @@ User.schema.pre('save', function (next) {
       }
     );
   }
-})
+});
 
 
 /**
