@@ -58,10 +58,11 @@ exports = module.exports = function(req, res) {
 
   view.render(function (err, req, res) {
     if (req.method === 'POST' && res.locals.profileUpdated) {
-      res.redirect('dolls');
+      // res.redirect("/dolls/doll/{{data.doll.slug}}/edit");
+      res.redirect("/community/#/dolls/doll/" + locals.data.doll.slug);
     }
     else
-      res.render('dolls/new');
+      res.render('dolls/edit');
   });
 
 };
