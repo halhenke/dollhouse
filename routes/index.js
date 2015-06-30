@@ -98,7 +98,8 @@ exports = module.exports = function(app) {
   // app.get('/profiles/profile/:profile/delete', routes.views.deleteProfile);
 
   app.all('/dolls/new', routes.views.newDoll);
-  app.get('/dolls/doll/:doll/edit', routes.views.editDoll);
+  // app.get('/dolls/doll/:doll/edit', routes.views.editDoll);
+  app.all('/dolls/doll/:doll/edit', routes.views.editDoll);
   app.get('/about', routes.views.about);
   app.all('/contact', routes.views.contact);
 

@@ -1,0 +1,72 @@
+extends ../../layouts/default
+
+block intro
+  .container
+    h1 Edit Your Doll
+    
+block content
+  .container
+    if enquirySubmitted
+      h3 Thanks for submitting Your Doll!
+    else
+      .row
+        .col-sm-8
+          form.newDoll(method='post', enctype="multipart/form-data")
+            input(type='hidden', name='action', value="/dolls/doll/{{data.doll.slug}}/edit")
+            //- != Doll.form({ theme: 'bootstrap', fields: 'name, maker, state, image, contents' })
+            .form-group(class=validationErrors.name ? 'has-error' : null)
+              label Name
+              input(type='text', name='name', value=data.doll['name']).form-control
+              //- input(type='text', name='name.full', value=data.doll['name.full']).form-control
+            .form-group(class=validationErrors.maker ? 'has-error' : null)
+              label Maker
+              select(name='maker').form-control
+                option(value='') (select one)
+                each type in dolls.makers
+                  option(value=type, selected=data.doll.maker == type)= type
+            .form-group
+              label Sculpt
+              input(type='text', name='sculpt', value=data.doll['sculpt']).form-control
+            .form-group(class=validationErrors.image ? 'has-error' : null)
+              label Pic 
+              input(type='file', name='image_upload', value=data.doll.image).form-control
+              input(type='tex', name='image_url', value=data.doll.image.url).form-control
+            .form-group(class=validationErrors.info_description ? 'has-error' : null)
+              label Physical Description 
+              textarea(name='info_description', placeholder='Does this doll have any other distinguishing characteristics...' rows=4).form-control= data.doll.info.description
+            .form-group(class=validationErrors.info_biography ? 'has-error' : null)
+              label Biography
+              textarea(name='info.biography' value=data.doll.info.biography placeholder='Does this doll have a backstory...' rows=4).form-control
+              //- textarea(name='info_biography', placeholder='Does this doll have a backstory...' rows=4).form-control= data.doll.info.biography
+            .form-actions
+              button(type='submit').btn.btn-primary Send
+        .col-sm-4
+          img(src=data.doll.image.url width="100%")
+      //- .row: .col-sm-8.col-md-6
+      //-   form.newDoll(method='post', enctype="multipart/form-data")
+      //-     input(type='hidden', name='action', value='/dolls/new')
+      //-     //- != Doll.form({ theme: 'bootstrap', fields: 'name, maker, state, image, contents' })
+      //-     .form-group(class=validationErrors.name ? 'has-error' : null)
+      //-       label Name
+      //-       input(type='text', name='name', value=formData['name']).form-control
+      //-       //- input(type='text', name='name.full', value=formData['name.full']).form-control
+      //-     .form-group(class=validationErrors.maker ? 'has-error' : null)
+      //-       label Maker
+      //-       select(name='maker').form-control
+      //-         option(value='') (select one)
+      //-         each type in dolls.makers
+      //-           option(value=type, selected=formData.maker == type)= type
+      //-     .form-group
+      //-       label Sculpt
+      //-       input(type='text', name='sculpt', value=formData['sculpt']).form-control
+      //-     .form-group(class=validationErrors.image ? 'has-error' : null)
+      //-       label Pic 
+      //-       input(type='file', name='image_upload', value=formData.image).form-control
+      //-     .form-group(class=validationErrors.info_description ? 'has-error' : null)
+      //-       label Physical Description 
+      //-       textarea(name='info_description', placeholder='Does this doll have any other distinguishing characteristics...' rows=4).form-control= formData.info_description
+      //-     .form-group(class=validationErrors.info_biography ? 'has-error' : null)
+      //-       label Biography
+      //-       textarea(name='info_biography', placeholder='Does this doll have a backstory...' rows=4).form-control= formData.info_biography
+      //-     .form-actions
+      //-       button(type='submit').btn.btn-primary Send
