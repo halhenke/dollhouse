@@ -5718,11 +5718,21 @@ div[ng-app] button.ng-back-btn {
       background-color: #ece2e3; }
       .show-doll .doll-details .bio h3 {
         margin: 0 -1rem 1rem; }
-  .show-doll .gallery .doll-pic {
-    height: 16rem;
-    background-size: cover;
-    box-shadow: 0 0 1rem 0.1rem #6b394c;
-    border-radius: 1.3rem; }
+  .show-doll .extended-info .bio {
+    padding: 2rem;
+    margin-bottom: 0;
+    background-color: #ece2e3;
+    color: #9b6d78;
+    background-color: #ece2e3; }
+    .show-doll .extended-info .bio h3 {
+      margin: 0 -1rem 1rem; }
+  .show-doll .gallery {
+    padding: 2rem 0; }
+    .show-doll .gallery .doll-pic {
+      height: 16rem;
+      background-size: cover;
+      box-shadow: 0 0 1rem 0.1rem #6b394c;
+      border-radius: 1.3rem; }
 
 .show-profile {
   background-color: #d7babc;
@@ -5749,11 +5759,21 @@ div[ng-app] button.ng-back-btn {
       background-color: #ece2e3; }
       .show-profile .profile-details .bio h3 {
         margin: 0 -1rem 1rem; }
-  .show-profile .gallery .profile-pic {
-    height: 16rem;
-    background-size: cover;
-    box-shadow: 0 0 1rem 0.1rem #6b394c;
-    border-radius: 1.3rem; }
+  .show-profile .extended-info .bio {
+    padding: 2rem;
+    margin-bottom: 0;
+    background-color: #ece2e3;
+    color: #9b6d78;
+    background-color: #ece2e3; }
+    .show-profile .extended-info .bio h3 {
+      margin: 0 -1rem 1rem; }
+  .show-profile .gallery {
+    padding: 2rem 0; }
+    .show-profile .gallery .profile-pic {
+      height: 16rem;
+      background-size: cover;
+      box-shadow: 0 0 1rem 0.1rem #6b394c;
+      border-radius: 1.3rem; }
 
 .doll-gallery-modal {
   background-color: #d7babc; }
