@@ -5693,9 +5693,20 @@ div[ng-app] button.ng-back-btn {
   .dolls .doll.my-doll .doll-header {
     background-color: rgba(239, 195, 217, 0.57); }
 
+.dolls .doll {
+  height: 0;
+  padding-bottom: 100%;
+  padding-top: 0; }
+  .dolls .doll .doll-header {
+    padding-top: 65%; }
+
 .show-doll {
   background-color: #d7babc;
   padding: 1rem; }
+  @media screen and (max-device-width: 500px) and (orientation: portrait) {
+    .show-doll .row {
+      margin-left: 0;
+      margin-right: 0; } }
   .show-doll .doll-details {
     padding-bottom: 4rem; }
     .show-doll .doll-details .doll-heading {
@@ -5729,6 +5740,7 @@ div[ng-app] button.ng-back-btn {
   .show-doll .gallery {
     padding: 2rem 0; }
     .show-doll .gallery .doll-pic {
+      padding-bottom: 100%;
       height: 16rem;
       background-size: cover;
       box-shadow: 0 0 1rem 0.1rem #6b394c;
@@ -5737,6 +5749,10 @@ div[ng-app] button.ng-back-btn {
 .show-profile {
   background-color: #d7babc;
   padding: 1rem; }
+  @media screen and (max-device-width: 500px) and (orientation: portrait) {
+    .show-profile .row {
+      margin-left: 0;
+      margin-right: 0; } }
   .show-profile .profile-details {
     padding-bottom: 4rem; }
     .show-profile .profile-details .profile-heading {
@@ -5770,6 +5786,7 @@ div[ng-app] button.ng-back-btn {
   .show-profile .gallery {
     padding: 2rem 0; }
     .show-profile .gallery .profile-pic {
+      padding-bottom: 100%;
       height: 16rem;
       background-size: cover;
       box-shadow: 0 0 1rem 0.1rem #6b394c;
