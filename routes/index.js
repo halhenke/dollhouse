@@ -44,6 +44,12 @@ var routes = {
 // Setup Route Bindings
 exports = module.exports = function(app) {
 
+  // SEARCH - FOR NOW
+  app.get('/robots.txt', function (req, res) {
+    res.type('text/plain');
+    res.send("User-agent: *\nDisallow: /");
+  });
+
   // PASSPORT - has to be set first..?
   app.use(passport.initialize());
   app.use(passport.session());
