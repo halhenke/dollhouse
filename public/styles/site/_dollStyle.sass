@@ -357,7 +357,8 @@ div[ng-app]
 
 
 
-// DOLL - SHOW DOLL
+// DOLL/PROFILE
+// - SHOW DOLL/PROFILE
 @each $resource in doll, profile
   .show-#{$resource}
     @include purple-jumbotron
@@ -382,7 +383,13 @@ div[ng-app]
       .bio
         @include badge
         background-color: $doll-bio-bg
+    .extended-info
+      .bio
+        @include badge
+        background-color: $doll-bio-bg
+        // padding-bottom: 4rem
     .gallery
+      padding: 2rem 0
       .#{$resource}-pic
         height: 16rem
         background-size: cover
