@@ -30,7 +30,7 @@ keystone.pre('routes', middleware.initLocals);
 keystone.pre('render', middleware.flashMessages);
 
 // Log a bunch of stuff if we are in development mode
-if (keystone.get('env') == 'production') {
+if (keystone.get('env') == 'development') {
   keystone.pre('render', middleware.logHeaders);
 }
 
