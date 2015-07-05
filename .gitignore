@@ -38,3 +38,4 @@ PRIVATE README.md
 mongoose_models.coffee
 keystoneTest.js
 .jscsrc.json
+.tags*
