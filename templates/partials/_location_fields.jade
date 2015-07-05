@@ -1,0 +1,39 @@
+.row
+  .col-sm-6
+    .form-group(class=validationErrors.location_name ? 'has-error' : null)
+      label Location Name
+      input(type='text', name='location.name', value=data.profile.location.name).form-control
+  .col-sm-6
+    .form-group(class=validationErrors.location_number ? 'has-error' : null)
+      label Street Number
+      input(type='text', name='location.number', value=data.profile.location.number).form-control
+.row: .col-sm-12
+  .form-group(class=validationErrors.location_street_1 ? 'has-error' : null)
+    label Street 1
+    input(type='text', name='location.street1', value=data.profile.location.street1).form-control
+.row
+  .col-sm-4
+    .form-group(class=validationErrors.location_suburb ? 'has-error' : null)
+      label Suburb
+      input(type='text', name='location.suburb', value=data.profile.location.street1).form-control
+  .col-sm-4
+    .form-group(class=validationErrors.location_postcode ? 'has-error' : null)
+      label Postcode
+      input(type='text', name='location.postcode', value=data.profile.location.street1).form-control
+  .col-sm-4
+    .form-group(class=validationErrors.location_state ? 'has-error' : null)
+      label State
+      input(type='text', name='location.state', value=data.profile.location.street1).form-control
+
+
+//-   number: getFieldDef(String, 'number'),
+//-   name: getFieldDef(String, 'name'),
+//-   street1: getFieldDef(String, 'street1'),
+//-   street2: getFieldDef(String, 'street2'),
+//-   street3: getFieldDef(String, 'street3'),
+//-   suburb: getFieldDef(String, 'suburb'),
+//-   state: getFieldDef(String, 'state'),
+//-   postcode: getFieldDef(String, 'postcode'),
+//-   country: getFieldDef(String, 'country'),
+//-   geo: { type: [Number], index: '2dsphere' }
+//- }, this.path + '.');

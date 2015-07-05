@@ -25,10 +25,15 @@ block content
                 input(type='text', name='name_last', value=data.profile.name.last).form-control
           .form-group(class=validationErrors.location ? 'has-error' : null)
             label Location
-            input(type='text', location='location', value=data.profile.location).form-control
+            input(type='text', name='location', value=data.profile.location).form-control
+          if data.profile.location !== undefined
+            //- h2 Location is |#{data.profile.location != undefined}| 
+            h2 Location is |#{lo.isEmpty(data.profile.location)}| 
+            include ../../partials/_location_fields
           .form-group(class=validationErrors.userName ? 'has-error' : null)
             label userName
             input(type='text', name='userName', value=data.profile.profile.userName).form-control
+          h2 Permissions
           .form-group(class=validationErrors.emailShow ? 'has-error' : null)
             label Show Email Address?
             input(type='checkbox', name='emailShow', value=data.profile.profile.emailShow).form-control
