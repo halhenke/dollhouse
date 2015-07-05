@@ -100,7 +100,7 @@ exports = module.exports = function(app) {
   // app.get('/profiles', routes.views.indexProfiles);
   app.all('/profiles/new', routes.views.newProfile);
   // app.get('/profiles/profile:profile', routes.views.showProfile);
-  app.get('/profiles/profile/:profile/edit', routes.views.editProfile);
+  app.all('/profiles/profile/:profile/edit', routes.views.editProfile);
   // app.get('/profiles/profile/:profile/delete', routes.views.deleteProfile);
 
   app.all('/dolls/new', routes.views.newDoll);
