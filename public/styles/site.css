@@ -5271,7 +5271,7 @@ button.close {
   visibility: hidden; }
 
 .text-hide {
-  font: Infinity a;
+  font: 0/0 a;
   color: transparent;
   text-shadow: none;
   background-color: transparent;
