@@ -81,6 +81,20 @@ exports.requireUser = function(req, res, next) {
   }
 };
 
+/**
+  Prevents people from accessing Admin Pages when we are using
+  our custom role based strategy...
+ */
+
+exports.requireSuperUser = function(req, res, next) {
+  if (!req.user || !req.user.isSuperUser) {
+    req.flash('error', 'You must be an Admin to access this page.');
+    res.redirect('/');
+  } else {
+    next();
+  }
+};
+
 function slugUser (user, req, next) {
   console.log("slugUser called...user is ");
   console.log("user - email is " + user.email);
@@ -107,7 +121,8 @@ function slugUser (user, req, next) {
 exports.passportUserCheck = function (req, res, next) {
   if (req.session && req.session.passport && req.session.passport.user) {
       console.log("Session is storing User ID: " + req.session.passport.user);
-      keystone.list('User').model.findById(req.session.passport.user)
+      keystone.list('User')
+        .model.findById(req.session.passport.user)
         .exec(function (err, user) {
           if (!err && user) {
             console.log("Found our user - name is " + user.name.full);

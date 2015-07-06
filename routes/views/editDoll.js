@@ -15,7 +15,7 @@ exports = module.exports = function(req, res) {
   locals.formData = req.body || {};
   locals.validationErrors = {};
   locals.dolls = config.dolls;
-  locals.profileUpdated = false;
+  locals.dollUpdated = false;
   locals.data = {
   };
 
@@ -43,13 +43,15 @@ exports = module.exports = function(req, res) {
         .getUpdateHandler(req, res)
         .process(req.body, {
           flashErrors: true,
-          fields: "",
+          // fields: "",
+          // fields: "name, maker, sculpt, image, image_url, info_description, info.biography",
+          fields: "name, maker, sculpt, image, info.description, info.biography",
           errorMessage: 'Hmmmm: There was a problem updating your doll...'
         }, function(err) {
           if (err) {
             locals.validationErrors = err.errors;
           } else {
-            locals.profileUpdated = true;
+            locals.dollUpdated = true;
           }
           next();
         });
@@ -57,7 +59,7 @@ exports = module.exports = function(req, res) {
     });
 
   view.render(function (err, req, res) {
-    if (req.method === 'POST' && res.locals.profileUpdated) {
+    if (req.method === 'POST' && res.locals.dollUpdated) {
       // res.redirect("/dolls/doll/{{data.doll.slug}}/edit");
       res.redirect("/community/#/dolls/doll/" + locals.data.doll.slug);
     }

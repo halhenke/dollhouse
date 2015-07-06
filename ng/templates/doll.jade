@@ -29,7 +29,10 @@
             //- Think this editable function is only server side
             //- (data-ks-editable=editable(user, { list: 'Doll', id: data.doll.id }))
         
-    .row.extended-bio
+    .row.extended-info
+      .bio.jumbotron(ng-if="data.doll.info && data.doll.info.description")
+        h3 physical description:
+        p(ng-bind-html="data.doll.info.description")
     .row.associated-stuff
       .row.dolls
       .row.links

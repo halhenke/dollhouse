@@ -66,7 +66,6 @@ $bootstrap-min-width: "(min-width: 768px)"
     a
       color: white
 
-
 @mixin flex-center
   display: flex
   justify-content: center
@@ -77,6 +76,20 @@ $bootstrap-min-width: "(min-width: 768px)"
     margin:
       top: 0
       bottom: 0
+
+@mixin iphone-row-margins
+  @media screen and #{$iphone-max-width} and (orientation: portrait)
+    .row
+      margin:
+        left: 0
+        right: 0
+
+@mixin responsive-square-100
+  padding-bottom: 100%
+
+@mixin responsive-square-75
+  padding-bottom: 75%
+
 
 
 // To force column heights to be the same
@@ -297,6 +310,20 @@ img.cover-girl
     .doll-header
       background-color: $my-dolls
 
+@mixin square-doll-grid-style
+  @include doll-grid-style
+  .dolls
+    .doll
+      @include square-doll-mixin-style
+
+@mixin square-doll-mixin-style
+  height: 0
+  padding:
+    bottom: 100%
+    top: 0
+  .doll-header
+    padding-top: 65%
+
 @mixin doll-grid-style
   .dolls
     .row
@@ -327,7 +354,8 @@ div[ng-app]
 // ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 // DOLLS
 // COLLECTION
-@include doll-grid-style
+// @include doll-grid-style
+@include square-doll-grid-style
 
 @mixin purple-jumbotron
   background-color: $doll-jumbotron-bg
@@ -357,9 +385,11 @@ div[ng-app]
 
 
 
-// DOLL - SHOW DOLL
+// DOLL/PROFILE
+// - SHOW DOLL/PROFILE
 @each $resource in doll, profile
   .show-#{$resource}
+    @include iphone-row-margins
     @include purple-jumbotron
     .#{$resource}-details
       padding-bottom: 4rem
@@ -382,8 +412,15 @@ div[ng-app]
       .bio
         @include badge
         background-color: $doll-bio-bg
+    .extended-info
+      .bio
+        @include badge
+        background-color: $doll-bio-bg
+        // padding-bottom: 4rem
     .gallery
+      padding: 2rem 0
       .#{$resource}-pic
+        @include responsive-square-100
         height: 16rem
         background-size: cover
         box-shadow: 0 0 1rem 0.1rem $doll-img-shadow

@@ -41,7 +41,7 @@ exports = module.exports = function(req, res) {
         .getUpdateHandler(req, res)
         .process(req.body, {
           flashErrors: true,
-          fields: "",
+          fields: "name, profile.userName, profile.emailShow, profile.avatar, profile.about.brief, profile.about.extended",
           errorMessage: 'Hmmmm: There was a problem updating your profile...'
         }, function(err) {
           if (err) {
@@ -56,7 +56,8 @@ exports = module.exports = function(req, res) {
 
   view.render(function (err, req, res) {
     if (req.method === 'POST' && res.locals.profileUpdated) {
-      res.redirect('profiles');
+      // res.redirect('profiles');
+      res.redirect("/community/#/profiles/profile/" + locals.data.profile.slug);
     }
     else
       res.render('profiles/edit');
