@@ -41,7 +41,7 @@ exports = module.exports = function(req, res) {
         .getUpdateHandler(req, res)
         .process(req.body, {
           flashErrors: true,
-          fields: "",
+          fields: "name, profile.userName, profile.emailShow, profile.avatar, profile.about.brief, profile.about.extended",
           errorMessage: 'Hmmmm: There was a problem updating your profile...'
         }, function(err) {
           if (err) {

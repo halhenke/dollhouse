@@ -2,6 +2,9 @@ extends ../../layouts/default
 include ../../mixins/dollHelpers
 
 block intro
+  script(src='//tinymce.cachefly.net/4.2/tinymce.min.js')
+  script.
+    tinymce.init({selector:'textarea.mce'});
   .container
     h1 Edit Your Profile
     h2 Your name is #{data.profile.name}
@@ -25,23 +28,28 @@ block content
                 input(type='text', name='name_last', value=data.profile.name.last).form-control
           .form-group(class=validationErrors.location ? 'has-error' : null)
             label Location
-            input(type='text', location='location', value=data.profile.location).form-control
+            input(type='text', name='location', value=data.profile.location).form-control
+          if data.profile.location !== undefined
+            //- h2 Location is |#{data.profile.location != undefined}| 
+            h2 Location is |#{lo.isEmpty(data.profile.location)}| 
+            include ../../partials/_location_fields
           .form-group(class=validationErrors.userName ? 'has-error' : null)
             label userName
             input(type='text', name='userName', value=data.profile.profile.userName).form-control
+          h2 Permissions
           .form-group(class=validationErrors.emailShow ? 'has-error' : null)
             label Show Email Address?
             input(type='checkbox', name='emailShow', value=data.profile.profile.emailShow).form-control
           .form-group(class=validationErrors.avatar ? 'has-error' : null)
             label Your Avatar
             img(href=data.profile.profile.avatar.url heigh="200px")
-            input(type='text', name='avatar', value=data.profile.profile.avatar).form-control
+            input(type='file', name='profile.avatar_upload', value=data.profile.profile.avatar).form-control
           .form-group(class=validationErrors.about_brief ? 'has-error' : null)
             label Brief Info
-            input(type='textarea', name='about_brief', value=data.profile.profile.about.brief).form-control
+            textarea.mce(name='profile.about.brief', rows=4).form-control= data.profile.profile.about.brief
           .form-group(class=validationErrors.about_extended ? 'has-error' : null)
             label Extended Info
-            input(type='textarea', name='about_extended', value=data.profile.profile.about.extended).form-control
+            textarea.mce(name='profile.about.extended', rows=4).form-control= data.profile.profile.about.extended
           //- .form-group(class=validationErrors.user ? 'has-error' : null)
           //-   //- each user in users
           //-   //-   +fullName(user.name)            
