@@ -1,6 +1,6 @@
-// RULES
-
+// *********************************************
 // COLOURS
+// *********************************************
 $blueish: rgba(154, 186, 213, 0.76)
 $body-bg: rgba(171, 110, 123, 0.62)
 
@@ -38,7 +38,9 @@ $background-pattern: "http://res.cloudinary.com/doll-social-club/image/upload/v1
 $iphone-max-width: "(max-device-width: 500px)"
 $bootstrap-min-width: "(min-width: 768px)"
 
+// *********************************************
 // MIXINS
+// *********************************************
 
 @mixin ng-back-button
   background-color: $ng-button-bg
@@ -90,6 +92,13 @@ $bootstrap-min-width: "(min-width: 768px)"
 @mixin responsive-square-75
   padding-bottom: 75%
 
+@mixin img-constrain
+  img
+    max-width: 100%
+
+@mixin purple-jumbotron
+  background-color: $doll-jumbotron-bg
+  padding: 1rem
 
 @mixin event-details
   font:
@@ -97,6 +106,31 @@ $bootstrap-min-width: "(min-width: 768px)"
     size: 2rem
     // variant: small-caps
 
+@mixin resource-heading($resource)
+  .#{$resource}-heading
+    font-family: AngelicSerif
+    color: $font-purple
+    .#{$resource}-name
+      float: left
+    .join-date
+      float: right
+      font:
+        size: 3rem
+@mixin resource-image($resource)
+  .#{$resource}-img
+    border-radius: 1.3rem
+    box-shadow: 1rem 1rem 1rem 0.1rem $doll-img-shadow
+    width: 100%
+
+@mixin profile-image
+  border-radius: 1.3rem
+  box-shadow: 1rem 1rem 1rem 0.1rem $doll-img-shadow
+  max-width: 100%
+  max-height: 16rem
+
+// *********************************************
+// RULES
+// *********************************************
 
 // To force column heights to be the same
 // see http://stackoverflow.com/a/18227564/935470
@@ -158,34 +192,6 @@ body
     a.btn.navbar-btn
       @include nav-link-buttons
       color: white
-      // align-items: flex-start
-      // border-radius: 12px
-      // clear: none
-      // color: rgb(51, 51, 51)
-      // display: inline-block
-      // font: normal normal normal normal 18px/34.2856788635254px AngelicSerif
-      // height: 40px
-      // margin: 0px 2.39999985694885px
-      // outline: rgb(51, 51, 51) none 0px
-      // padding: 6px 12px
-      // // perspective-origin	80px 26.3333339691162px
-      // // 72px 20px
-      // // transform-origin	80px 26.3333339691162px
-      // // 72px 20px
-      // width: 144px
-      // // Prefixed properties
-      // // -webkit-column-rule-color	rgb(158, 88, 115)
-      // // rgb(51, 51, 51)
-      // // -webkit-perspective-origin	80px 26.3333339691162px
-      // // 72px 20px
-      // // -webkit-text-emphasis-color	rgb(158, 88, 115)
-      // // rgb(51, 51, 51)
-      // // -webkit-text-fill-color	rgb(158, 88, 115)
-      // // rgb(51, 51, 51)
-      // // -webkit-text-stroke-color	rgb(158, 88, 115)
-      // // rgb(51, 51, 51)
-      // // -webkit-transform-origin	80px 26.3333339691162px
-      // // 72px 20px
     button
       @include nav-link-buttons
     // @media not screen and #{$iphone-max-width} and (orientation: portrait)
@@ -269,7 +275,10 @@ img.cover-girl
     transform: rotate(0.5turn) translate(4rem) scale(0.5)
     transition-duration: 2s
 
+// *********************************************
 // BLOG
+// *********************************************
+
 // .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus
 .list-group-item.active
   background:
@@ -362,34 +371,6 @@ div[ng-app]
 // @include doll-grid-style
 @include square-doll-grid-style
 
-@mixin purple-jumbotron
-  background-color: $doll-jumbotron-bg
-  padding: 1rem
-
-@mixin resource-heading($resource)
-  .#{$resource}-heading
-    font-family: AngelicSerif
-    color: $font-purple
-    .#{$resource}-name
-      float: left
-    .join-date
-      float: right
-      font:
-        size: 3rem
-@mixin resource-image($resource)
-  .#{$resource}-img
-    border-radius: 1.3rem
-    box-shadow: 1rem 1rem 1rem 0.1rem $doll-img-shadow
-    width: 100%
-
-@mixin profile-image
-  border-radius: 1.3rem
-  box-shadow: 1rem 1rem 1rem 0.1rem $doll-img-shadow
-  max-width: 100%
-  max-height: 16rem
-
-
-
 // DOLL/PROFILE
 // - SHOW DOLL/PROFILE
 @each $resource in doll, profile
@@ -439,7 +420,9 @@ div[ng-app]
 
 // ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 
+// *********************************************
 // PROFILES
+// *********************************************
 .profiles.purple-jumbotron
   @include purple-jumbotron
   padding: 2rem
@@ -507,9 +490,6 @@ form.newDoll
 
 // INDIVIDUAL PROFILES & DOLLs
 // - this really could be better optimized with a mixin
-@mixin img-constrain
-  img
-    max-width: 100%
 
 @each $resource in doll, profile
   .show-#{$resource}
