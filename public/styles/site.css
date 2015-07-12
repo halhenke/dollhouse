@@ -5655,14 +5655,19 @@ h1 {
 .event img.img-events {
   padding: 3rem; }
 
-.event_details {
+.event img.img-event {
+  border-radius: 1.3rem;
+  box-shadow: 1rem 1rem 1rem 0.1rem #6b394c;
+  max-width: 100%;
+  max-height: 16rem; }
+
+.event .event_details {
   margin-top: 2rem;
   margin-left: 2rem; }
-  .event_details .key {
-    font-family: "Metamorphous";
-    font-size: 2rem;
-    font-variant: small-caps; }
-  .event_details .val {
+  .event .event_details .key {
+    font-family: "AngelicSerif";
+    font-size: 2rem; }
+  .event .event_details .val {
     size: 2rem; }
 
 dt {
