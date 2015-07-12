@@ -91,6 +91,12 @@ $bootstrap-min-width: "(min-width: 768px)"
   padding-bottom: 75%
 
 
+@mixin event-details
+  font:
+    family: "AngelicSerif"
+    size: 2rem
+    // variant: small-caps
+
 
 // To force column heights to be the same
 // see http://stackoverflow.com/a/18227564/935470
@@ -269,29 +275,28 @@ img.cover-girl
   background:
     color: $blueish
 
+// *********************************************
 // EVENTS
+// *********************************************
+
+// *********************************************
+// EVENT
+// *********************************************
 .event
   img.img-events
     padding: 3rem
 
-// EVENT
-.event_details
-  margin:
-    top: 2rem
-    left: 2rem
-  .key
-    font:
-      family: "Metamorphous"
-      size: 2rem
-      variant: small-caps
-  .val
-    size: 2rem
+  img.img-event
+    @include profile-image
 
-@mixin event-details
-  font:
-    family: "Metamorphous"
-    size: 2rem
-    variant: small-caps
+  .event_details
+    margin:
+      top: 2rem
+      left: 2rem
+    .key
+      @include event-details
+    .val
+      size: 2rem
 
 @mixin doll-mixin-style
   background-size: cover
