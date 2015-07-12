@@ -39,7 +39,7 @@
     .row.gallery
       .row
         .col-sm-2(ng-repeat="profile in data.profile.gallery")
-          .profile-pic(ng-click="open('lg', profile)" ng-style="getAvatar(profile.url)")          
+          .profile-pic(ng-click="open('lg', profile)" ng-style="getAvatar(profile.url)")
             //- img(ng-if="data.profile.image" src="{{profile.image.url}}").img
       //- .row(ng-repeat="profile_threes in data.profile.gallery")
         .col-sm-3(ng-repeat="profile in profile_threes")

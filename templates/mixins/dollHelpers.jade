@@ -1,10 +1,7 @@
 mixin eventDateFormat(event)
-  //- | #{event.date}: #{event.startTime} - #{event.endTime}
   | #{event._.date.format("dddd, MMMM Do YYYY")}: 
   | #{event._.startTime.format("h:mm a")} -
   | #{event._.endTime.format("h:mm a")}
-  //- event.startTime._.format("dddd, MMMM Do YYYY, h:mm:ss a"); // "Sunday, February 14th 2010, 3:25:50 pm"
-  //- event.startTime._.format("dddd, MMMM Do YYYY, h:mm:ss a"); // "Sunday, February 14th 2010, 3:25:50 pm"
 
 mixin fullName(name)
   //- name.first + " " + name.last
