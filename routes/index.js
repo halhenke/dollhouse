@@ -19,13 +19,19 @@
  */
 
 var keystone = require('keystone'),
-  middleware = require('./middleware'),
-  passport = require('passport'),
-  passportMiddleware = require('./passport/middleware');
-  importRoutes = keystone.importer(__dirname);
+    middleware = require('./middleware'),
+    jwt = require('express-jwt'),
+    jWebTok = require('jsonwebtoken'),
+    passport = require('passport'),
+    // passportMiddleware = require('./passport/middleware'),
+    // passportTokenMiddleware = require('./passport/middleware-token'),
+    importRoutes = keystone.importer(__dirname);
 
 // Common Middleware
-keystone.pre('routes', middleware.passportUserCheck);
+
+// keystone.pre('routes', middleware.passportUserCheck);
+
+// keystone.pre('routes', passportTokenMiddleware.authenticate);
 keystone.pre('routes', middleware.initLocals);
 keystone.pre('render', middleware.flashMessages);
 
@@ -50,9 +56,104 @@ exports = module.exports = function(app) {
     res.send("User-agent: *\nDisallow: /");
   });
 
+  // // PASSPORT - ATTEMPT TO USE PASSPORT-TOKEN
+  // passport.use(passportTokenMiddleware.strategy);
+  // app.use(passport.initialize());
+  // // app.use(passport.session());
+  // // - passport related login/logout etc
+  // app.get('/users/login', routes.passport.login);
+  // app.post('/users/login',
+  //   passportTokenMiddleware.authenticate
+  //   // passport.authenticate('local', { successRedirect: '/',
+  //   //                                  failureRedirect: '/users/login',
+  //   //                                  failureFlash: true })
+  // );
+  // app.all('/users/register', routes.passport.register);
+  // app.get('/users/logout', function(req, res){
+  //   req.logout();
+  //   res.redirect('/');
+  // });
+
+  // NOTE: DISABLE PASSPORT
   // PASSPORT - has to be set first..?
-  app.use(passport.initialize());
-  app.use(passport.session());
+  // app.use(passport.initialize());
+  // app.use(passport.session());
+  // - passport related login/logout etc
+  app.get('/users/login', routes.passport.login);
+  // Login -> token
+  app.post('/users/login', function (req, res, next) {
+    console.log("Looking for a user....");
+    keystone.list('User').model
+      .findOne({"email": req.body.username}, function (err, user) {
+        console.log("Inside user findOne....");
+        if (err) {
+          console.log("User findOne got err: " + err);
+          res.redirect('/');
+        }
+        if (user) {
+          var tok = jWebTok.sign({userSlug: user.slug},
+                    'n.enTPn2iLC86m8A&d', {
+                      audience: 'superUsers',
+                      issuer: 'dollsocial.club'
+                    });
+          console.log("Token created!");
+          // token in cookie
+          res.cookie('tok', tok, {
+              secure: true,
+              signed: true
+          });
+          // token in header
+          // res.setHeader("Authorization", "Bearer " + tok);
+          res.send("Happy Failure");
+
+        } else {
+          res.redirect('/');
+        }
+      })
+    });
+  // app.post('/users/login',
+  //   passport.authenticate('local', { successRedirect: '/',
+  //                                    failureRedirect: '/users/login',
+  //                                    failureFlash: true })
+  // );
+  app.all('/users/register', routes.passport.register);
+  app.get('/users/logout', function(req, res){
+    req.logout();
+    res.redirect('/');
+  });
+  // PROTECT THE COMMUNITY PAGE
+  // var tokenFromCookie = function (req) {
+  //   // if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+  //   //     return req.headers.authorization.split(' ')[1];
+  //   // } else if (req.query && req.query.token) {
+  //   //   return req.query.token;
+  //   // }
+  //   if (req.cookies.tok) {
+  //     return req.cookies.tok;
+  //   } else {
+  //     return null;
+  //   }
+  // };
+  app.use('/community',
+    jwt({
+      secret:'n.enTPn2iLC86m8A&d',
+      audience: 'superUsers',
+      issuer: 'dollsocial.club',
+      // getToken: tokenFromCookie(req)
+      getToken: function (req) {
+        console.log("getToken called");
+        // console.log("Req cookies are");
+        // console.dir(req.cookies);
+
+        if (req.signedCookies.tok) {
+          console.log("tok coookie found");
+          return req.signedCookies.tok;
+        } else {
+          console.log("tok coookie not found");
+          return null;
+        }
+      }
+    }));
 
   // Views
   app.get('/', routes.views.index);
@@ -85,18 +186,6 @@ exports = module.exports = function(app) {
   // app.put('/users/user/:user/edit', routes.views.editUser);
   // app.put('/users/user/:user/delete', routes.views.deleteUser);
 
-  app.get('/users/login', routes.passport.login);
-  app.post('/users/login',
-    passport.authenticate('local', { successRedirect: '/',
-                                     failureRedirect: '/users/login',
-                                     failureFlash: true })
-  );
-  app.all('/users/register', routes.passport.register);
-  app.get('/users/logout', function(req, res){
-    req.logout();
-    res.redirect('/');
-  });
-
   // app.get('/profiles', routes.views.indexProfiles);
   app.all('/profiles/new', routes.views.newProfile);
   // app.get('/profiles/profile:profile', routes.views.showProfile);
@@ -115,5 +204,19 @@ exports = module.exports = function(app) {
 
   // NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
   // app.get('/protected', middleware.requireUser, routes.views.protected);
+
+  // ERROR HANDLING
+  // TOKEN RELATED
+  app.use(function (err, req, res, next) {
+    if (err.name === "UnauthorizedError") {
+      console.log("We seem to have been kicked out by express-jwt");
+      // res.location('/');
+      // NOTE: This leaves relative Angular HashLink
+      // stuff appended to the root location
+      res.redirect('/');
+    } else {
+      next();
+    }
+  });
 
 };
