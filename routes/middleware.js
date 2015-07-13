@@ -42,9 +42,7 @@ exports.initLocals = function(req, res, next) {
   ];
 
   locals.user = req.user;
-
   next();
-
 };
 
 
@@ -119,7 +117,9 @@ function slugUser (user, req, next) {
  */
 
 exports.passportUserCheck = function (req, res, next) {
-  if (req.session && req.session.passport && req.session.passport.user) {
+  console.log("passportUserCheck function Called");
+  if (req.session && req.session.passport
+    && req.session.passport.user) {
       console.log("Session is storing User ID: " + req.session.passport.user);
       keystone.list('User')
         .model.findById(req.session.passport.user)
