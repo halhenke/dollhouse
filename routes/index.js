@@ -81,36 +81,7 @@ exports = module.exports = function(app) {
   // - passport related login/logout etc
   app.get('/users/login', routes.passport.login);
   // Login -> token
-  app.post('/users/login', function (req, res, next) {
-    console.log("Looking for a user....");
-    keystone.list('User').model
-      .findOne({"email": req.body.username}, function (err, user) {
-        console.log("Inside user findOne....");
-        if (err) {
-          console.log("User findOne got err: " + err);
-          res.redirect('/');
-        }
-        if (user) {
-          var tok = jWebTok.sign({userSlug: user.slug},
-                    'n.enTPn2iLC86m8A&d', {
-                      audience: 'superUsers',
-                      issuer: 'dollsocial.club'
-                    });
-          console.log("Token created!");
-          // token in cookie
-          res.cookie('tok', tok, {
-              secure: true,
-              signed: true
-          });
-          // token in header
-          // res.setHeader("Authorization", "Bearer " + tok);
-          res.send("Happy Failure");
-
-        } else {
-          res.redirect('/');
-        }
-      })
-    });
+  app.post('/users/login', middleware.myTokenAuthentication);
   // app.post('/users/login',
   //   passport.authenticate('local', { successRedirect: '/',
   //                                    failureRedirect: '/users/login',
@@ -122,37 +93,13 @@ exports = module.exports = function(app) {
     res.redirect('/');
   });
   // PROTECT THE COMMUNITY PAGE
-  // var tokenFromCookie = function (req) {
-  //   // if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
-  //   //     return req.headers.authorization.split(' ')[1];
-  //   // } else if (req.query && req.query.token) {
-  //   //   return req.query.token;
-  //   // }
-  //   if (req.cookies.tok) {
-  //     return req.cookies.tok;
-  //   } else {
-  //     return null;
-  //   }
-  // };
   app.use('/community',
     jwt({
       secret:'n.enTPn2iLC86m8A&d',
       audience: 'superUsers',
       issuer: 'dollsocial.club',
       // getToken: tokenFromCookie(req)
-      getToken: function (req) {
-        console.log("getToken called");
-        // console.log("Req cookies are");
-        // console.dir(req.cookies);
-
-        if (req.signedCookies.tok) {
-          console.log("tok coookie found");
-          return req.signedCookies.tok;
-        } else {
-          console.log("tok coookie not found");
-          return null;
-        }
-      }
+      getToken: middleware.myTokenRetrieval
     }));
 
   // Views

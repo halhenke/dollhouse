@@ -10,6 +10,8 @@
 
 var _ = require('lodash'),
     keystone = require('keystone'),
+    jwt = require('express-jwt'),
+    jWebTok = require('jsonwebtoken'),
     config = require('../config');
 
 
@@ -140,6 +142,60 @@ exports.passportUserCheck = function (req, res, next) {
   }
 };
 
+// ----------------------------------------------
+// TOKEN RELATED AUTHENTICATION AND ACCESS
+// ----------------------------------------------
+exports.myTokenAuthentication = function (req, res, next) {
+  console.log("Looking for a user....");
+  keystone.list('User').model
+    .findOne({"email": req.body.username}, function (err, user) {
+      console.log("Inside user findOne....");
+      if (err) {
+        console.log("User findOne got err: " + err);
+        res.redirect('/');
+      }
+      if (user) {
+        var tok = jWebTok.sign({userSlug: user.slug},
+                  'n.enTPn2iLC86m8A&d', {
+                    audience: 'superUsers',
+                    issuer: 'dollsocial.club'
+                  });
+        console.log("Token created!");
+        // token in cookie
+        res.cookie('tok', tok, {
+            secure: true,
+            signed: true
+        });
+        // token in header
+        // res.setHeader("Authorization", "Bearer " + tok);
+        res.send("Happy Failure");
+
+      } else {
+        res.redirect('/');
+      }
+    })
+  };
+
+exports.myTokenRetrieval = function (req) {
+  console.log("getToken called");
+  // console.log("Req cookies are");
+  // console.dir(req.cookies);
+  // if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+  //     return req.headers.authorization.split(' ')[1];
+  // } else if (req.query && req.query.token) {
+  //   return req.query.token;
+  // }
+  // NOTE: Because we signed the cookie it wont be in
+  // req.cookie
+  if (req.signedCookies.tok) {
+    console.log("tok coookie found");
+    return req.signedCookies.tok;
+  } else {
+    console.log("tok coookie not found");
+    return null;
+  }
+};
+// ----------------------------------------------
 
 exports.logHeaders = function(req, res, next) {
   console.log('Request Headers');
