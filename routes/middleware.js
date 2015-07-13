@@ -155,25 +155,34 @@ exports.myTokenAuthentication = function (req, res, next) {
         res.redirect('/');
       }
       if (user) {
-        var tok = jWebTok.sign({userSlug: user.slug},
-                  'n.enTPn2iLC86m8A&d', {
-                    audience: 'superUsers',
-                    issuer: 'dollsocial.club'
-                  });
-        console.log("Token created!");
-        // token in cookie
-        res.cookie('tok', tok, {
-            secure: true,
-            signed: true
-        });
-        // token in header
-        // res.setHeader("Authorization", "Bearer " + tok);
-        res.send("Happy Failure");
-
+        user._.password.compare(req.body.password, function (err, result) {
+          if (err || (! result)) {
+            console.log("User password did not match");
+            res.redirect('/');
+          } else {
+            console.log("User passwords matched");
+            var tok = jWebTok.sign({userSlug: user.slug},
+                      'n.enTPn2iLC86m8A&d', {
+                        audience: 'superUsers',
+                        issuer: 'dollsocial.club'
+                      });
+            console.log("Token created!");
+            // token in cookie
+            res.cookie('tok', tok, {
+                secure: true,
+                signed: true
+            });
+            // token in header
+            // res.setHeader("Authorization", "Bearer " + tok);
+            
+            // res.send("Happy Failure");
+            res.redirect('/');
+          }
+        })
       } else {
         res.redirect('/');
       }
-    })
+    });
   };
 
 exports.myTokenRetrieval = function (req) {
