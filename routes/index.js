@@ -56,37 +56,19 @@ exports = module.exports = function(app) {
     res.send("User-agent: *\nDisallow: /");
   });
 
-  // // PASSPORT - ATTEMPT TO USE PASSPORT-TOKEN
-  // passport.use(passportTokenMiddleware.strategy);
-  // app.use(passport.initialize());
-  // // app.use(passport.session());
-  // // - passport related login/logout etc
-  // app.get('/users/login', routes.passport.login);
-  // app.post('/users/login',
-  //   passportTokenMiddleware.authenticate
-  //   // passport.authenticate('local', { successRedirect: '/',
-  //   //                                  failureRedirect: '/users/login',
-  //   //                                  failureFlash: true })
-  // );
-  // app.all('/users/register', routes.passport.register);
-  // app.get('/users/logout', function(req, res){
-  //   req.logout();
-  //   res.redirect('/');
-  // });
-
   // NOTE: DISABLE PASSPORT
   // PASSPORT - has to be set first..?
   // app.use(passport.initialize());
   // app.use(passport.session());
   // - passport related login/logout etc
-  app.get('/users/login', routes.passport.login);
-  // Login -> token
-  app.post('/users/login', middleware.myTokenAuthentication);
   // app.post('/users/login',
   //   passport.authenticate('local', { successRedirect: '/',
   //                                    failureRedirect: '/users/login',
   //                                    failureFlash: true })
   // );
+  app.get('/users/login', routes.passport.login);
+  // LOGIN -> TOKEN
+  app.post('/users/login', middleware.myTokenAuthentication);
   app.all('/users/register', routes.passport.register);
   app.get('/users/logout', function(req, res){
     req.logout();
