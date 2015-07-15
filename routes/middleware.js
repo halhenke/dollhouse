@@ -145,24 +145,29 @@ exports.passportUserCheck = function (req, res, next) {
 // ----------------------------------------------
 // TOKEN RELATED AUTHENTICATION AND ACCESS
 // ----------------------------------------------
+// Called on login
+// - store token in either
+//   - header
+//   - body
+//   - cookie
+//   - localStorage/sessionStorage
 exports.myTokenAuthentication = function (req, res, next) {
   console.log("Looking for a user....");
   keystone.list('User').model
-    .findOne({"email": req.body.username}, function (err, user) {
+    .findOne({"email": req.body.username})
+    .exec()
+    .then(function (user) {
       console.log("Inside user findOne....");
-      if (err) {
-        console.log("User findOne got err: " + err);
-        res.redirect('/');
-      }
       if (user) {
         user._.password.compare(req.body.password, function (err, result) {
           if (err || (! result)) {
             console.log("User password did not match");
             res.redirect('/');
-          } else {
+          }
+          else {
             console.log("User passwords matched");
             var tok = jWebTok.sign({userSlug: user.slug},
-                      'n.enTPn2iLC86m8A&d', {
+                      process.env.TOKEN_SECRET, {
                         audience: 'superUsers',
                         issuer: 'dollsocial.club'
                       });
@@ -172,9 +177,8 @@ exports.myTokenAuthentication = function (req, res, next) {
                 secure: true,
                 signed: true
             });
-            // token in header
+            // // token in header
             // res.setHeader("Authorization", "Bearer " + tok);
-            
             // res.send("Happy Failure");
             res.redirect('/');
           }
@@ -182,7 +186,11 @@ exports.myTokenAuthentication = function (req, res, next) {
       } else {
         res.redirect('/');
       }
-    });
+    },
+    function (err) {
+      console.log("User findOne got err: " + err);
+      res.redirect('/');
+    })
   };
 
 exports.myTokenRetrieval = function (req) {
