@@ -32,6 +32,15 @@ var keystone = require('keystone'),
 // keystone.pre('routes', middleware.passportUserCheck);
 
 // keystone.pre('routes', passportTokenMiddleware.authenticate);
+keystone.pre('routes', jwt({
+  secret: process.env.TOKEN_SECRET,
+  audience: 'superUsers',
+  issuer: 'dollsocial.club',
+  getToken: middleware.myTokenRetrieval
+}));
+// Bit tortured - req.user is now the decoded token
+// need to set it to user
+keystone.pre('routes', middleware.tokenToUser);
 keystone.pre('routes', middleware.initLocals);
 keystone.pre('render', middleware.flashMessages);
 
@@ -77,7 +86,7 @@ exports = module.exports = function(app) {
   // PROTECT THE COMMUNITY PAGE
   app.use('/community',
     jwt({
-      secret:'n.enTPn2iLC86m8A&d',
+      secret: process.env.TOKEN_SECRET,
       audience: 'superUsers',
       issuer: 'dollsocial.club',
       // getToken: tokenFromCookie(req)
@@ -137,12 +146,14 @@ exports = module.exports = function(app) {
   // ERROR HANDLING
   // TOKEN RELATED
   app.use(function (err, req, res, next) {
+    console.log("Err Catching middleware called...");
     if (err.name === "UnauthorizedError") {
       console.log("We seem to have been kicked out by express-jwt");
       // res.location('/');
       // NOTE: This leaves relative Angular HashLink
       // stuff appended to the root location
-      res.redirect('/');
+      next();
+      // res.redirect('/');
     } else {
       next();
     }
