@@ -23,9 +23,9 @@ keystone.init({
   'emails': 'templates/emails',
 
   'auto update': true,
-  'session': true,
-  'session store': "mongo",
-  'auth': true,
+  // 'session': true,
+  // 'session store': "mongo",
+  // 'auth': true,
   'user model': 'User',
   'cookie secret': process.env.COOKIE_SECRET,
 
