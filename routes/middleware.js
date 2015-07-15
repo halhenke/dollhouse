@@ -193,8 +193,9 @@ exports.myTokenAuthentication = function (req, res, next) {
     })
   };
 
+// Fetch token back from where stored...
 exports.myTokenRetrieval = function (req) {
-  console.log("getToken called");
+  console.log("GETTOKEN CALLED");
   // console.log("Req cookies are");
   // console.dir(req.cookies);
   // if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
@@ -212,6 +213,28 @@ exports.myTokenRetrieval = function (req) {
     return null;
   }
 };
+
+// Try to get a User from a decoded token
+exports.tokenToUser = function (req, res, next) {
+  // console.log("userFromToken called...");
+  // console.log("looking for slug " + token.userSlug);
+  // console.log("from token ");
+  // console.dir(token);
+  keystone.list('User')
+    .model.findOne({slug: req.user.userSlug})
+    .exec()
+    .then(function (user) {
+      console.log("userFromToken: user found");
+      console.dir(user);
+      req.user = user;
+      next();
+      // return user;
+    }, function (err) {
+      console.log("userFromToken: user not found: " + err);
+      next();
+    });
+  };
+
 // ----------------------------------------------
 
 exports.logHeaders = function(req, res, next) {
