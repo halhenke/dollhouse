@@ -9,6 +9,9 @@
     return $routeProvider.when('/', {
       templateUrl: 'dolls.html',
       controller: 'DollsController'
+    }).when('/login', {
+      templateUrl: 'login.html',
+      controller: 'AuthController'
     }).when('/links', {
       templateUrl: 'links.html',
       controller: 'LinksController'
@@ -70,6 +73,34 @@
           eventDrop: $scope.alertOnDrop,
           eventResize: $scope.alertOnResize
         }
+      };
+    }
+  ]);
+
+}).call(this);
+
+(function() {
+  var ngApp;
+
+  ngApp = angular.module("dollhouse");
+
+  ngApp.controller("AuthController", [
+    '$scope', '$http', '$window', 'lo', '$log', 'Profiles', function($scope, $http, $window, lo, $log, Profiles) {
+      $log.log("AuthController loaded...");
+      $scope.log = $log;
+      $scope.user = {
+        username: 'john.doe',
+        password: 'foobar'
+      };
+      $scope.message = '';
+      return $scope.submit = function() {
+        $http.post('/users/login', $scope.user).success(function(data, status, headers, config) {
+          $window.sessionStorage.token = data.token;
+          $scope.message = 'Welcome';
+        }).error(function(data, status, headers, config) {
+          delete $window.sessionStorage.token;
+          $scope.message = 'Error: Invalid user or password';
+        });
       };
     }
   ]);
