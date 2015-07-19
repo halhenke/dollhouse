@@ -31,6 +31,12 @@ exports = module.exports = function(req, res) {
 
   // Return JSON
   view.render(function (err, req, res) {
+    if (req.user) {
+      locals.data.logged_in = req.user.slug;
+    }
+    else {
+      locals.data.logged_in = false;
+    }
     res.send(locals.data);
   });
 };

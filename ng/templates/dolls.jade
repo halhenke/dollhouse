@@ -4,9 +4,11 @@
       h1 Doll Database
     .col-sm-6.filter-col
       //- TODO: need a front end test for login..
+      //- test token
       //- if user
+      .row(ng-if="data.logged_in"): .col-sm-offset-8.col-sm-4
         a.btn.btn-primary(href="/dolls/new") Add a doll to the database...
-      .row
+      .row: .col-sm-offset-8.col-sm-4
         .input-group
           .input-group-btn.dropdown(dropdown='' auto-close="outsideClick")
             //- button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown' aria-expanded='false')

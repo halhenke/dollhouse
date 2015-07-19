@@ -1,5 +1,6 @@
 .show-doll.jumbotron
-  .row: .col-sm-offset-11.col-sm-1
+  .row(ng-if="data.edit"): .col-sm-offset-11.col-sm-1
+    //- TODO: need an API token test that this is our doll
     a(ng-href="/dolls/doll/{{data.doll.slug}}/edit") 
       button.btn.btn-primary.ng-back-btn Edit this doll
     

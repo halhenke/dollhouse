@@ -88,6 +88,12 @@ exports = module.exports = function(req, res) {
 
   // Return JSON
   view.render(function (err, req, res) {
+    if (req.user && (req.user.slug === locals.data.profile.slug)) {
+      locals.data.edit = true;
+    }
+    else {
+      locals.data.edit = false;
+    }
     res.send(locals.data);
   });
 };

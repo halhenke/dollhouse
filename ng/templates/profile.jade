@@ -1,5 +1,5 @@
 .show-profile.jumbotron
-  .row: .col-sm-offset-11.col-sm-1
+  .row(ng-if="data.edit"): .col-sm-offset-11.col-sm-1
     a(ng-href="/profiles/profile/{{data.profile.slug}}/edit") 
       button.btn.btn-primary.ng-back-btn Edit this profile
 
