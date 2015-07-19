@@ -1,5 +1,10 @@
 mixin eventDateFormat(event)
-  | #{event._.date.format("dddd, MMMM Do YYYY")}: 
+  | #{event._.date.format("dddd, MMMM Do YYYY")}
+  //- | #{event._.startTime.format("h:mm a")} -
+  //- | #{event._.endTime.format("h:mm a")}
+
+mixin eventTimeFormat(event)
+  //- | #{event._.date.format("dddd, MMMM Do YYYY")}: 
   | #{event._.startTime.format("h:mm a")} -
   | #{event._.endTime.format("h:mm a")}
 

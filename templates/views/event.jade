@@ -5,7 +5,6 @@ block content
   .container.event
     .row
       .col-sm-12
-        hr
         p: a(href='/events') &larr; back to event list
         h1= data.event.title
     .row
@@ -32,21 +31,28 @@ block content
               //- .same-height
               .row
                 .col-sm-2.col-md-2.key.
-                  when
+                  date
                 .col-sm-6.col-md-6.val 
                   +eventDateFormat(data.event)
               .row
                 .col-sm-2.col-md-2.key.
-                  where
+                  time
+                .col-sm-6.col-md-6.val 
+                  +eventTimeFormat(data.event)
+              .row
+                .col-sm-2.col-md-2.key.
+                  location
                 .col-sm-6.col-md-6.val= data.event.placeString
-              .row: .col-sm-12
+              .row
+                .col-sm-2.col-md-2.key.
+                  details
+                .col-sm-6.col-md-6.val 
+                  != data.event.content.brief
+                  != data.event.content.full
+              //- .row: .col-sm-12
                 != data.event.content.brief
                 != data.event.content.full
       .col-sm-4
         if data.event.image.exists
           .image-wrap
             img(src=data.event._.image.fit(750,450)).img-responsive.img-event
-    //- .row
-      .col-sm-12
-        != data.event.content.brief
-        != data.event.content.full
