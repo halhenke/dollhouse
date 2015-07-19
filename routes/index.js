@@ -34,7 +34,7 @@ var keystone = require('keystone'),
 // keystone.pre('routes', passportTokenMiddleware.authenticate);
 keystone.pre('routes', jwt({
   secret: process.env.TOKEN_SECRET,
-  audience: 'superUsers',
+  // audience: 'superUsers',
   issuer: 'dollsocial.club',
   getToken: middleware.myTokenRetrieval
 }));
