@@ -87,7 +87,7 @@ exports = module.exports = function(app) {
   app.use('/community',
     jwt({
       secret: process.env.TOKEN_SECRET,
-      audience: 'superUsers',
+      // audience: 'superUsers',
       issuer: 'dollsocial.club',
       // getToken: tokenFromCookie(req)
       getToken: middleware.myTokenRetrieval
