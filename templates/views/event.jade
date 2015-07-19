@@ -3,56 +3,55 @@ include ../mixins/dollHelpers
 
 block content
   .container.event
-    .row
-      .col-sm-12
-        p: a(href='/events') &larr; back to event list
-        h1= data.event.title
-    .row
-      .col-sm-8
-        article
-          header
-            //- h1= data.event.title
-            .event_details
-              //- .row: .col-sm-4.col-sm-offset-6.col-md-4.col-md-offset-6
-              .row: .col-sm-4
-                h5 Posted 
-                  if data.event.publishedDate
-                    | on #{data.event._.publishedDate.format('MMMM Do, YYYY')} 
-                  if data.event.categories && data.event.categories.length
-                    | in 
-                    each cat, cat_i in data.event.categories
-                      a(href='/events/' + cat.key)= cat.name
-                      if cat_i < data.event.categories.length - 1
-                        | , 
-                      else
-                        |  
-                  if data.event.author
-                    | by #{data.event.author.name.first}
-              //- .same-height
-              .row
-                .col-sm-2.col-md-2.key.
-                  date
-                .col-sm-6.col-md-6.val 
-                  +eventDateFormat(data.event)
-              .row
-                .col-sm-2.col-md-2.key.
-                  time
-                .col-sm-6.col-md-6.val 
-                  +eventTimeFormat(data.event)
-              .row
-                .col-sm-2.col-md-2.key.
-                  location
-                .col-sm-6.col-md-6.val= data.event.placeString
-              .row
-                .col-sm-2.col-md-2.key.
-                  details
-                .col-sm-6.col-md-6.val 
-                  != data.event.content.brief
-                  != data.event.content.full
-              //- .row: .col-sm-12
+    .row: .show-doll.jumbotron
+      .row
+        .col-sm-12
+          p: a(href='/events') &larr; back to event list
+      .row
+        .col-sm-8
+          .row.event_details              
+            .row.doll-heading  
+              .doll-name
+                h2= data.event.title                
+            .row: .col-sm-4
+              h5 Posted 
+                if data.event.publishedDate
+                  | on #{data.event._.publishedDate.format('MMMM Do, YYYY')} 
+                if data.event.categories && data.event.categories.length
+                  | in 
+                  each cat, cat_i in data.event.categories
+                    a(href='/events/' + cat.key)= cat.name
+                    if cat_i < data.event.categories.length - 1
+                      | , 
+                    else
+                      |  
+                if data.event.author
+                  | by #{data.event.author.name.first}
+            //- .same-height
+            .row
+              .col-sm-4.key.
+                date
+              .col-sm-4.val 
+                +eventDateFormat(data.event)
+            .row
+              .col-sm-4.key.
+                time
+              .col-sm-4.val 
+                +eventTimeFormat(data.event)
+            .row
+              .col-sm-4.key.
+                location
+              .col-sm-4.val= data.event.placeString
+            .row
+              .col-sm-4.key.
+                details
+              .col-sm-4.val 
                 != data.event.content.brief
                 != data.event.content.full
-      .col-sm-4
-        if data.event.image.exists
-          .image-wrap
-            img(src=data.event._.image.fit(750,450)).img-responsive.img-event
+            //- .row: .col-sm-12
+              != data.event.content.brief
+              != data.event.content.full
+        .col-sm-4
+          if data.event.image.exists
+            .image-wrap
+              img(src=data.event._.image.fit(750,450)).img-responsive.img-event
