@@ -145,6 +145,15 @@ exports.passportUserCheck = function (req, res, next) {
 // ----------------------------------------------
 // TOKEN RELATED AUTHENTICATION AND ACCESS
 // ----------------------------------------------
+// A token indicating not logged in
+var guestToken = jWebTok.sign({
+    guest: true
+  },
+  process.env.TOKEN_SECRET, {
+    audience: 'guest',
+    issuer: 'dollsocial.club'
+  });
+
 // Called on login
 // - store token in either
 //   - header
@@ -210,16 +219,22 @@ exports.myTokenRetrieval = function (req) {
     return req.signedCookies.tok;
   } else {
     console.log("tok coookie not found");
-    return null;
+    // return null;
+    // return a guest token for others?
+    return guestToken;
   }
 };
 
 // Try to get a User from a decoded token
 exports.tokenToUser = function (req, res, next) {
-  // console.log("userFromToken called...");
-  // console.log("looking for slug " + token.userSlug);
-  // console.log("from token ");
-  // console.dir(token);
+  console.log("tokenToUser called...");
+  // If we got the guest token set req.user to null...
+  if (req.user.guest) {
+    console.log("User has a guest token...");
+    req.user = null;
+    next();
+    return;
+  }
   keystone.list('User')
     .model.findOne({slug: req.user.userSlug})
     .exec()
