@@ -1,0 +1,16 @@
+.row
+  h1 Sign In
+.row: .col-sm-8.col-md-6
+  form.passport.login(method='post', enctype="multipart/form-data")
+    input(type='hidden', name='action', value='/users/login')
+    //- .form-group(class=validationErrors.email ? 'has-error' : null)
+    .form-group
+      label username (email)
+      input(type='text', name='username').form-control
+      //- input(type='text', name='email', value=formData['name']).form-control
+    .form-group
+      label password
+      input(type='password', name='password').form-control
+      //- input(type='text', name='email', value=formData['name']).form-control
+    .form-actions
+      button(type='submit').btn.btn-primary Send
