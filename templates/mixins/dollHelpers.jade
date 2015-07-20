@@ -40,9 +40,10 @@ mixin navLinks(links)
         a(href=link.href): button.btn.btn-doll.navbar-btn= link.label
 
 mixin detailList(details)
-  dl.detail-list
+  //- .panel.detail-list
+  .panel.ngList
     each detail in details
-      dt= detail.key
-      dd= detail.val
+      .row
+        .col-sm-4.detail-key= detail.key
+        .col-sm-8.detail-val= detail.val
     
-  
