@@ -1,0 +1,12 @@
+extends ../layouts/default
+
+block content
+  .container: .jumbotron
+    .row
+      .col-md-4.col-sm-4
+        //- img.cover-girl(src='http://res.cloudinary.com/doll-social-club/image/upload/c_fit,w_250/v1432423782/dsclogo_big.png', width='250')
+        img.cover-girl(src=data.home._.image.src(), width='250')
+      .col-md-8.col-sm-8
+        h1= data.home.title
+    .row
+      .col-md-8.col-md-offset-4!= data.home.content.brief

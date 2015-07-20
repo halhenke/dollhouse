@@ -94,7 +94,8 @@ exports = module.exports = function(app) {
     }));
 
   // Views
-  app.get('/', routes.views.index);
+  app.get('/', routes.views.home);
+  // app.get('/', routes.views.index);
   // app.get('/', routes.views.index_ng);
   app.get('/blog/:category?', routes.views.blog);
   app.get('/blog/post/:post', routes.views.post);
