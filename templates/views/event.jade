@@ -27,21 +27,7 @@ block content
                       |  
                 if data.event.author
                   | by #{data.event.author.name.first}
-            //- .same-height
-            .row
-              .col-sm-4.key.
-                date
-              .col-sm-4.val 
-                +eventDateFormat(data.event)
-            .row
-              .col-sm-4.key.
-                time
-              .col-sm-4.val 
-                +eventTimeFormat(data.event)
-            .row
-              .col-sm-4.key.
-                location
-              .col-sm-4.val= data.event.placeString
+            +detailList(data.eventDetails)
             .row
               .col-sm-4.key.
                 details
