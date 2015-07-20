@@ -13,7 +13,8 @@ var Event = new keystone.List('Event', {
 
 Event.add({
   title: { type: String, required: true },
-  date: { type: Types.Date, required: true, initial: true },
+  startDate: { type: Types.Date, required: true, initial: true },
+  endDate: { type: Types.Date, required: true, initial: true },
   startTime: { type: Types.Datetime, required: true, initial: true },
   endTime: { type: Types.Datetime, required: true, initial: true },
   placeString: { type: String, required: true, initial: true },
